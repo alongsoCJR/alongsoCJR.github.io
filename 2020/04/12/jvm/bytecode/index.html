@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/04/12/jvm/bytecode/java-complier.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/04/12/jvm/bytecode/process.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/04/12/jvm/bytecode/JVM_JRE_JDK.jpg">
-<meta property="og:updated_time" content="2020-04-12T07:53:27.007Z">
+<meta property="og:updated_time" content="2020-04-12T10:35:51.375Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="二进制与字节码">
 <meta name="twitter:description" content="二进制自古以来，就有太极生两仪，两仪生四象，四象生八卦的文化传说。天与地，明与暗，是与非，有与无，宇宙万物貌似都是在这两个极端之间存在的。然而在计算机的世界里，这个世界又是怎样存在的呢，对的，就是用二进制来表示的。">
@@ -424,14 +424,14 @@
 <h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>是指用于人与计算机之间通讯的一种特殊语言，是人与计算机之间传递消息的媒介。</p>
 <h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><h5 id="低级语言"><a href="#低级语言" class="headerlink" title="低级语言"></a>低级语言</h5><h6 id="机器语言"><a href="#机器语言" class="headerlink" title="机器语言"></a>机器语言</h6><p>直接用二进制指令表达。指令是用0和1组成的一长串代码。有一定的位数，并分成若干段，各段的编码表示不同的含义。</p>
 <h6 id="汇编语言"><a href="#汇编语言" class="headerlink" title="汇编语言"></a>汇编语言</h6><p>使用一些特殊的符号代替机器语言的二进制码（又称符号语言），计算机不能直接识别，需要用一种软件将汇编语言翻译成机器语言，依赖于硬件体系，开发难度较大。</p>
-<h5 id="高级语言"><a href="#高级语言" class="headerlink" title="高级语言"></a>高级语言</h5><p>高级语言是相对于低级语言来说的，高级语言是按照人的思维编写出来的语言，比如C语言、C++、JAVA、Python等，其可读性高，但执行效率较低级语言较低，编写的程序叫作源程序。</p>
+<h5 id="高级语言"><a href="#高级语言" class="headerlink" title="高级语言"></a>高级语言</h5><p>高级语言是相对于低级语言来说的，高级语言是按照人的思维编写出来的语言，比如C语言、C++、JAVA、Python等，其可读性高，但执行效率较低级语言低，编写的程序叫作源程序。</p>
 <p>那么问题来了，对于高级语言，如果程序想运行，必须翻译成计算机能识别的低级语言才行，那么，高级语言是怎么翻译的呢？这就要借助编译器或者解析器了。</p>
 <h3 id="翻译语言"><a href="#翻译语言" class="headerlink" title="翻译语言"></a>翻译语言</h3><h4 id="分类-1"><a href="#分类-1" class="headerlink" title="分类"></a>分类</h4><h5 id="编译型语言"><a href="#编译型语言" class="headerlink" title="编译型语言"></a>编译型语言</h5><img src="/2020/04/12/jvm/bytecode/tranlation-lau.jpg">
 
-<p>如图所示，程序执行之前，有一个单独的编译过程，将程序翻译成机器语言，以后执行这个程序的时候（.exe），就不用再进行翻译了，执行效率高。比如C语言、C++</p>
+<p>如图所示，程序执行之前，有一个单独的编译过程，将程序翻译成机器语言，以后执行这个程序的时候（.exe），就不用再进行翻译了。这类语言编写的程序启动稍慢，执行稍快。比如C语言、C++</p>
 <h5 id="解释型语言"><a href="#解释型语言" class="headerlink" title="解释型语言"></a>解释型语言</h5><img src="/2020/04/12/jvm/bytecode/translation-lau.jpg">
 
-<p>不需要编译，运行时使用一个专用的解释器去翻译，每一条语句都是执行的时候才翻译，所以这类程序每执行一次就要翻译一次，执行效率较低。比如Python</p>
+<p>不需要编译，运行时使用一个专用的解释器去翻译，每一条语句都是执行的时候才翻译，所以这类程序每执行一次就要翻译一次，这类语言编写的程序启动稍快，执行稍慢。比如Python</p>
 <h5 id="混合型语言"><a href="#混合型语言" class="headerlink" title="混合型语言"></a>混合型语言</h5><img src="/2020/04/12/jvm/bytecode/mix-lau.jpg">
 
 <p>混合型语言，比如java，对源码进行编译后能得到class字节码文件，然后JVM拿到文件后会进行解释成C++语言，然后通过C++编译器编译成汇编语言。具体情况如下图：</p>
@@ -453,8 +453,6 @@
 <p>JVM：Java虚拟机（Java Virtual Machine）它是运行所有Java程序的虚拟计算机，好比是街机游戏的模拟器。</p>
 <p>JRE：Java运行环境（Java Runtime Environment）如果要运行Java程序，就需要JRE，JRE里包含JVM和java类库。</p>
 <p>JDK：Java开发工具（Java Development Kit）包含开发Java程序的所有工具(javac、java)，JDK里包含JRE和开发调试工具。</p>
-<p>参考：</p>
-<p><a href="https://blog.csdn.net/u011810352/article/details/80316870" target="_blank" rel="noopener">从一个class文件深入理解Java字节码结构</a></p>
 
       
     </div>
@@ -488,6 +486,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/13/jvm/classfile-format/" rel="prev" title="class文件结构信息">
+                class文件结构信息 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -569,7 +571,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -580,7 +582,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
