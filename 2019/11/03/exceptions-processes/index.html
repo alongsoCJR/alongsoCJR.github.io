@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本章简介 异常控制流 定义 现代系统通过使用控制流发生突变对系统各种状态的变化作出反应，我们把这些突变称为异常控制流（Exceptional Control Flow）   理解异常控制流的好处 理解重要的系统概念 理解应用程序是如何与操作系统交互的 编写有趣的新应用程序 理解并发 理解软件异常如何工作    本章讲解思路 与操作系统交互 这一章的重要性在于学习应用是如何与操作系统交互，交互是围绕">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入理解计算机：异常控制流与进程">
+<meta property="og:url" content="http://yoursite.com/2019/11/03/exceptions-processes/index.html">
+<meta property="og:site_name" content="alongso blog">
+<meta property="og:description" content="本章简介 异常控制流 定义 现代系统通过使用控制流发生突变对系统各种状态的变化作出反应，我们把这些突变称为异常控制流（Exceptional Control Flow）   理解异常控制流的好处 理解重要的系统概念 理解应用程序是如何与操作系统交互的 编写有趣的新应用程序 理解并发 理解软件异常如何工作    本章讲解思路 与操作系统交互 这一章的重要性在于学习应用是如何与操作系统交互，交互是围绕">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191103124302740.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191103124240607.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191103124319610.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191104100644651.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191104100705803.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019110410072477.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2020-03-02T02:13:22.227Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深入理解计算机：异常控制流与进程">
+<meta name="twitter:description" content="本章简介 异常控制流 定义 现代系统通过使用控制流发生突变对系统各种状态的变化作出反应，我们把这些突变称为异常控制流（Exceptional Control Flow）   理解异常控制流的好处 理解重要的系统概念 理解应用程序是如何与操作系统交互的 编写有趣的新应用程序 理解并发 理解软件异常如何工作    本章讲解思路 与操作系统交互 这一章的重要性在于学习应用是如何与操作系统交互，交互是围绕">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20191103124302740.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/11/03/exceptions-processes/">
+
+
+
+
+
+  <title>深入理解计算机：异常控制流与进程 | alongso blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">alongso blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">热爱你的热爱</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/03/exceptions-processes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="alongso">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/alongso.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="alongso blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">深入理解计算机：异常控制流与进程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-03T03:30:05+08:00">
+                2019-11-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/csapp/" itemprop="url" rel="index">
+                    <span itemprop="name">csapp</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+		
+		
+ 		 <span class="post-meta-divider">|</span>
+  		 <span id="busuanzi_value_page_pv"></span>次阅读
+		
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="本章简介"><a href="#本章简介" class="headerlink" title="本章简介"></a>本章简介</h4><hr>
+<h5 id="异常控制流"><a href="#异常控制流" class="headerlink" title="异常控制流"></a>异常控制流</h5><ul>
+<li>定义<ul>
+<li>现代系统通过使用控制流发生突变对系统各种状态的变化作出反应，我们把这些突变称为异常控制流（Exceptional Control Flow）</li>
+</ul>
+</li>
+<li>理解异常控制流的好处<ul>
+<li>理解重要的系统概念</li>
+<li>理解应用程序是如何与操作系统交互的</li>
+<li>编写有趣的新应用程序</li>
+<li>理解并发</li>
+<li>理解软件异常如何工作</li>
+</ul>
+</li>
+</ul>
+<h5 id="本章讲解思路"><a href="#本章讲解思路" class="headerlink" title="本章讲解思路"></a>本章讲解思路</h5><ul>
+<li>与操作系统交互<ul>
+<li>这一章的重要性在于学习应用是如何与操作系统交互，交互是围绕ECF的，将从一个计算机系统中所有层次上各种形式的ECF展开</li>
+<li>从异常开始，异常位于硬件与操作系统交界的部分</li>
+<li>讨论系统调用，他们是应用程序提供到操作系统的入口点的异常</li>
+<li>提升抽象的层次，描述进程号，他们位于应用和操作系统的交界之处</li>
+<li>最后，讨论非本地跳转，这是ECF的一种应用形式</li>
+</ul>
+</li>
+</ul>
+<h4 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h4><hr>
+<h5 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h5><ul>
+<li><p>异常</p>
+<ul>
+<li>异常就是控制流中的突变，用来响应处理器状态中的某些变化</li>
+</ul>
+</li>
+<li><p>事件</p>
+<ul>
+<li>状态变化称为事件，事件可能和当前指令的执行直接相关</li>
+</ul>
+</li>
+<li><p>异常表</p>
+<ul>
+<li>在任何情况，当处理器检测到有事件发生时，它就会通过一张叫做异常表的跳转表，进行一个间接过程调用，到一个专门设计用来处理这类事件的操作系统子程序（称为异常处理程序）    </li>
+</ul>
+</li>
+<li><p>异常的剖析<br><img src="https://img-blog.csdnimg.cn/20191103124302740.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70" alt="异常的剖析"></p>
+</li>
+<li><p>异常跳转</p>
+<ul>
+<li>处理程序将控制返回给当前指令Icurr，即当前事件正在执行的指令。</li>
+<li>处理程序将控制返回给Inext,即如果没有发生异常，将会执行的下一条指令。</li>
+<li>处理程序终止被中断的程序。</li>
+</ul>
+</li>
+<li><p>异常号</p>
+<ul>
+<li>系统中可能的每种类型的异常都分配了一个唯一的非负整数的异常号，这些号码是由处理器的设计者或者操作系统内核分配的。</li>
+</ul>
+</li>
+<li><p>异常表<br>  <img src="https://img-blog.csdnimg.cn/20191103124240607.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70" alt="异常表"></p>
+<ul>
+<li>在系统启动时，操作系统分配和初始化一张称为异常表的跳转表，使得条目k包含异常k的处理程序地址。</li>
+</ul>
+</li>
+</ul>
+<h5 id="异常的类别"><a href="#异常的类别" class="headerlink" title="异常的类别"></a>异常的类别</h5><h6 id="异步异常"><a href="#异步异常" class="headerlink" title="异步异常"></a>异步异常</h6><ul>
+<li>中断<ul>
+<li>中断是异步发生的，来自处理器外部I/O设备信号</li>
+<li>返回结果后，程序继续执行下一条指令，就像没有发生中断一样</li>
+<li>硬件中断的异常处理程序称为中断处理程序</li>
+</ul>
+</li>
+</ul>
+<h6 id="同步异常（故障指令）"><a href="#同步异常（故障指令）" class="headerlink" title="同步异常（故障指令）"></a>同步异常（故障指令）</h6><ul>
+<li><p>陷阱</p>
+<ul>
+<li>有意的异常，执行一条指令的结果，最常用途——系统调用</li>
+<li>在用户程序和内核之间提供一个像过程一样的接口</li>
+<li>系统调用与普通函数调用的区别<ul>
+<li>普通的函数调用运行在用户模块中，用户模式限制了函数可以执行的指令类型，而且它们只能访问与调用函数相同的栈。</li>
+<li>系统调用运行在内核模式中，内核模式允许系统调用执行指令，并访问定义在内核中的栈。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>故障</p>
+<ul>
+<li>故障由错误情况引起，一般是潜在可恢复的错误,它能够被故障处理程序修正。</li>
+<li>常见的是缺页异常</li>
+</ul>
+</li>
+<li><p>终止</p>
+<ul>
+<li>不可修复的错误引起，例如：DRAM与SRAM被损坏时发生的奇偶错误。</li>
+<li>终止处理<ul>
+<li>终止处理程序将控制传递给一个内核abort例程，该例程终止这个应用程序</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="Linux-IA32系统定义异常"><a href="#Linux-IA32系统定义异常" class="headerlink" title="Linux/IA32系统定义异常"></a>Linux/IA32系统定义异常</h5><ul>
+<li><p>常见的异常</p>
+<ul>
+<li>除法错误</li>
+<li>一般保护故障</li>
+<li>缺页</li>
+<li>机器检查</li>
+</ul>
+</li>
+<li><p>IA32异常示例图<br><img src="https://img-blog.csdnimg.cn/20191103124319610.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70" alt="IA32异常示例图"></p>
+</li>
+</ul>
+<h4 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h4><hr>
+<ul>
+<li><p>进程</p>
+<ul>
+<li>异常是允许操作系统提供进程的概念所需要的基本构造块</li>
+<li>进程的经典定义是一个执行中的程序的实例</li>
+</ul>
+</li>
+<li><p>上下文</p>
+<ul>
+<li>系统中的每个程序都是运行在某个进程的上下文中，上下文是由程序正确运行所需的状态组成的。</li>
+<li>这个状态包括存放在存储器中的程序的代码和数据，它的栈，通用的寄存器的内容、程序计数器、环境变量以及打开文件描述符的集合。</li>
+</ul>
+</li>
+<li><p>进程是对应用程序的关键抽象</p>
+<ul>
+<li>一个独立的逻辑控制流，它提供一个假象，好像我们的程序独占的使用处理器。</li>
+<li>一个私有的地址空间，它提供一个假象，好像我们的程序独占地使用存储器系统。</li>
+</ul>
+</li>
+</ul>
+<h5 id="逻辑控制流"><a href="#逻辑控制流" class="headerlink" title="逻辑控制流"></a>逻辑控制流</h5><ul>
+<li><p>定义</p>
+<ul>
+<li>程序计数器PC的值叫做逻辑控制流</li>
+</ul>
+</li>
+<li><p>逻辑控制流图<img src="https://img-blog.csdnimg.cn/20191104100644651.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p>案例</p>
+<blockquote>
+<ol>
+<li>考虑一个运行三个进程的系统，处理器的一个物理控制流分发成了三个逻辑流。每个进程一个，三个逻辑流的执行是交错的。</li>
+<li>进程A运行了一会儿，然后是进程B开始运行完成。然后，进程C运行了一会，进程A接着运行直到完成。最后，进程C可以运行到结束了。</li>
+<li>图的关键点在于进程是轮流使用处理器的，每个进程执行它的流的一部分，然后被抢占其他进程。对于一个运行在这些进程之一的上下文中的程序，它看上去就像是在独占地使用处理器。</li>
+</ol>
+</blockquote>
+</li>
+<li><p>逻辑流形式</p>
+<ul>
+<li>异常处理程序、进程、信号处理程序</li>
+<li>线程和java进程</li>
+</ul>
+</li>
+</ul>
+<h5 id="并发流"><a href="#并发流" class="headerlink" title="并发流"></a>并发流</h5><ul>
+<li>并发流<ul>
+<li>多个流并发地执行的一般现象称为并发，并发使计算机运行得更快</li>
+<li>并发的思想与流运行的处理器核数或者计算机数无关。如果每个流在时间上重叠，那么它们就是并发。</li>
+</ul>
+</li>
+<li>并行流<ul>
+<li>并行流是并发流的一个真子集，如果两个流并发的运行在不同的处理器或者计算机上，那么我们程它们为并行流。</li>
+<li>并行使计算机能做的更多，它们并行的运行，且并行地执行。</li>
+</ul>
+</li>
+</ul>
+<h5 id="私有地址空间"><a href="#私有地址空间" class="headerlink" title="私有地址空间"></a>私有地址空间</h5><ul>
+<li><p>定义</p>
+<ul>
+<li>一个进程为每个程序提供它自己的私有地址空间</li>
+</ul>
+</li>
+<li><p>组成</p>
+<ul>
+<li>地址空间底部是保留给用户程序的，包括通常的文本、数据、堆和栈段。</li>
+</ul>
+</li>
+<li><p>进程地址空间图<br><img src="https://img-blog.csdnimg.cn/20191104100705803.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+</ul>
+<h5 id="用户模式和内核模式"><a href="#用户模式和内核模式" class="headerlink" title="用户模式和内核模式"></a>用户模式和内核模式</h5><ul>
+<li><p>模式位</p>
+<ul>
+<li>处理器通过使用某个控制寄存器中的一个模式位，来限制一个应用可以执行的指令以及它可以访问的地址空间范围。</li>
+<li>当设置模式位时，进程就运行在内核模式中，一个运行在内核模式中的进程可以执行指令集中的任何指令，并且可以访问系统中任何存储器位置。</li>
+<li>没有模式位时，进程就是运行在用户模式中。用户模式中的进程不允许执行特权指令，比如停止处理器，改变位模式，或者发起一个I/O操作。</li>
+</ul>
+</li>
+<li><p>模式转化</p>
+<ul>
+<li>初始时<ul>
+<li>运行应用程序代码的进程初始时是在用户模式中。</li>
+</ul>
+</li>
+<li>用户模式转内核模式<ul>
+<li>唯一方法，调用中断、故障、或者陷入系统调用的异常</li>
+</ul>
+</li>
+<li>内核模式转用户模式<ul>
+<li>处理程序运行在内核模式中，当它返回到应用程序代码时，处理器就把内核模式改回为用户模式</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="上下文切换"><a href="#上下文切换" class="headerlink" title="上下文切换"></a>上下文切换</h5><ul>
+<li>定义<ul>
+<li>上下文就是内核重新启动一个被抢占的进程所需的状态</li>
+<li>操作系统内核使用一种称为上下文切换的较高层形式的异常控制流来实现多任务。</li>
+</ul>
+</li>
+<li>上下文切换图<br>  <img src="https://img-blog.csdnimg.cn/2019110410072477.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>上下文切换<ol>
+<li>保存当前进程的上下文</li>
+<li>恢复某个先前被抢占的进程被保存的上下文</li>
+<li>将控制传递给这个新恢复的进程</li>
+</ol>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/20/storage-technologies/" rel="next" title="深入理解计算机：存储器层次结构">
+                <i class="fa fa-chevron-left"></i> 深入理解计算机：存储器层次结构
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/14/virtual-memory/" rel="prev" title="深入理解计算机：虚拟存储器">
+                深入理解计算机：虚拟存储器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+     <div id="gitalk-container">
+     </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/alongso.jpg" alt="alongso">
+            
+              <p class="site-author-name" itemprop="name">alongso</p>
+              <p class="site-description motion-element" itemprop="description">stay hungry,stay foolish</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/alongsocjr" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="alongsocjr@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/weixin_40286148" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-CSDN"></i>CSDN</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情连接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://crossoverjie.top" title="CROSSOVERJIE" target="_blank">CROSSOVERJIE</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://coolshell.cn" title="COOLSHELL" target="_blank">COOLSHELL</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://leetcode-cn.com" title="LEETCODE" target="_blank">LEETCODE</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://emacs-china.org" title="EMACCHINA" target="_blank">EMACCHINA</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#本章简介"><span class="nav-number">1.</span> <span class="nav-text">本章简介</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#异常控制流"><span class="nav-number">1.1.</span> <span class="nav-text">异常控制流</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#本章讲解思路"><span class="nav-number">1.2.</span> <span class="nav-text">本章讲解思路</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异常"><span class="nav-number">2.</span> <span class="nav-text">异常</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#异常处理"><span class="nav-number">2.1.</span> <span class="nav-text">异常处理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#异常的类别"><span class="nav-number">2.2.</span> <span class="nav-text">异常的类别</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#异步异常"><span class="nav-number">2.2.1.</span> <span class="nav-text">异步异常</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#同步异常（故障指令）"><span class="nav-number">2.2.2.</span> <span class="nav-text">同步异常（故障指令）</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Linux-IA32系统定义异常"><span class="nav-number">2.3.</span> <span class="nav-text">Linux/IA32系统定义异常</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进程"><span class="nav-number">3.</span> <span class="nav-text">进程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#逻辑控制流"><span class="nav-number">3.1.</span> <span class="nav-text">逻辑控制流</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#并发流"><span class="nav-number">3.2.</span> <span class="nav-text">并发流</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#私有地址空间"><span class="nav-number">3.3.</span> <span class="nav-text">私有地址空间</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用户模式和内核模式"><span class="nav-number">3.4.</span> <span class="nav-text">用户模式和内核模式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#上下文切换"><span class="nav-number">3.5.</span> <span class="nav-text">上下文切换</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">alongso</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+ <div>
+   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+     <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量 <span id="busuanzi_value_site_pv"></span> 
+        <span class="post-meta-divider">|</span>
+     </span>
+     <span id="busuanzi_container_site_uv" style="display:none">
+        总访问人次 <span id="busuanzi_value_site_uv"></span>
+     </span>
+ </div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: '59042ce4cdb0560a5cef',
+          clientSecret: '150427379b5bbfeafe356b9058d5139ec805b52e',
+          repo: 'alongsocjr.github.io',
+          owner: 'alongsocjr',
+          admin: ['alongsocjr'],
+          id: location.pathname,
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')           
+       </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

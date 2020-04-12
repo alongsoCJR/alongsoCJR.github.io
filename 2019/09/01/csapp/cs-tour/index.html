@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一个C语言程序的产生 之前在 走近计算机，走进二进制，爪哇国的诞生讲到一个java程序是怎么执行的，然而依然是知其然，而不知其所以然。今天特意来用C语言写一个程序，看看它是怎么在计算机上跑起来的。  源码 hello.c 12345#include &amp;lt;stdio.h&amp;gt;int main()&amp;#123;	printf(&amp;quot;%s\n&amp;quot;, &amp;quot;Hello,worl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入理解计算机：计算机系统漫游">
+<meta property="og:url" content="http://yoursite.com/2019/09/01/csapp/cs-tour/index.html">
+<meta property="og:site_name" content="alongso blog">
+<meta property="og:description" content="一个C语言程序的产生 之前在 走近计算机，走进二进制，爪哇国的诞生讲到一个java程序是怎么执行的，然而依然是知其然，而不知其所以然。今天特意来用C语言写一个程序，看看它是怎么在计算机上跑起来的。  源码 hello.c 12345#include &amp;lt;stdio.h&amp;gt;int main()&amp;#123;	printf(&amp;quot;%s\n&amp;quot;, &amp;quot;Hello,worl">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2019/09/01/csapp/cs-tour/cs-tour.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/01/csapp/cs-tour/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/01/csapp/cs-tour/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/01/csapp/cs-tour/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/01/csapp/cs-tour/4.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/01/csapp/cs-tour/5.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/01/csapp/cs-tour/6.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/01/csapp/cs-tour/7.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/01/csapp/cs-tour/7.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/01/csapp/cs-tour/8.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/01/csapp/cs-tour/9.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/01/csapp/cs-tour/10.png">
+<meta property="og:updated_time" content="2020-03-15T09:55:49.031Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深入理解计算机：计算机系统漫游">
+<meta name="twitter:description" content="一个C语言程序的产生 之前在 走近计算机，走进二进制，爪哇国的诞生讲到一个java程序是怎么执行的，然而依然是知其然，而不知其所以然。今天特意来用C语言写一个程序，看看它是怎么在计算机上跑起来的。  源码 hello.c 12345#include &amp;lt;stdio.h&amp;gt;int main()&amp;#123;	printf(&amp;quot;%s\n&amp;quot;, &amp;quot;Hello,worl">
+<meta name="twitter:image" content="http://yoursite.com/2019/09/01/csapp/cs-tour/cs-tour.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/09/01/csapp/cs-tour/">
+
+
+
+
+
+  <title>深入理解计算机：计算机系统漫游 | alongso blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">alongso blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">热爱你的热爱</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/01/csapp/cs-tour/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="alongso">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/alongso.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="alongso blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">深入理解计算机：计算机系统漫游</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-01T10:10:26+08:00">
+                2019-09-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/csapp/" itemprop="url" rel="index">
+                    <span itemprop="name">csapp</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+		
+		
+ 		 <span class="post-meta-divider">|</span>
+  		 <span id="busuanzi_value_page_pv"></span>次阅读
+		
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <img src="/2019/09/01/csapp/cs-tour/cs-tour.jpg">
+
+<h3 id="一个C语言程序的产生"><a href="#一个C语言程序的产生" class="headerlink" title="一个C语言程序的产生"></a>一个C语言程序的产生</h3><hr>
+<p>之前在 <a href="https://blog.csdn.net/weixin_40286148/article/details/92421489" target="_blank" rel="noopener">走近计算机，走进二进制，爪哇国的诞生</a>讲到一个java程序是怎么执行的，然而依然是知其然，而不知其所以然。今天特意来用C语言写一个程序，看看它是怎么在计算机上跑起来的。</p>
+<ol>
+<li><p>源码 <em>hello.c</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">	printf(&quot;%s\n&quot;, &quot;Hello,world!&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编译</p>
+<ol>
+<li><p>源代码通过<font color="DodgerBlue" face="微软雅黑">编译器</font>编译得到<font color="DodgerBlue" face="微软雅黑">目标程序</font></p>
+ <img src="/2019/09/01/csapp/cs-tour/1.png">
+</li>
+<li><p>这个时候会在桌面生成目标程序hello<font color="DodgerBlue" face="微软雅黑">【可直接运行】</font></p>
+ <img src="/2019/09/01/csapp/cs-tour/2.png">
+</li>
+<li><p>目标程序文件里面都是 <code>二进制</code></p>
+  <img src="/2019/09/01/csapp/cs-tour/3.png">
+</li>
+<li><p>编译系统</p>
+ <img src="/2019/09/01/csapp/cs-tour/4.png">
+</li>
+<li><p>编译时分工是这样的<font color="YellowGreen" face="微软雅黑"> </font></p>
+ <img src="/2019/09/01/csapp/cs-tour/5.png">
+
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="计算机体系结构"><a href="#计算机体系结构" class="headerlink" title="计算机体系结构"></a>计算机体系结构</h3><hr>
+<ol>
+<li>总线<ol>
+<li>总线是贯穿整个系统的一组电子管道，它携带信息字节并负责在各个部件间传递。</li>
+<li>按照部件之间信息传递划分：<font color="DodgerBlue" face="微软雅黑">系统总线，存储器总线，I/O总线</font></li>
+<li>按照功能划分：控制总线、数据总线、地址总线</li>
+</ol>
+</li>
+<li>I/O设备<ol>
+<li>输入/输出（I/O)设备是系统与外部世界的联系通道</li>
+<li>一共有五种：<font color="DodgerBlue" face="微软雅黑">鼠标、键盘、显示器、磁盘、扩展槽（常见的网卡）       </font></li>
+</ol>
+</li>
+<li>主存<ol>
+<li>主存是一个临时存储设备，在处理器执行程序是，用来存放程序和程序处理的数据。</li>
+<li>除去高速缓存使用SRAM外，主存一般使用的是DRAM硬件技术</li>
+</ol>
+</li>
+<li>CPU处理器<ol>
+<li>中央处理单元（CPU）,简称<font color="DodgerBlue" face="微软雅黑">处理器</font>，是解释（或执行）存储在主存中指令的引擎。</li>
+<li>由三部分组成：<font color="DodgerBlue" face="微软雅黑">控制器，运算器和寄存器</font></li>
+</ol>
+</li>
+<li>体系结构图 <img src="/2019/09/01/csapp/cs-tour/6.png">
+
+</li>
+</ol>
+<h3 id="目标程序的执行"><a href="#目标程序的执行" class="headerlink" title="目标程序的执行"></a>目标程序的执行</h3><hr>
+<p><font color="YellowGreen" face="微软雅黑"> 现在我们目标程序有了，那么怎么执行呢，从用户输入字符到打印结果到屏幕上，计算机到底经历了什么？</font></p>
+<img src="/2019/09/01/csapp/cs-tour/7.png">
+<p>执行时对话是这样的<font color="YellowGreen" face="微软雅黑"></font></p>
+<img src="/2019/09/01/csapp/cs-tour/7.jpg">
+
+
+<h3 id="存储设备层次结构"><a href="#存储设备层次结构" class="headerlink" title="存储设备层次结构"></a>存储设备层次结构</h3><hr>
+<p>从上面的过程可以看到，hello程序初始时在磁盘上，当程序加载时，它又被复制到主存中，当处理器运行程序时，指令又从主存复制到处理器，当程序执行完时，“hello，world”又得复制回显卡，这一系列过程中都涉及数据的复制，如果复制的速度跟不上，那么计算机就可能会瘫痪。</p>
+<p><font color="YellowGreen" face="微软雅黑">我们知道，寄存器与CPU信息传递速度是主存的数百倍级别，是磁盘的百万倍级别，可是，寄存器能存的数据太小，并且同样大小存储造价比磁盘贵得不知道多少个数量级。为了提升计算机性能同时，又不想有太多的造价负担，高速缓存应运而生。</font></p>
+<ol>
+<li><p>高速缓存的原理</p>
+<ul>
+<li><p>空间局部性</p>
+<blockquote>
+<p>就是说内存上如果某一地址空间的数据频繁的被CPU访问，那么其旁边的存储单元也有可能被访问。</p>
+</blockquote>
+</li>
+<li><p>时间局部性</p>
+<blockquote>
+<p>在某一段时间内，内存上如果某一地址空间的数据频繁的被CPU访问，那么在未来很可能会再次访问。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>存储设备层次结构</p>
+ <img src="/2019/09/01/csapp/cs-tour/8.png">
+
+</li>
+</ol>
+<h3 id="操作系统的抽象"><a href="#操作系统的抽象" class="headerlink" title="操作系统的抽象"></a>操作系统的抽象</h3><hr>
+<ol>
+<li><p>基本功能</p>
+<ol>
+<li>防止硬件被失控的应用程序滥用</li>
+<li>向应用程序提供简单一致的机制来控制复杂而又通常大相径庭的低级硬件设备</li>
+</ol>
+</li>
+<li><p>抽象</p>
+<blockquote>
+<p>文件是对I/O设备的抽象，虚拟存储器是对主存和磁盘I/O设备的抽象，进程则是对处理器、主存和I/O设备的抽象，虚拟机，提供对整个计算机（包括操作系统、处理器和程序）的抽象。</p>
+</blockquote>
+<p> 结构图：</p>
+  <img src="/2019/09/01/csapp/cs-tour/9.png">
+</li>
+<li><p>进程与线程</p>
+<ol>
+<li>进程<ol>
+<li>进程是操作系统对一个正在运行的程序一种抽象.</li>
+<li>在一个系统上可以同时运行多个进程，而每个进程都好像在独占地使用硬件.</li>
+<li>而并发运行，则是说一个进程的指令和另一个进程的指令是交错执行的，操作系统实现这种交错执行的机制称为上下文切换。</li>
+<li>实现进程这个抽象概念需要低级硬件和操作系统软件之间的紧密合作。</li>
+</ol>
+</li>
+<li>线程 <ol>
+<li>一个进程可以包含多个线程，但至少包含一个线程。</li>
+<li>书上是这样说的，在现代系统中，一个进程实际上是可以由多个吗称为线程的执行单元，每个线程都运行在进程的上下文中，并共享同样的代码和全局数据。</li>
+<li>并且多线程之间比多进程之间更容易共享数据，线程一般来说比进程更高效。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>并发与并行</p>
+<ol>
+<li>并发<ol>
+<li>使计算机做得更多</li>
+<li>单核处理器在某时间段（宏观上）处理多个任务。</li>
+<li>注，是指宏观上（即某一时间段），其实从微观看来（在任何一个时刻），单处理器系统都只能执行一个进程的代码。</li>
+</ol>
+</li>
+<li>并行<ol>
+<li>使计算机处理的更快</li>
+<li>同一个进程里面的任务可以在多个处理器上运行。 </li>
+</ol>
+</li>
+<li>并发与并行对比图<img src="/2019/09/01/csapp/cs-tour/10.png"></li>
+</ol>
+</li>
+</ol>
+<p><font color="red" face="微软雅黑">参考资料:</font></p>
+<p><a href="https://note.youdao.com/ynoteshare1/mobile.html?id=461113809dc1c9ef7ee5375aba01f186&type=note#/" target="_blank" rel="noopener">学习笔记</a><br><a href="https://book.douban.com/subject/5333562/" target="_blank" rel="noopener">深入理解计算机系统（原书第二版）</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/10/shell-commands/" rel="next" title="SHELL命令汇总">
+                <i class="fa fa-chevron-left"></i> SHELL命令汇总
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/26/jvm/bytecode/" rel="prev" title="二进制与字节码">
+                二进制与字节码 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+     <div id="gitalk-container">
+     </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/alongso.jpg" alt="alongso">
+            
+              <p class="site-author-name" itemprop="name">alongso</p>
+              <p class="site-description motion-element" itemprop="description">stay hungry,stay foolish</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/alongsocjr" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="alongsocjr@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/weixin_40286148" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-CSDN"></i>CSDN</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情连接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://tech.meituan.com" title="MEITUAN" target="_blank">MEITUAN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://crossoverjie.top" title="CROSSOVERJIE" target="_blank">CROSSOVERJIE</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://coolshell.cn" title="COOLSHELL" target="_blank">COOLSHELL</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://leetcode-cn.com" title="LEETCODE" target="_blank">LEETCODE</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://emacs-china.org" title="EMACCHINA" target="_blank">EMACCHINA</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一个C语言程序的产生"><span class="nav-number">1.</span> <span class="nav-text">一个C语言程序的产生</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机体系结构"><span class="nav-number">2.</span> <span class="nav-text">计算机体系结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目标程序的执行"><span class="nav-number">3.</span> <span class="nav-text">目标程序的执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储设备层次结构"><span class="nav-number">4.</span> <span class="nav-text">存储设备层次结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作系统的抽象"><span class="nav-number">5.</span> <span class="nav-text">操作系统的抽象</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">alongso</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+ <div>
+   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+     <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量 <span id="busuanzi_value_site_pv"></span> 
+        <span class="post-meta-divider">|</span>
+     </span>
+     <span id="busuanzi_container_site_uv" style="display:none">
+        总访问人次 <span id="busuanzi_value_site_uv"></span>
+     </span>
+ </div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: '59042ce4cdb0560a5cef',
+          clientSecret: '150427379b5bbfeafe356b9058d5139ec805b52e',
+          repo: 'alongsocjr.github.io',
+          owner: 'alongsocjr',
+          admin: ['alongsocjr'],
+          id: location.pathname,
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')           
+       </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
