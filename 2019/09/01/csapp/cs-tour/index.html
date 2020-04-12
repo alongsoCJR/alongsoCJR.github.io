@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="一个C语言程序的产生 之前在 走近计算机，走进二进制，爪哇国的诞生讲到一个java程序是怎么执行的，然而依然是知其然，而不知其所以然。今天特意来用C语言写一个程序，看看它是怎么在计算机上跑起来的。  源码 hello.c 12345#include &amp;lt;stdio.h&amp;gt;int main()&amp;#123;	printf(&amp;quot;%s\n&amp;quot;, &amp;quot;Hello,worl">
+<meta name="description" content="一个C语言程序的产生 之前在 走近计算机，走进二进制，爪哇国的诞生讲到一个java程序是怎么执行的，然而依然是知其然，而不知其所以然。今天特意来用C语言写一个程序，看看它是怎么在计算机上跑起来的。  源码 hello.c 12345#include &amp;lt;stdio.h&amp;gt;int main()&amp;#123;	printf(&quot;%s\n&quot;, &quot;Hello,world!&quot;);&amp;#125;  编译">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入理解计算机：计算机系统漫游">
 <meta property="og:url" content="http://yoursite.com/2019/09/01/csapp/cs-tour/index.html">
 <meta property="og:site_name" content="alongso blog">
-<meta property="og:description" content="一个C语言程序的产生 之前在 走近计算机，走进二进制，爪哇国的诞生讲到一个java程序是怎么执行的，然而依然是知其然，而不知其所以然。今天特意来用C语言写一个程序，看看它是怎么在计算机上跑起来的。  源码 hello.c 12345#include &amp;lt;stdio.h&amp;gt;int main()&amp;#123;	printf(&amp;quot;%s\n&amp;quot;, &amp;quot;Hello,worl">
+<meta property="og:description" content="一个C语言程序的产生 之前在 走近计算机，走进二进制，爪哇国的诞生讲到一个java程序是怎么执行的，然而依然是知其然，而不知其所以然。今天特意来用C语言写一个程序，看看它是怎么在计算机上跑起来的。  源码 hello.c 12345#include &amp;lt;stdio.h&amp;gt;int main()&amp;#123;	printf(&quot;%s\n&quot;, &quot;Hello,world!&quot;);&amp;#125;  编译">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2019/09/01/csapp/cs-tour/cs-tour.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/09/01/csapp/cs-tour/1.png">
@@ -98,10 +98,10 @@
 <meta property="og:image" content="http://yoursite.com/2019/09/01/csapp/cs-tour/8.png">
 <meta property="og:image" content="http://yoursite.com/2019/09/01/csapp/cs-tour/9.png">
 <meta property="og:image" content="http://yoursite.com/2019/09/01/csapp/cs-tour/10.png">
-<meta property="og:updated_time" content="2020-03-15T09:55:49.031Z">
+<meta property="og:updated_time" content="2020-04-12T07:49:39.599Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解计算机：计算机系统漫游">
-<meta name="twitter:description" content="一个C语言程序的产生 之前在 走近计算机，走进二进制，爪哇国的诞生讲到一个java程序是怎么执行的，然而依然是知其然，而不知其所以然。今天特意来用C语言写一个程序，看看它是怎么在计算机上跑起来的。  源码 hello.c 12345#include &amp;lt;stdio.h&amp;gt;int main()&amp;#123;	printf(&amp;quot;%s\n&amp;quot;, &amp;quot;Hello,worl">
+<meta name="twitter:description" content="一个C语言程序的产生 之前在 走近计算机，走进二进制，爪哇国的诞生讲到一个java程序是怎么执行的，然而依然是知其然，而不知其所以然。今天特意来用C语言写一个程序，看看它是怎么在计算机上跑起来的。  源码 hello.c 12345#include &amp;lt;stdio.h&amp;gt;int main()&amp;#123;	printf(&quot;%s\n&quot;, &quot;Hello,world!&quot;);&amp;#125;  编译">
 <meta name="twitter:image" content="http://yoursite.com/2019/09/01/csapp/cs-tour/cs-tour.jpg">
 
 
@@ -396,9 +396,11 @@
 <p>之前在 <a href="https://blog.csdn.net/weixin_40286148/article/details/92421489" target="_blank" rel="noopener">走近计算机，走进二进制，爪哇国的诞生</a>讲到一个java程序是怎么执行的，然而依然是知其然，而不知其所以然。今天特意来用C语言写一个程序，看看它是怎么在计算机上跑起来的。</p>
 <ol>
 <li><p>源码 <em>hello.c</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">	printf(&quot;%s\n&quot;, &quot;Hello,world!&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%s\n"</span>, <span class="string">"Hello,world!"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>编译</p>
+ <a id="more"></a>
+
 <ol>
 <li><p>源代码通过<font color="DodgerBlue" face="微软雅黑">编译器</font>编译得到<font color="DodgerBlue" face="微软雅黑">目标程序</font></p>
  <img src="/2019/09/01/csapp/cs-tour/1.png">
@@ -561,8 +563,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/09/26/jvm/bytecode/" rel="prev" title="二进制与字节码">
-                二进制与字节码 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/09/26/school-inter-questions/" rel="prev" title="校招面试题个人整理">
+                校招面试题个人整理 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -656,7 +658,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>

@@ -284,6 +284,157 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/27/concurrentart/volatile-implement-prinpiple/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="alongso">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/alongso.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="alongso blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/27/concurrentart/volatile-implement-prinpiple/" itemprop="url">volatile底层实现原理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-27T10:10:26+08:00">
+                2020-02-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/并发编程的艺术/" itemprop="url" rel="index">
+                    <span itemprop="name">并发编程的艺术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+		
+		
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <img src="/2020/02/27/concurrentart/volatile-implement-prinpiple/volatile-implement-prinpiple.jpg">
+
+<h2 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><ul>
+<li>Java编程语言允许线程访问共享变量，为了确保共享变量能被准确和一致地更新，线程应该确保通过排它锁单独获取这个变量。</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/02/27/concurrentart/volatile-implement-prinpiple/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/26/concurrentart/challenge-concurrency-progrramming/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -687,27 +838,22 @@
 
       
         
-          
-          并发编程简介
-并发
-
-如果逻辑控制流，在时间上重叠，那么它们就是并发的
-
-
-应用级并发的作用
-
-访问慢速I/O设备
-与人交互
-通过推迟工作以降低延迟
-服务多个网络服务
-在多核机器上进行并行计算
-
-
-三种构造并发程序的方法
-
-进程
-With this approach, each logical control ﬂow is a process that is
-          ...
+          <h4 id="并发编程"><a href="#并发编程" class="headerlink" title="并发编程"></a>并发编程</h4><h5 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h5><ul>
+<li><p>并发</p>
+<ul>
+<li>如果逻辑控制流，在时间上重叠，那么它们就是并发的</li>
+</ul>
+</li>
+<li><p>应用级并发的作用</p>
+<ul>
+<li>访问慢速I/O设备</li>
+<li>与人交互</li>
+<li>通过推迟工作以降低延迟</li>
+<li>服务多个网络服务</li>
+<li>在多核机器上进行并行计算</li>
+</ul>
+</li>
+</ul>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/01/06/csapp/concurrent-programmings/#more" rel="contents">
@@ -854,20 +1000,26 @@ With this approach, each logical control ﬂow is a process that is
 
       
         
-          
-          Web服务器
-Web基础
-HTTP协议——超文本传输协议（Hypertext Transfer Protocol）
-
-定义
-Web客户端和服务器之间的交互用的一个基于文本的应用级协议。
-一个客户端打开一个到服务器的因特网连接，并且请求某些内容。服务器响应所请求的内容，然后关闭连接。浏览器读取这些内容，并把它显示在屏幕上。
-
-
-
-
-HTML语言——超文本标记语
-          ...
+          <h5 id="Web服务器"><a href="#Web服务器" class="headerlink" title="Web服务器"></a>Web服务器</h5><hr>
+<h6 id="Web基础"><a href="#Web基础" class="headerlink" title="Web基础"></a>Web基础</h6><ul>
+<li><p>HTTP协议——超文本传输协议（Hypertext Transfer Protocol）</p>
+<ul>
+<li>定义<ul>
+<li>Web客户端和服务器之间的交互用的一个基于文本的应用级协议。</li>
+<li>一个客户端打开一个到服务器的因特网连接，并且请求某些内容。服务器响应所请求的内容，然后关闭连接。浏览器读取这些内容，并把它显示在屏幕上。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>HTML语言——超文本标记语言（Hypertext Markuo Language）</p>
+<ul>
+<li>定义<ul>
+<li>区别于常规的文件检索服务，一个HTML程序包含指令，它们告诉浏览器如何显示这页中的各种文本和图形对象。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/12/08/csapp/network-programming-two/#more" rel="contents">
@@ -1014,18 +1166,26 @@ HTML语言——超文本标记语
 
       
         
-          
-          客户端——服务端编程模型
-简介
-定义
-
-一个网络应用是由一个服务器进程和一个或者多个客户端进程组成，服务端管理某种资源，并且通过操作这种资源来为它的客户端提供某种服务。
-
-
-举例
-
-a Web server manages a set of disk ﬁles that it retrieves and executes on behalf of clien
-          ...
+          <h5 id="客户端——服务端编程模型"><a href="#客户端——服务端编程模型" class="headerlink" title="客户端——服务端编程模型"></a>客户端——服务端编程模型</h5><hr>
+<h6 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h6><ul>
+<li><p>定义</p>
+<ul>
+<li>一个网络应用是由一个服务器进程和一个或者多个客户端进程组成，服务端管理某种资源，并且通过操作这种资源来为它的客户端提供某种服务。</li>
+</ul>
+</li>
+<li><p>举例</p>
+<ul>
+<li>a Web server manages a set of disk ﬁles that it retrieves and executes on behalf of clients. </li>
+<li>An FTP server manages a set of disk ﬁles that it stores and retrieves for clients. </li>
+<li>An email server manages a spool ﬁle that it reads and updates for clients.  </li>
+</ul>
+</li>
+<li><p>基本操作</p>
+<ul>
+<li>客户端——服务器模型中基本操作是事务。  </li>
+</ul>
+</li>
+</ul>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/12/01/csapp/network-programming/#more" rel="contents">
@@ -1172,14 +1332,13 @@ a Web server manages a set of disk ﬁles that it retrieves and executes on beha
 
       
         
-          
-          简介
-
-定义：
-
-address translation is a mapping between the elements of an N- element virtual address space (VAS) and an M-element physical address space (PAS)
-MAP: VAS → PAS ∪ ∅MAP(A) =
-          ...
+          <h5 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h5><hr>
+<ul>
+<li><p>定义：</p>
+<blockquote>
+<p>address translation is a mapping between the elements of an N- element virtual address space (VAS) and an M-element physical address space (PAS)</p>
+<pre><code>MAP: VAS → PAS ∪ ∅</code></pre><p>MAP(A) =A’ (if data at virtual addr. A are present at physical addr. A_ in PAS)<br>MAP(A) = ∅ (if data at virtual addr. A are not present in physical memory)</p>
+</blockquote>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/11/25/csapp/address-translation/#more" rel="contents">
@@ -1189,7 +1348,7 @@ MAP: VAS → PAS ∪ ∅MAP(A) =
           <!--/noindex-->
         
       
-    </div>
+    </li></ul></div>
     
     
     
@@ -1326,23 +1485,16 @@ MAP: VAS → PAS ∪ ∅MAP(A) =
 
       
         
-          
-          简介
-I/O(输入与输出)
-
-定义:是在主存和外部设备（如磁盘驱动器、终端和网络）之间拷贝数据的过程。
-
-学习Unix I/O的好处
-
-了解Unix I/O将帮助你理解其他的系统概念。
-有时你除了使用Unix I/O以外，你别无选择。
-
-Unix I/O
-Unix文件：
-
-定义：一个Unix文件就是一个各字节的序列：B0，B1，B2，…，Bk,…，Bm-1
-
-          ...
+          <h5 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h5><hr>
+<p>I/O(输入与输出)</p>
+<ul>
+<li>定义:是在主存和外部设备（如磁盘驱动器、终端和网络）之间拷贝数据的过程。</li>
+</ul>
+<p>学习Unix I/O的好处</p>
+<ul>
+<li>了解Unix I/O将帮助你理解其他的系统概念。</li>
+<li>有时你除了使用Unix I/O以外，你别无选择。</li>
+</ul>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/11/25/csapp/system-level-IO/#more" rel="contents">
@@ -1489,26 +1641,25 @@ Unix文件：
 
       
         
-          
-          简介
-定义
-虚拟存储器是对I/O设备与主存的抽象。
-虚拟存储器是硬件异常、硬件地址翻译、主存、磁盘文件和内核软件的完美交互，它为每个进程提供了一个大的，一致的和私有的地址空间。
-
-虚拟存储器的目标
-高速缓存
-存储器管理工具
-存储器保护工具
-
-理解虚拟存储器的原因
-中心的
-强大的
-危险的
-
-讲解思路
-前一部分描述虚拟存储器是如何工作的
-后一部分描述应用程序如何
-          ...
+          <h5 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h5><hr>
+<h6 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h6><ul>
+<li>虚拟存储器是对I/O设备与主存的抽象。</li>
+<li>虚拟存储器是硬件异常、硬件地址翻译、主存、磁盘文件和内核软件的完美交互，它为每个进程提供了一个大的，一致的和私有的地址空间。</li>
+</ul>
+<h6 id="虚拟存储器的目标"><a href="#虚拟存储器的目标" class="headerlink" title="虚拟存储器的目标"></a>虚拟存储器的目标</h6><ul>
+<li>高速缓存</li>
+<li>存储器管理工具</li>
+<li>存储器保护工具</li>
+</ul>
+<h6 id="理解虚拟存储器的原因"><a href="#理解虚拟存储器的原因" class="headerlink" title="理解虚拟存储器的原因"></a>理解虚拟存储器的原因</h6><ul>
+<li>中心的</li>
+<li>强大的</li>
+<li>危险的</li>
+</ul>
+<h6 id="讲解思路"><a href="#讲解思路" class="headerlink" title="讲解思路"></a>讲解思路</h6><ul>
+<li>前一部分描述虚拟存储器是如何工作的</li>
+<li>后一部分描述应用程序如何使用和管理虚拟存储器</li>
+</ul>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/11/14/csapp/virtual-memory/#more" rel="contents">
@@ -1655,199 +1806,24 @@ Unix文件：
 
       
         
-          
-          本章简介
-异常控制流
-定义
-现代系统通过使用控制流发生突变对系统各种状态的变化作出反应，我们把这些突变称为异常控制流（Exceptional Control Flow）
-
-
-理解异常控制流的好处
-理解重要的系统概念
-理解应用程序是如何与操作系统交互的
-编写有趣的新应用程序
-理解并发
-理解软件异常如何工作
-
-
-
-本章讲解思路
-与操作系统交互
-这一章的重要性在于
-          ...
+          <h4 id="本章简介"><a href="#本章简介" class="headerlink" title="本章简介"></a>本章简介</h4><hr>
+<h5 id="异常控制流"><a href="#异常控制流" class="headerlink" title="异常控制流"></a>异常控制流</h5><ul>
+<li>定义<ul>
+<li>现代系统通过使用控制流发生突变对系统各种状态的变化作出反应，我们把这些突变称为异常控制流（Exceptional Control Flow）</li>
+</ul>
+</li>
+<li>理解异常控制流的好处<ul>
+<li>理解重要的系统概念</li>
+<li>理解应用程序是如何与操作系统交互的</li>
+<li>编写有趣的新应用程序</li>
+<li>理解并发</li>
+<li>理解软件异常如何工作</li>
+</ul>
+</li>
+</ul>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/11/03/csapp/exceptions-processes/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/20/csapp/storage-technologies/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="alongso">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/alongso.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="alongso blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/20/csapp/storage-technologies/" itemprop="url">深入理解计算机：存储器层次结构</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-20T11:12:54+08:00">
-                2019-10-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/csapp/" itemprop="url" rel="index">
-                    <span itemprop="name">csapp</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-		
-		
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          存储技术
-随机访问存储器
-SRAM
-
-用作高速缓存存储器
-
-
-DRAM
-
-作为主存以及图形系统的帧缓冲区
-
-
-对比
-
-SRAM具有多个晶体管，访问快，不敏感，造价高，应用于高速缓存存储器。
-
-
-
-磁盘
-磁盘构造
-磁盘
-磁盘是由盘片构成，每个盘片有两面称为表面，表面覆盖着磁性记录材料。盘片中央有一个可以旋转的主轴，它使得盘片以固定的旋转速率旋转（单位：RPM）
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/10/20/csapp/storage-technologies/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1948,7 +1924,7 @@ SRAM具有多个晶体管，访问快，不敏感，造价高，应用于高速�
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>

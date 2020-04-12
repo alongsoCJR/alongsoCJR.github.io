@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="本章简介 异常控制流 定义 现代系统通过使用控制流发生突变对系统各种状态的变化作出反应，我们把这些突变称为异常控制流（Exceptional Control Flow）   理解异常控制流的好处 理解重要的系统概念 理解应用程序是如何与操作系统交互的 编写有趣的新应用程序 理解并发 理解软件异常如何工作    本章讲解思路 与操作系统交互 这一章的重要性在于学习应用是如何与操作系统交互，交互是围绕">
+<meta name="description" content="本章简介 异常控制流 定义 现代系统通过使用控制流发生突变对系统各种状态的变化作出反应，我们把这些突变称为异常控制流（Exceptional Control Flow）   理解异常控制流的好处 理解重要的系统概念 理解应用程序是如何与操作系统交互的 编写有趣的新应用程序 理解并发 理解软件异常如何工作">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入理解计算机：异常控制流与进程">
 <meta property="og:url" content="http://yoursite.com/2019/11/03/csapp/exceptions-processes/index.html">
 <meta property="og:site_name" content="alongso blog">
-<meta property="og:description" content="本章简介 异常控制流 定义 现代系统通过使用控制流发生突变对系统各种状态的变化作出反应，我们把这些突变称为异常控制流（Exceptional Control Flow）   理解异常控制流的好处 理解重要的系统概念 理解应用程序是如何与操作系统交互的 编写有趣的新应用程序 理解并发 理解软件异常如何工作    本章讲解思路 与操作系统交互 这一章的重要性在于学习应用是如何与操作系统交互，交互是围绕">
+<meta property="og:description" content="本章简介 异常控制流 定义 现代系统通过使用控制流发生突变对系统各种状态的变化作出反应，我们把这些突变称为异常控制流（Exceptional Control Flow）   理解异常控制流的好处 理解重要的系统概念 理解应用程序是如何与操作系统交互的 编写有趣的新应用程序 理解并发 理解软件异常如何工作">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20191103124302740.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20191103124240607.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70">
@@ -92,10 +92,10 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20191104100644651.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20191104100705803.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/2019110410072477.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2020-03-02T02:13:22.227Z">
+<meta property="og:updated_time" content="2020-04-12T07:44:57.124Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解计算机：异常控制流与进程">
-<meta name="twitter:description" content="本章简介 异常控制流 定义 现代系统通过使用控制流发生突变对系统各种状态的变化作出反应，我们把这些突变称为异常控制流（Exceptional Control Flow）   理解异常控制流的好处 理解重要的系统概念 理解应用程序是如何与操作系统交互的 编写有趣的新应用程序 理解并发 理解软件异常如何工作    本章讲解思路 与操作系统交互 这一章的重要性在于学习应用是如何与操作系统交互，交互是围绕">
+<meta name="twitter:description" content="本章简介 异常控制流 定义 现代系统通过使用控制流发生突变对系统各种状态的变化作出反应，我们把这些突变称为异常控制流（Exceptional Control Flow）   理解异常控制流的好处 理解重要的系统概念 理解应用程序是如何与操作系统交互的 编写有趣的新应用程序 理解并发 理解软件异常如何工作">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20191103124302740.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70">
 
 
@@ -399,6 +399,8 @@
 </ul>
 </li>
 </ul>
+<a id="more"></a>
+
 <h5 id="本章讲解思路"><a href="#本章讲解思路" class="headerlink" title="本章讲解思路"></a>本章讲解思路</h5><ul>
 <li>与操作系统交互<ul>
 <li>这一章的重要性在于学习应用是如何与操作系统交互，交互是围绕ECF的，将从一个计算机系统中所有层次上各种形式的ECF展开</li>
@@ -733,7 +735,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>

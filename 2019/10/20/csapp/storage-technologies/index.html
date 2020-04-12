@@ -79,21 +79,21 @@
 
 
 
-<meta name="description" content="存储技术 随机访问存储器 SRAM  用作高速缓存存储器   DRAM  作为主存以及图形系统的帧缓冲区   对比  SRAM具有多个晶体管，访问快，不敏感，造价高，应用于高速缓存存储器。    磁盘 磁盘构造 磁盘 磁盘是由盘片构成，每个盘片有两面称为表面，表面覆盖着磁性记录材料。盘片中央有一个可以旋转的主轴，它使得盘片以固定的旋转速率旋转（单位：RPM）。磁盘通常包含一个或多个这样的盘片，并封">
+<meta name="description" content="存储技术 随机访问存储器 SRAM  用作高速缓存存储器   DRAM  作为主存以及图形系统的帧缓冲区   对比  SRAM具有多个晶体管，访问快，不敏感，造价高，应用于高速缓存存储器。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入理解计算机：存储器层次结构">
 <meta property="og:url" content="http://yoursite.com/2019/10/20/csapp/storage-technologies/index.html">
 <meta property="og:site_name" content="alongso blog">
-<meta property="og:description" content="存储技术 随机访问存储器 SRAM  用作高速缓存存储器   DRAM  作为主存以及图形系统的帧缓冲区   对比  SRAM具有多个晶体管，访问快，不敏感，造价高，应用于高速缓存存储器。    磁盘 磁盘构造 磁盘 磁盘是由盘片构成，每个盘片有两面称为表面，表面覆盖着磁性记录材料。盘片中央有一个可以旋转的主轴，它使得盘片以固定的旋转速率旋转（单位：RPM）。磁盘通常包含一个或多个这样的盘片，并封">
+<meta property="og:description" content="存储技术 随机访问存储器 SRAM  用作高速缓存存储器   DRAM  作为主存以及图形系统的帧缓冲区   对比  SRAM具有多个晶体管，访问快，不敏感，造价高，应用于高速缓存存储器。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20191023101924662.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20191023102739798.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20191023102318782.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20191023102501709.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2020-03-02T02:13:07.399Z">
+<meta property="og:updated_time" content="2020-04-12T07:45:19.673Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解计算机：存储器层次结构">
-<meta name="twitter:description" content="存储技术 随机访问存储器 SRAM  用作高速缓存存储器   DRAM  作为主存以及图形系统的帧缓冲区   对比  SRAM具有多个晶体管，访问快，不敏感，造价高，应用于高速缓存存储器。    磁盘 磁盘构造 磁盘 磁盘是由盘片构成，每个盘片有两面称为表面，表面覆盖着磁性记录材料。盘片中央有一个可以旋转的主轴，它使得盘片以固定的旋转速率旋转（单位：RPM）。磁盘通常包含一个或多个这样的盘片，并封">
+<meta name="twitter:description" content="存储技术 随机访问存储器 SRAM  用作高速缓存存储器   DRAM  作为主存以及图形系统的帧缓冲区   对比  SRAM具有多个晶体管，访问快，不敏感，造价高，应用于高速缓存存储器。">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20191023101924662.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70">
 
 
@@ -400,6 +400,8 @@
 </ul>
 </li>
 </ul>
+<a id="more"></a>
+
 <h5 id="磁盘"><a href="#磁盘" class="headerlink" title="磁盘"></a>磁盘</h5><ul>
 <li>磁盘构造<br><img src="https://img-blog.csdnimg.cn/20191023101924662.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70" alt="磁盘构造"></li>
 <li>磁盘<ul>
@@ -659,7 +661,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>

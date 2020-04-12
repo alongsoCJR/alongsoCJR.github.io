@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="并发编程简介 并发  如果逻辑控制流，在时间上重叠，那么它们就是并发的   应用级并发的作用  访问慢速I/O设备 与人交互 通过推迟工作以降低延迟 服务多个网络服务 在多核机器上进行并行计算   三种构造并发程序的方法  进程 With this approach, each logical control ﬂow is a process that is scheduled and maint">
+<meta name="description" content="并发编程简介 并发  如果逻辑控制流，在时间上重叠，那么它们就是并发的   应用级并发的作用  访问慢速I/O设备 与人交互 通过推迟工作以降低延迟 服务多个网络服务 在多核机器上进行并行计算">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入理解计算机：并发编程">
 <meta property="og:url" content="http://yoursite.com/2020/01/06/csapp/concurrent-programmings/index.html">
 <meta property="og:site_name" content="alongso blog">
-<meta property="og:description" content="并发编程简介 并发  如果逻辑控制流，在时间上重叠，那么它们就是并发的   应用级并发的作用  访问慢速I/O设备 与人交互 通过推迟工作以降低延迟 服务多个网络服务 在多核机器上进行并行计算   三种构造并发程序的方法  进程 With this approach, each logical control ﬂow is a process that is scheduled and maint">
+<meta property="og:description" content="并发编程简介 并发  如果逻辑控制流，在时间上重叠，那么它们就是并发的   应用级并发的作用  访问慢速I/O设备 与人交互 通过推迟工作以降低延迟 服务多个网络服务 在多核机器上进行并行计算">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2020/01/06/csapp/concurrent-programmings/第一步：服务器接受客户端的连接请求.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/01/06/csapp/concurrent-programmings/第二步：服务器派生一个子进程为这个客户端服务.jpg">
@@ -96,10 +96,10 @@
 <meta property="og:image" content="http://yoursite.com/2020/01/06/csapp/concurrent-programmings/回收已终止的线程.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/01/06/csapp/concurrent-programmings/分离线程.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/01/06/csapp/concurrent-programmings/初始化线程.jpg">
-<meta property="og:updated_time" content="2020-03-02T02:13:25.628Z">
+<meta property="og:updated_time" content="2020-04-12T07:44:07.930Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解计算机：并发编程">
-<meta name="twitter:description" content="并发编程简介 并发  如果逻辑控制流，在时间上重叠，那么它们就是并发的   应用级并发的作用  访问慢速I/O设备 与人交互 通过推迟工作以降低延迟 服务多个网络服务 在多核机器上进行并行计算   三种构造并发程序的方法  进程 With this approach, each logical control ﬂow is a process that is scheduled and maint">
+<meta name="twitter:description" content="并发编程简介 并发  如果逻辑控制流，在时间上重叠，那么它们就是并发的   应用级并发的作用  访问慢速I/O设备 与人交互 通过推迟工作以降低延迟 服务多个网络服务 在多核机器上进行并行计算">
 <meta name="twitter:image" content="http://yoursite.com/2020/01/06/csapp/concurrent-programmings/第一步：服务器接受客户端的连接请求.jpg">
 
 
@@ -403,8 +403,11 @@
 <li>在多核机器上进行并行计算</li>
 </ul>
 </li>
-<li><p>三种构造并发程序的方法</p>
+</ul>
+<a id="more"></a>
+
 <ul>
+<li>三种构造并发程序的方法<ul>
 <li>进程<ul>
 <li>With this approach, each logical control ﬂow is a process that is scheduled and maintained by the kernel. Since processes have separate virtual address spaces, ﬂows that want to communicate with each other must use some kind of explicit interprocess communication (IPC) mechanism.</li>
 </ul>
@@ -634,7 +637,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>

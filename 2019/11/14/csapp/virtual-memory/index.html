@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="简介 定义 虚拟存储器是对I/O设备与主存的抽象。 虚拟存储器是硬件异常、硬件地址翻译、主存、磁盘文件和内核软件的完美交互，它为每个进程提供了一个大的，一致的和私有的地址空间。  虚拟存储器的目标 高速缓存 存储器管理工具 存储器保护工具  理解虚拟存储器的原因 中心的 强大的 危险的  讲解思路 前一部分描述虚拟存储器是如何工作的 后一部分描述应用程序如何使用和管理虚拟存储器  物理和虚拟寻址">
+<meta name="description" content="简介 定义 虚拟存储器是对I/O设备与主存的抽象。 虚拟存储器是硬件异常、硬件地址翻译、主存、磁盘文件和内核软件的完美交互，它为每个进程提供了一个大的，一致的和私有的地址空间。  虚拟存储器的目标 高速缓存 存储器管理工具 存储器保护工具  理解虚拟存储器的原因 中心的 强大的 危险的  讲解思路 前一部分描述虚拟存储器是如何工作的 后一部分描述应用程序如何使用和管理虚拟存储器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入理解计算机：虚拟存储器">
 <meta property="og:url" content="http://yoursite.com/2019/11/14/csapp/virtual-memory/index.html">
 <meta property="og:site_name" content="alongso blog">
-<meta property="og:description" content="简介 定义 虚拟存储器是对I/O设备与主存的抽象。 虚拟存储器是硬件异常、硬件地址翻译、主存、磁盘文件和内核软件的完美交互，它为每个进程提供了一个大的，一致的和私有的地址空间。  虚拟存储器的目标 高速缓存 存储器管理工具 存储器保护工具  理解虚拟存储器的原因 中心的 强大的 危险的  讲解思路 前一部分描述虚拟存储器是如何工作的 后一部分描述应用程序如何使用和管理虚拟存储器  物理和虚拟寻址">
+<meta property="og:description" content="简介 定义 虚拟存储器是对I/O设备与主存的抽象。 虚拟存储器是硬件异常、硬件地址翻译、主存、磁盘文件和内核软件的完美交互，它为每个进程提供了一个大的，一致的和私有的地址空间。  虚拟存储器的目标 高速缓存 存储器管理工具 存储器保护工具  理解虚拟存储器的原因 中心的 强大的 危险的  讲解思路 前一部分描述虚拟存储器是如何工作的 后一部分描述应用程序如何使用和管理虚拟存储器">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20191110225902893.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20191110230017907.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70">
@@ -95,10 +95,10 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20191113224955877.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20191113225101954.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20191113225029694.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2020-03-02T02:12:51.218Z">
+<meta property="og:updated_time" content="2020-04-12T07:45:37.776Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解计算机：虚拟存储器">
-<meta name="twitter:description" content="简介 定义 虚拟存储器是对I/O设备与主存的抽象。 虚拟存储器是硬件异常、硬件地址翻译、主存、磁盘文件和内核软件的完美交互，它为每个进程提供了一个大的，一致的和私有的地址空间。  虚拟存储器的目标 高速缓存 存储器管理工具 存储器保护工具  理解虚拟存储器的原因 中心的 强大的 危险的  讲解思路 前一部分描述虚拟存储器是如何工作的 后一部分描述应用程序如何使用和管理虚拟存储器  物理和虚拟寻址">
+<meta name="twitter:description" content="简介 定义 虚拟存储器是对I/O设备与主存的抽象。 虚拟存储器是硬件异常、硬件地址翻译、主存、磁盘文件和内核软件的完美交互，它为每个进程提供了一个大的，一致的和私有的地址空间。  虚拟存储器的目标 高速缓存 存储器管理工具 存储器保护工具  理解虚拟存储器的原因 中心的 强大的 危险的  讲解思路 前一部分描述虚拟存储器是如何工作的 后一部分描述应用程序如何使用和管理虚拟存储器">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20191110225902893.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70">
 
 
@@ -406,6 +406,8 @@
 <li>前一部分描述虚拟存储器是如何工作的</li>
 <li>后一部分描述应用程序如何使用和管理虚拟存储器</li>
 </ul>
+<a id="more"></a>
+
 <h5 id="物理和虚拟寻址"><a href="#物理和虚拟寻址" class="headerlink" title="物理和虚拟寻址"></a>物理和虚拟寻址</h5><hr>
 <h6 id="主存定义"><a href="#主存定义" class="headerlink" title="主存定义"></a>主存定义</h6><ul>
 <li>计算机系统被组织成一个由M个连续的字节大小的单元组成的数组</li>
@@ -624,7 +626,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>

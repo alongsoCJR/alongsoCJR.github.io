@@ -284,6 +284,170 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/20/csapp/storage-technologies/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="alongso">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/alongso.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="alongso blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/20/csapp/storage-technologies/" itemprop="url">深入理解计算机：存储器层次结构</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-20T11:12:54+08:00">
+                2019-10-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/csapp/" itemprop="url" rel="index">
+                    <span itemprop="name">csapp</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+		
+		
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="存储技术"><a href="#存储技术" class="headerlink" title="存储技术"></a>存储技术</h4><hr>
+<h5 id="随机访问存储器"><a href="#随机访问存储器" class="headerlink" title="随机访问存储器"></a>随机访问存储器</h5><ul>
+<li><p>SRAM</p>
+<ul>
+<li>用作高速缓存存储器</li>
+</ul>
+</li>
+<li><p>DRAM</p>
+<ul>
+<li>作为主存以及图形系统的帧缓冲区</li>
+</ul>
+</li>
+<li><p>对比</p>
+<ul>
+<li>SRAM具有多个晶体管，访问快，不敏感，造价高，应用于高速缓存存储器。</li>
+</ul>
+</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/10/20/csapp/storage-technologies/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/26/school-inter-questions/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -377,178 +541,47 @@
 
       
         
-          
-          java基础1. Object类中有什么方法，讲一讲各个方法的作用？
-
-答：
-
-toString()
-打印对象实例的信息内容（描述我是谁）
-
-
-getClass()
-获取类信息Class对象（骨子里特性）
-
-
-equals()
-判断两个对象的地址引用是否相等，如果方法被覆盖的话，比较的是内容（谁会与我共鸣呢）。
-
-
-hashCode()
-获取对象的hashC
-          ...
+          <h3 id="java基础"><a href="#java基础" class="headerlink" title="java基础"></a>java基础</h3><p><strong>1. Object类中有什么方法，讲一讲各个方法的作用？</strong></p>
+<blockquote>
+<p>答：</p>
+<ul>
+<li>toString()<ul>
+<li>打印对象实例的信息内容（描述我是谁）</li>
+</ul>
+</li>
+<li>getClass()<ul>
+<li>获取类信息Class对象（骨子里特性）</li>
+</ul>
+</li>
+<li>equals()<ul>
+<li>判断两个对象的地址引用是否相等，如果方法被覆盖的话，比较的是内容（谁会与我共鸣呢）。</li>
+</ul>
+</li>
+<li>hashCode()<ul>
+<li>获取对象的hashCode值,用于区分对象实例的唯一性（每个人都是独一无二的）。</li>
+</ul>
+</li>
+<li>wait()<ul>
+<li>当线程执行wait方法时，会使该对象进入等待池，释放锁资源，让其他线程执行。</li>
+</ul>
+</li>
+<li>notify()<ul>
+<li>当线程执行notify时，会唤醒等待的线程。</li>
+</ul>
+</li>
+<li>clone()<ul>
+<li>对象的浅拷贝（描述我是从哪来）</li>
+</ul>
+</li>
+<li>finalize()<ul>
+<li>垃圾回收不再被引用的对象，释放内存(描述我要到哪去)。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/09/26/school-inter-questions/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/26/jvm/bytecode/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="alongso">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/alongso.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="alongso blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/09/26/jvm/bytecode/" itemprop="url">二进制与字节码</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-26T07:11:35+08:00">
-                2019-09-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/bytecode/" itemprop="url" rel="index">
-                    <span itemprop="name">bytecode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-		
-		
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <img src="/2019/09/26/jvm/bytecode/bytecode.jpg">
-
-<h3 id="二进制"><a href="#二进制" class="headerlink" title="二进制"></a>二进制</h3><p>自古以来，就有太极生两仪，两仪生四象，四象生八卦的文化传说。天与地，明与暗，是与非，有与无，宇宙万物貌似都是在这两个极端之间存在的。然而在计算机的世界里，这个世界又是怎样存在的呢，对的，就是用二进制来表示的。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/09/26/jvm/bytecode/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -692,15 +725,15 @@ hashCode()
 
       
         
-          
-          
+          <img src="/2019/09/01/csapp/cs-tour/cs-tour.jpg">
 
-一个C语言程序的产生
-之前在 走近计算机，走进二进制，爪哇国的诞生讲到一个java程序是怎么执行的，然而依然是知其然，而不知其所以然。今天特意来用C语言写一个程序，看看它是怎么在计算机上跑起来的。
-
-源码 hello.c
-12345#include &lt;stdio.h&gt;int main()&#123;	printf(&quot;%s\n&quo
-          ...
+<h3 id="一个C语言程序的产生"><a href="#一个C语言程序的产生" class="headerlink" title="一个C语言程序的产生"></a>一个C语言程序的产生</h3><hr>
+<p>之前在 <a href="https://blog.csdn.net/weixin_40286148/article/details/92421489" target="_blank" rel="noopener">走近计算机，走进二进制，爪哇国的诞生</a>讲到一个java程序是怎么执行的，然而依然是知其然，而不知其所以然。今天特意来用C语言写一个程序，看看它是怎么在计算机上跑起来的。</p>
+<ol>
+<li><p>源码 <em>hello.c</em></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%s\n"</span>, <span class="string">"Hello,world!"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编译</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/09/01/csapp/cs-tour/#more" rel="contents">
@@ -710,7 +743,7 @@ hashCode()
           <!--/noindex-->
         
       
-    </div>
+    </li></ol></div>
     
     
     
@@ -847,11 +880,7 @@ hashCode()
 
       
         
-          
-          SHELL命令汇总在Mac使用小技巧中提到了终端命令操作，但是概括得不全，加上之前没有接触过linux命令，面试时问到时很是慌得一批，不过现在有了Mac本，终于有理由逼自己一把了，哈哈，让我们一起来学习吧！
-查看隐藏文件夹defaults write com.apple.finder AppleShowAllFiles TRUE 
-killall Finde
-          ...
+          <h3 id="SHELL命令汇总"><a href="#SHELL命令汇总" class="headerlink" title="SHELL命令汇总"></a>SHELL命令汇总</h3><p>在<a href="https://alongsocjr.github.io/2019/03/10/mac-kills/" target="_blank" rel="noopener">Mac使用小技巧</a>中提到了终端命令操作，但是概括得不全，加上之前没有接触过linux命令，面试时问到时很是慌得一批，不过现在有了Mac本，终于有理由逼自己一把了，哈哈，让我们一起来学习吧！</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/04/10/shell-commands/#more" rel="contents">
@@ -998,10 +1027,9 @@ killall Finde
 
       
         
-          
-          Mac使用小技巧
-最近新入手了一台Mac笔记本，发现Mac OS使用起来特别人性化，Mac系统是基于Unix内核的图形化操作系统.对于一位开发者而言，我最欣赏的是能在终端上随心所欲，对电脑进行任何操作，当你实现了某个功能时候，心中不油而然生出一种莫名的成就感，长此以往，也能激发我对程序开发的热情。我一直相信，Mac笔记本不只是开发工具，当它摆在你面前，它更像
-          ...
+          <h2 id="Mac使用小技巧"><a href="#Mac使用小技巧" class="headerlink" title="Mac使用小技巧"></a>Mac使用小技巧</h2><blockquote>
+<p>最近新入手了一台Mac笔记本，发现Mac OS使用起来特别人性化，Mac系统是基于Unix内核的图形化操作系统.对于一位开发者而言，我最欣赏的是能在终端上随心所欲，对电脑进行任何操作，当你实现了某个功能时候，心中不油而然生出一种莫名的成就感，长此以往，也能激发我对程序开发的热情。我一直相信，Mac笔记本不只是开发工具，当它摆在你面前，它更像一件艺术品。为了快速上手Mac，这里总结了一些小技巧。</p>
+</blockquote>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/03/10/mac-skills/#more" rel="contents">
@@ -1148,21 +1176,15 @@ killall Finde
 
       
         
-          
-          个人信息
-陈建蓉/男/1994
-工作年限：2年
-技术博客：https://alongsocjr.github.io
-微信公众号：阡陌余生
-学历：西南大学(211)/本科/计算机专业
-期望职位：Java中级工程师                
-期望薪资：15K
-
-联系方式
-手机：17718480976
-Emal：alongsocjr@163.com
-QQ/W
-          ...
+          <h2 id="个人信息"><a href="#个人信息" class="headerlink" title="个人信息"></a>个人信息</h2><ul>
+<li>陈建蓉/男/1994</li>
+<li>工作年限：2年</li>
+<li>技术博客：<a href="https://alongsocjr.github.io" target="_blank" rel="noopener">https://alongsocjr.github.io</a></li>
+<li>微信公众号：阡陌余生</li>
+<li>学历：西南大学(211)/本科/计算机专业</li>
+<li>期望职位：Java中级工程师                </li>
+<li>期望薪资：15K</li>
+</ul>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/1994/10/02/myresume/myresume/#more" rel="contents">
@@ -1266,7 +1288,7 @@ QQ/W
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
