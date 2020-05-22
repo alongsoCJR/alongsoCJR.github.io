@@ -79,19 +79,24 @@
 
 
 
-<meta name="description" content="简介单例模式，也叫单件模式。顾名思义，就是程序中只有一个实例。《Head Filst 设计模式》中定义为：单件模式确保程序中一个类只有一个实例，并且能够提供访问这个实例的全局访问点。">
+<meta name="description" content="简介《Head Filst 设计模式》的第一章，讲的就是策略模式，策略模式算是一切模式的根本。在我理解看来，所有的模式都是由于随着业务的不断扩大，为了使得系统具有良好的扩展性、维护性而产生的，一种设计模式反应个很多个类之间的关系，使得系统耦合性更低，更容易扩展和维护。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="单例模式">
-<meta property="og:url" content="http://yoursite.com/2020/04/12/patterns/singleton/index.html">
+<meta property="og:title" content="策略模式">
+<meta property="og:url" content="http://yoursite.com/2020/04/15/patterns/strategy/index.html">
 <meta property="og:site_name" content="alongso blog">
-<meta property="og:description" content="简介单例模式，也叫单件模式。顾名思义，就是程序中只有一个实例。《Head Filst 设计模式》中定义为：单件模式确保程序中一个类只有一个实例，并且能够提供访问这个实例的全局访问点。">
+<meta property="og:description" content="简介《Head Filst 设计模式》的第一章，讲的就是策略模式，策略模式算是一切模式的根本。在我理解看来，所有的模式都是由于随着业务的不断扩大，为了使得系统具有良好的扩展性、维护性而产生的，一种设计模式反应个很多个类之间的关系，使得系统耦合性更低，更容易扩展和维护。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/2020/04/12/patterns/singleton/singleton.jpg">
-<meta property="og:updated_time" content="2020-05-21T09:02:59.285Z">
+<meta property="og:image" content="http://yoursite.com/2020/04/15/patterns/strategy/strategy.jpeg">
+<meta property="og:image" content="http://yoursite.com/2020/04/15/patterns/strategy/strategy-1.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/04/15/patterns/strategy/strategy-2.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/04/15/patterns/strategy/strategy-3.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/04/15/patterns/strategy/strategy-4.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/04/15/patterns/strategy/strategy-5.jpg">
+<meta property="og:updated_time" content="2020-05-22T15:13:29.556Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="单例模式">
-<meta name="twitter:description" content="简介单例模式，也叫单件模式。顾名思义，就是程序中只有一个实例。《Head Filst 设计模式》中定义为：单件模式确保程序中一个类只有一个实例，并且能够提供访问这个实例的全局访问点。">
-<meta name="twitter:image" content="http://yoursite.com/2020/04/12/patterns/singleton/singleton.jpg">
+<meta name="twitter:title" content="策略模式">
+<meta name="twitter:description" content="简介《Head Filst 设计模式》的第一章，讲的就是策略模式，策略模式算是一切模式的根本。在我理解看来，所有的模式都是由于随着业务的不断扩大，为了使得系统具有良好的扩展性、维护性而产生的，一种设计模式反应个很多个类之间的关系，使得系统耦合性更低，更容易扩展和维护。">
+<meta name="twitter:image" content="http://yoursite.com/2020/04/15/patterns/strategy/strategy.jpeg">
 
 
 
@@ -121,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/04/12/patterns/singleton/">
+  <link rel="canonical" href="http://yoursite.com/2020/04/15/patterns/strategy/">
 
 
 
 
 
-  <title>单例模式 | alongso blog</title>
+  <title>策略模式 | alongso blog</title>
   
 
 
@@ -286,7 +291,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/12/patterns/singleton/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/15/patterns/strategy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="alongso">
@@ -303,7 +308,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">单例模式</h1>
+          <h1 class="post-title" itemprop="name headline">策略模式</h1>
         
 
         <div class="post-meta">
@@ -315,8 +320,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-12T11:23:09+08:00">
-                2020-04-12
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-15T17:11:35+08:00">
+                2020-04-15
               </time>
             
 
@@ -379,40 +384,42 @@
       
 
       
-        <img src="/2020/04/12/patterns/singleton/singleton.jpg">
+        <img src="/2020/04/15/patterns/strategy/strategy.jpeg">
 
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>单例模式，也叫单件模式。顾名思义，就是程序中只有一个实例。《Head Filst 设计模式》中定义为：单件模式确保程序中一个类只有一个实例，并且能够提供访问这个实例的全局访问点。</p>
+
+
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>《Head Filst 设计模式》的第一章，讲的就是策略模式，策略模式算是一切模式的根本。在我理解看来，所有的模式都是由于随着业务的不断扩大，为了使得系统具有良好的扩展性、维护性而产生的，一种设计模式反应个很多个类之间的关系，使得系统耦合性更低，更容易扩展和维护。</p>
 <a id="more"></a>
 
-<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>单件方式可以有很多中方法定义，可根据不同的应用场景来选择最合适的定义方式。根据目前所学习的知识，可分为以下五种，某些可能在多线程的环境下回出现安全问题，需要改进。</p>
-<h3 id="饥汉式"><a href="#饥汉式" class="headerlink" title="饥汉式"></a>饥汉式</h3><p>也叫饿汉式，二话不说 ，当jvm加载类时，就将类的静态实例初始化。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleInstanceT00</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造器私有化</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingleInstanceT00</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> SingleInstanceT00 instance = <span class="keyword">new</span> SingleInstanceT00();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingleInstanceT00 <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>策略模式讲解了一个关于Duck的相关设计案例，Duck有display、quack(呱呱叫)、swim的行为。起初的时候，设计是使用继承，发现随着变化，有的鸭子会fly，需要在父类里面加上fly方法，这下惨了，其实有些鸭子是不会飞的（不得不覆盖，空实现），导致噩梦的产生。</p>
+<img src="/2020/04/15/patterns/strategy/strategy-1.jpg">
 
-<p>在没有空间限制的情况下，可以选择这样使用。但是更优越的做法是，调用的时候进行初始化。也就是延迟初始化。</p>
-<h3 id="延迟初始化"><a href="#延迟初始化" class="headerlink" title="延迟初始化"></a>延迟初始化</h3><p>延迟初始化会带来线程安全的问题，比如改造后的代码为：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleInstanceT01</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造器私有化</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingleInstanceT01</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> SingleInstanceT01 instance = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingleInstanceT01 <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="comment">// 模拟多线程，使效果更明显</span></span><br><span class="line">                Thread.sleep(<span class="number">10</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            instance = <span class="keyword">new</span> SingleInstanceT01();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是违背了原则3，由于继承带来的强耦合性。</p>
+<p>后来考虑将quack、fly是变化的，那就把他们都抽象为一种行为吧，抽象出quackable、flyable接口怎么样，子类只要有以上三种行为，就去实现这个接口。但是问题又来了，如果有100种鸭子，就有100种flyable的实现，太可怕了吧，这样就没能代码复用。</p>
+<img src="/2020/04/15/patterns/strategy/strategy-2.jpg">
 
-<p>经测试后发现，多个线程同时进入getInstance后，得到的不是同一个实例。</p>
-<p>为了使得线程安全，解决方案也分为很多种，有synchronized同步方法、双重检查锁定和静态内部类初始化三种。</p>
-<h3 id="同步方法"><a href="#同步方法" class="headerlink" title="同步方法"></a>同步方法</h3><p>使用synchronized对getInstance方法进行同步处理，但会导致不必要的性能开销。如果getInstance()方法被多个线程频繁调用，将会导致程序执行的性能下降。只有不频繁调用的时候，可能是理想状态。实现方式为：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleInstanceT02</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造器私有化</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingleInstanceT02</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> SingleInstanceT02 instance = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 同步方法作用域太大，性能低</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> SingleInstanceT02 <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="comment">// 模拟多线程，使效果更明显</span></span><br><span class="line">                Thread.sleep(<span class="number">10</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            instance = <span class="keyword">new</span> SingleInstanceT02();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码复用才是我们设计的根本啊。</p>
+<p>然后，设计模式登场了。</p>
+<p><font color="blue" size="5" blob="true"> 原则1：找出应用中可能需要变化之处，把它么独立出来，不要和那些不需要变化的代码混合在一起。</font></p>
+<p>由于，在所有的实现中，swim的实现是唯一的，这是不会变的。而quack、fly是变化的，那么我们将这一部分抽象出去，交给一个专门的地方去实现，当需要使用的时候，我只需使用组合的方式，这样就能降低耦合度了。当然，我不能使用实现类组合的方式，因为，这样耦合度也太高了。那么，就使用接口吧！</p>
+<img src="/2020/04/15/patterns/strategy/strategy-3.jpg">
 
-<p>使用synchronized 同步方法时可以不用加volatile，因为synchronized 可以保证原子性。</p>
-<h3 id="双重检查锁定"><a href="#双重检查锁定" class="headerlink" title="双重检查锁定"></a>双重检查锁定</h3><p>双重检查锁定使用synchronized同步代码块的方式成功的优化了性能。只有第一次进来的时候，才需要加锁。其他时候进来的时候先判断instance是否为空，如果不为空的话，就直接进行返回。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleInstanceT03</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造器私有化</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingleInstanceT03</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">volatile</span> SingleInstanceT03 instance = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingleInstanceT03 <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="comment">// 模拟多线程，使效果更明显</span></span><br><span class="line">                Thread.sleep(<span class="number">10</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 同步代码块 DCL</span></span><br><span class="line">            <span class="keyword">synchronized</span> (SingleInstanceT03.class) &#123;</span><br><span class="line">                <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    instance = <span class="keyword">new</span> SingleInstanceT03();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><font color="blue" size="5" blob="true">原则2：针对接口编程，而不是针对实现编程。</font>&gt;</p>
+<p>最后，我们的思路是这样的：</p>
+<img src="/2020/04/15/patterns/strategy/strategy-4.jpg">
 
-<p>注意：加volatile是为了防止指令的重排序，在jvm执行指令时，<code>instance = new SingleInstanceT03()</code> 分了三步：</p>
-<blockquote>
-<p>第一步：给对象分配内存空间</p>
-<p>第二步：将instance指向刚分配的内存地址（此时还是半初始化状态，有属性的话，属性尚未赋值）</p>
-<p>第三步：初始化对象</p>
-</blockquote>
-<p>如果没有加volatile，第二步和第三步会交换执行，导致其他线程拿到的是半初始化的实例，导致线程安全问题。</p>
-<h3 id="类初始化"><a href="#类初始化" class="headerlink" title="类初始化"></a>类初始化</h3><p>这也是延迟初始化的一种，基于类初始化实现的。实现原理是每个对象对应有一个初始化锁，初始化时线程需要获取该对象对应的初始化锁。如果没有获取，那么线程必须等到初始化锁释放了才能获取。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleInstanceT04</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingleInstanceT04</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">InnerInitialClass</span> </span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> SingleInstanceT04 instance = <span class="keyword">new</span> SingleInstanceT04();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 原理：每个对象对应有一个初始化锁，初始化时线程需要获取该对象对应的初始化锁</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingleInstanceT04 <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 模拟多线程，使效果更明显</span></span><br><span class="line">            Thread.sleep(<span class="number">10</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> InnerInitialClass.instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Duck依然是抽象类，里面有swim实现方法、display抽象方法、还依赖了两个接口，分别是QuackBehavior接口、FlyBehavior接口，在quack方法里QuackBehavior.quack()、在fly方法里调用FlyBehavior.fly()，至于实现是什么，交给子类去决定。</p>
+<p><font color="blue" size="5" blob="true">原则3：多用组合，少用继承。</font></p>
+<p>那么，子类决定的方式有哪两种方式呢</p>
+<p>第一是使用构造器</p>
+<p>第二种是使用set方法</p>
+<p>最后，类的实现是这样的：</p>
+<img src="/2020/04/15/patterns/strategy/strategy-5.jpg">
 
-<h2 id="用处"><a href="#用处" class="headerlink" title="用处"></a>用处</h2><p>在《Head Filst 设计模式》提到，使用单件模式的地方很多。常见的有线程池、连接池、缓存、日志对象。</p>
-<p>还用一些不常见的，对话框、处理偏好设置、注册表的对象、充当打印机、显卡等设备的驱动程序的对象。</p>
+<p>总之，策略模式就是将这种变化封装了起来，放在另一个地方实现。那么，你脑子里面有类图了吗？有了之后就可以将代码落地了，哈哈！</p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>在书上其定义为：</p>
+<p><font color="blue" size="5" blob="true">定义了算法族，分别封装了起来，让他们之间可以互相替换，此模式让算法的变化独立于使用算法的客户。</font></p>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>在我们工作中，策略模式的典型应用就是if条件很多的情况，将这部分变化的代码拿出来，不要将不变的代码混在一起，使用接口的方式降低耦合性，具体实现交给子类去实现。</p>
 
       
     </div>
@@ -437,8 +444,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/18/concurrentart/threadpool-usages2/" rel="next" title="是时候揭开线程池这块面纱了（二）">
-                <i class="fa fa-chevron-left"></i> 是时候揭开线程池这块面纱了（二）
+              <a href="/2020/04/12/jvm/bytecode/" rel="next" title="二进制与字节码">
+                <i class="fa fa-chevron-left"></i> 二进制与字节码
               </a>
             
           </div>
@@ -446,10 +453,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/04/12/jvm/bytecode/" rel="prev" title="二进制与字节码">
-                二进制与字节码 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -638,7 +641,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">2.</span> <span class="nav-text">定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#饥汉式"><span class="nav-number">2.1.</span> <span class="nav-text">饥汉式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#延迟初始化"><span class="nav-number">2.2.</span> <span class="nav-text">延迟初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步方法"><span class="nav-number">2.3.</span> <span class="nav-text">同步方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双重检查锁定"><span class="nav-number">2.4.</span> <span class="nav-text">双重检查锁定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类初始化"><span class="nav-number">2.5.</span> <span class="nav-text">类初始化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用处"><span class="nav-number">3.</span> <span class="nav-text">用处</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">3.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用"><span class="nav-number">4.</span> <span class="nav-text">应用</span></a></li></ol></div>
             
 
           </div>
