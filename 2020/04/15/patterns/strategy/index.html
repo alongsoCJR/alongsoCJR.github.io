@@ -92,7 +92,8 @@
 <meta property="og:image" content="http://yoursite.com/2020/04/15/patterns/strategy/strategy-3.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/04/15/patterns/strategy/strategy-4.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/04/15/patterns/strategy/strategy-5.jpg">
-<meta property="og:updated_time" content="2020-05-22T15:13:29.556Z">
+<meta property="og:image" content="http://yoursite.com/2020/04/15/patterns/strategy/Strategy_Duck_UML.png">
+<meta property="og:updated_time" content="2020-05-23T04:11:11.109Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="策略模式">
 <meta name="twitter:description" content="简介《Head Filst 设计模式》的第一章，讲的就是策略模式，策略模式算是一切模式的根本。在我理解看来，所有的模式都是由于随着业务的不断扩大，为了使得系统具有良好的扩展性、维护性而产生的，一种设计模式反应个很多个类之间的关系，使得系统耦合性更低，更容易扩展和维护。">
@@ -395,7 +396,7 @@
 <img src="/2020/04/15/patterns/strategy/strategy-1.jpg">
 
 <p>这是违背了原则3，由于继承带来的强耦合性。</p>
-<p>后来考虑将quack、fly是变化的，那就把他们都抽象为一种行为吧，抽象出quackable、flyable接口怎么样，子类只要有以上三种行为，就去实现这个接口。但是问题又来了，如果有100种鸭子，就有100种flyable的实现，太可怕了吧，这样就没能代码复用。</p>
+<p>后来考虑将quack、fly是变化的，那就把他们都抽象为一种行为吧，抽象出quackable、flyable接口怎么样，子类只要有以上两种行为，就去实现这个接口。但是问题又来了，如果有100种鸭子，就有100种flyable的实现，太可怕了吧，这样就没能代码复用。</p>
 <img src="/2020/04/15/patterns/strategy/strategy-2.jpg">
 
 <p>代码复用才是我们设计的根本啊。</p>
@@ -404,15 +405,15 @@
 <p>由于，在所有的实现中，swim的实现是唯一的，这是不会变的。而quack、fly是变化的，那么我们将这一部分抽象出去，交给一个专门的地方去实现，当需要使用的时候，我只需使用组合的方式，这样就能降低耦合度了。当然，我不能使用实现类组合的方式，因为，这样耦合度也太高了。那么，就使用接口吧！</p>
 <img src="/2020/04/15/patterns/strategy/strategy-3.jpg">
 
-<p><font color="blue" size="5" blob="true">原则2：针对接口编程，而不是针对实现编程。</font>&gt;</p>
+<p><font color="blue" size="5" blob="true">原则2：针对接口编程，而不是针对实现编程。</font></p>
 <p>最后，我们的思路是这样的：</p>
 <img src="/2020/04/15/patterns/strategy/strategy-4.jpg">
 
-<p>Duck依然是抽象类，里面有swim实现方法、display抽象方法、还依赖了两个接口，分别是QuackBehavior接口、FlyBehavior接口，在quack方法里QuackBehavior.quack()、在fly方法里调用FlyBehavior.fly()，至于实现是什么，交给子类去决定。</p>
+<p>Duck依然是抽象类，里面有swim实现方法、display抽象方法、还依赖了两个接口，分别是QuackBehavior接口、FlyBehavior接口，在quack方法里调用QuackBehavior.quack()、在fly方法里调用FlyBehavior.fly()，至于实现是什么，交给子类去决定。</p>
 <p><font color="blue" size="5" blob="true">原则3：多用组合，少用继承。</font></p>
 <p>那么，子类决定的方式有哪两种方式呢</p>
 <p>第一是使用构造器</p>
-<p>第二种是使用set方法</p>
+<p>第二是使用set方法</p>
 <p>最后，类的实现是这样的：</p>
 <img src="/2020/04/15/patterns/strategy/strategy-5.jpg">
 
@@ -420,6 +421,14 @@
 <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>在书上其定义为：</p>
 <p><font color="blue" size="5" blob="true">定义了算法族，分别封装了起来，让他们之间可以互相替换，此模式让算法的变化独立于使用算法的客户。</font></p>
 <h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>在我们工作中，策略模式的典型应用就是if条件很多的情况，将这部分变化的代码拿出来，不要将不变的代码混在一起，使用接口的方式降低耦合性，具体实现交给子类去实现。</p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>这是我的代码实现、类图，欢迎来star😄</p>
+<p><a href="https://github.com/alongsoCJR/javabase/tree/patterns" target="_blank" rel="noopener">代码链接</a></p>
+<img src="/2020/04/15/patterns/strategy/Strategy_Duck_UML.png">
+
+
+
+
+
 
       
     </div>
@@ -641,7 +650,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">3.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用"><span class="nav-number">4.</span> <span class="nav-text">应用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">3.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用"><span class="nav-number">4.</span> <span class="nav-text">应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#补充"><span class="nav-number">5.</span> <span class="nav-text">补充</span></a></li></ol></div>
             
 
           </div>
