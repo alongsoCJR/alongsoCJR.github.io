@@ -79,25 +79,25 @@
 
 
 
-<meta name="description" content="java基础1. Object类中有什么方法，讲一讲各个方法的作用？  答：  toString() 打印对象实例的信息内容（描述我是谁）   getClass() 获取类信息Class对象（骨子里特性）   equals() 判断两个对象的地址引用是否相等，如果方法被覆盖的话，比较的是内容（谁会与我共鸣呢）。   hashCode() 获取对象的hashCode值,用于区分对象实例的唯一性（每个">
+<meta name="description" content="简介工厂模式，顾名思义，就是制造对象的工厂。在学习之前，是存在很大的误解的，之前认识的工厂是简单工厂，它并不属于工厂模式的范畴，真正的工厂模式有两种，分别是工厂方法模式、抽象工厂模式。 工厂方法模式是使用抽象方法，使用子类继承的方式去实现。抽象工厂模式是抽象出一个工厂的接口，用具体的工厂去实现接口，然后采用组合的方式，去解藕。总而言之，两者使用的场景不一样，感觉差别挺大。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="校招面试题个人整理">
-<meta property="og:url" content="http://yoursite.com/2019/09/26/school-inter-questions/index.html">
+<meta property="og:title" content="工厂模式">
+<meta property="og:url" content="http://yoursite.com/2020/05/24/patterns/factory/index.html">
 <meta property="og:site_name" content="alongso blog">
-<meta property="og:description" content="java基础1. Object类中有什么方法，讲一讲各个方法的作用？  答：  toString() 打印对象实例的信息内容（描述我是谁）   getClass() 获取类信息Class对象（骨子里特性）   equals() 判断两个对象的地址引用是否相等，如果方法被覆盖的话，比较的是内容（谁会与我共鸣呢）。   hashCode() 获取对象的hashCode值,用于区分对象实例的唯一性（每个">
+<meta property="og:description" content="简介工厂模式，顾名思义，就是制造对象的工厂。在学习之前，是存在很大的误解的，之前认识的工厂是简单工厂，它并不属于工厂模式的范畴，真正的工厂模式有两种，分别是工厂方法模式、抽象工厂模式。 工厂方法模式是使用抽象方法，使用子类继承的方式去实现。抽象工厂模式是抽象出一个工厂的接口，用具体的工厂去实现接口，然后采用组合的方式，去解藕。总而言之，两者使用的场景不一样，感觉差别挺大。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/2019092607403670.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20191028154037639.jpg">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20191028154105757.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20191028154319278.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20191028154336617.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20191028154352931.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20191028154422968.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2020-04-12T07:46:19.262Z">
+<meta property="og:image" content="http://yoursite.com/2020/05/24/patterns/factory/factory.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/05/24/patterns/factory/factory-1.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/05/24/patterns/factory/factory-2.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/05/24/patterns/factory/factory-3.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/05/24/patterns/factory/factory-4.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/05/24/patterns/factory/factory-5.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/05/24/patterns/factory/factory-6.jpg">
+<meta property="og:updated_time" content="2020-05-24T11:24:29.587Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="校招面试题个人整理">
-<meta name="twitter:description" content="java基础1. Object类中有什么方法，讲一讲各个方法的作用？  答：  toString() 打印对象实例的信息内容（描述我是谁）   getClass() 获取类信息Class对象（骨子里特性）   equals() 判断两个对象的地址引用是否相等，如果方法被覆盖的话，比较的是内容（谁会与我共鸣呢）。   hashCode() 获取对象的hashCode值,用于区分对象实例的唯一性（每个">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/2019092607403670.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70">
+<meta name="twitter:title" content="工厂模式">
+<meta name="twitter:description" content="简介工厂模式，顾名思义，就是制造对象的工厂。在学习之前，是存在很大的误解的，之前认识的工厂是简单工厂，它并不属于工厂模式的范畴，真正的工厂模式有两种，分别是工厂方法模式、抽象工厂模式。 工厂方法模式是使用抽象方法，使用子类继承的方式去实现。抽象工厂模式是抽象出一个工厂的接口，用具体的工厂去实现接口，然后采用组合的方式，去解藕。总而言之，两者使用的场景不一样，感觉差别挺大。">
+<meta name="twitter:image" content="http://yoursite.com/2020/05/24/patterns/factory/factory.jpg">
 
 
 
@@ -127,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/09/26/school-inter-questions/">
+  <link rel="canonical" href="http://yoursite.com/2020/05/24/patterns/factory/">
 
 
 
 
 
-  <title>校招面试题个人整理 | alongso blog</title>
+  <title>工厂模式 | alongso blog</title>
   
 
 
@@ -292,7 +292,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/26/school-inter-questions/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/24/patterns/factory/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="alongso">
@@ -309,7 +309,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">校招面试题个人整理</h1>
+          <h1 class="post-title" itemprop="name headline">工厂模式</h1>
         
 
         <div class="post-meta">
@@ -321,8 +321,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-26T07:11:35+08:00">
-                2019-09-26
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-24T17:11:35+08:00">
+                2020-05-24
               </time>
             
 
@@ -344,8 +344,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/interview/" itemprop="url" rel="index">
-                    <span itemprop="name">interview</span>
+                  <a href="/categories/patterns/" itemprop="url" rel="index">
+                    <span itemprop="name">patterns</span>
                   </a>
                 </span>
 
@@ -385,395 +385,85 @@
       
 
       
-        <h3 id="java基础"><a href="#java基础" class="headerlink" title="java基础"></a>java基础</h3><p><strong>1. Object类中有什么方法，讲一讲各个方法的作用？</strong></p>
-<blockquote>
-<p>答：</p>
-<ul>
-<li>toString()<ul>
-<li>打印对象实例的信息内容（描述我是谁）</li>
-</ul>
-</li>
-<li>getClass()<ul>
-<li>获取类信息Class对象（骨子里特性）</li>
-</ul>
-</li>
-<li>equals()<ul>
-<li>判断两个对象的地址引用是否相等，如果方法被覆盖的话，比较的是内容（谁会与我共鸣呢）。</li>
-</ul>
-</li>
-<li>hashCode()<ul>
-<li>获取对象的hashCode值,用于区分对象实例的唯一性（每个人都是独一无二的）。</li>
-</ul>
-</li>
-<li>wait()<ul>
-<li>当线程执行wait方法时，会使该对象进入等待池，释放锁资源，让其他线程执行。</li>
-</ul>
-</li>
-<li>notify()<ul>
-<li>当线程执行notify时，会唤醒等待的线程。</li>
-</ul>
-</li>
-<li>clone()<ul>
-<li>对象的浅拷贝（描述我是从哪来）</li>
-</ul>
-</li>
-<li>finalize()<ul>
-<li>垃圾回收不再被引用的对象，释放内存(描述我要到哪去)。</li>
-</ul>
-</li>
-</ul>
-</blockquote>
+        <img src="/2020/05/24/patterns/factory/factory.jpg">
+
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>工厂模式，顾名思义，就是<code>制造对象的工厂</code>。在学习之前，是存在很大的误解的，之前认识的工厂是简单工厂，它并不属于工厂模式的范畴，真正的工厂模式有两种，分别是<code>工厂方法模式</code>、<code>抽象工厂模式</code>。</p>
+<p>工厂方法模式是使用抽象方法，使用子类继承的方式去实现。抽象工厂模式是抽象出一个工厂的接口，用具体的工厂去实现接口，然后采用组合的方式，去解藕。总而言之，两者使用的场景不一样，感觉差别挺大。</p>
 <a id="more"></a>
 
-<p><strong>2. sleep()与wait()方法的区别？</strong></p>
-<blockquote>
-<p>答：</p>
-<ul>
-<li>sleep是Thread的静态方法，使得调用线程进入休眠状态，休眠的时候依然占据对象锁，其他线程拿不到锁会阻塞，但是会让出CPU资源给其他线程，等到休眠时间结束，线程就进入到就绪状态，和其他线程一起竞争CPU。</li>
-<li>而wait是Object类中的方法，当一个线程执行到wait方法时，它就进入一个和该对象相关的等待池，同时释放对象的锁，使得其他线程能够访问，可以通过notify，notifyAll()方法来唤醒等待的线程。</li>
-</ul>
-</blockquote>
-<p><strong>3. 说一下“==”与equals()的区别？</strong></p>
-<blockquote>
-<p>答：</p>
-<ul>
-<li>“==”对于基本类型来说，比较的是内容（比如int类型，比较的是数值大小）。如果是引用类型，则比较的是对象的引用地址。</li>
-<li>equals是Object基类中的方法，实现是比较引用地址（==），如果被覆盖，则比较的是内容。</li>
-</ul>
-</blockquote>
-<p><strong>4. equals与hashcode的区别？</strong></p>
-<blockquote>
-<p>答：</p>
-<ul>
-<li>这两个方法主要用于Set,HashTable中，如果对象要用Set(去重)，HashTable存储(散列)，则应该考虑重写hashCode方法。</li>
-<li>如果两个对象的equals方法相等，则调用hashCOde返回的哈希码值也相等。 但是，hashCode相等，不一定equals方法相等。</li>
-<li>注意，通常需要在重写hashCode()方法时重写equals方法，以便维护hashCode方法的 general contract，该方法声明equals相等的对象必须具有相等的散列代码。(看Object对象的源码)</li>
-</ul>
-</blockquote>
-<p><strong>5. 抽象类与接口的区别，本质区别是什么？</strong></p>
-<blockquote>
-<p>答：抽象类是为了实现代码的重用（复用），而接口是为了降低代码的耦合度。</p>
-</blockquote>
-<p><strong>6. java中打印HelloWorld的执行流程？</strong></p>
-<blockquote>
-<p>答：</p>
-<ol>
-<li>javac编译HelloWorld.java,得到HelloWorld.class字节码文件。</li>
-<li>JVM将字节码文件加载进内存中(即方法区的类代码区中)。</li>
-<li>JVM找到HelloWorld的main方法，传递String类型参数的地址到主方法的args中去，并在栈区为args开辟内存空间，返回一个void的返回值。</li>
-<li>创建一个“HelloWorld”对象，对象在方法区的常量数据区开辟空间，其属性值为“HelloWorld”。</li>
-<li>定义一个String类型的变量s(在栈区开辟空间)，变量s存放对象“HelloWorld”的地址。</li>
-<li>JVM找到标准类库中的System.class类并加载到内存中(即方法区的类代码区中),System初始化时会创建PrintStream标准字节输出流对象，调用println()方法将变量s的值打印到屏幕上。</li>
-</ol>
-<ul>
-<li>流程图如下所示<br><img src="https://img-blog.csdnimg.cn/2019092607403670.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70" alt="HelloWorld的执行流程 java版"></li>
-</ul>
-</blockquote>
-<p><strong>7. linux熟悉的命令</strong></p>
-<blockquote>
-<p>答：</p>
-<ol>
-<li>如果自己部署过服务器，那这个问题还不是so easy.可以参考这篇 <a href="https://alongsocjr.github.io/2019/03/10/mac-kills/" target="_blank" rel="noopener">终端命令小入门</a></li>
-<li>pwd 打印当前所在目录</li>
-<li>cat 打印文本文件内容</li>
-<li>vim 编辑文本</li>
-<li>tar 压缩文件</li>
-<li>ssh 登录服务器</li>
-<li>sudo 以系统管理者的身份执行指令</li>
-<li>chmod 修改文件权限</li>
-<li>mkdir 创建文件夹</li>
-<li>mv 移动</li>
-<li>cp 拷贝</li>
-<li>rm -rf 强制删除</li>
-<li>查看服务器上跑的服务<ol>
-<li>ps -ef|grep sssc|grep jar </li>
-</ol>
-</li>
-<li>模糊搜索日志  <ol>
-<li>cat sssc-soa-app_applicationLog_2019-07-25-3.log | grep “startup”</li>
-</ol>
-</li>
-</ol>
-</blockquote>
-<p><strong>8. 为什么组合优先于继承？</strong></p>
-<blockquote>
-<p>答：</p>
-<ol>
-<li>继承耦合度高，组合使用java多态的特性降低耦合度。</li>
-<li>比如，采用继承的方式，当父类需要发生变动时，而其所有的子类都会反映出这种变动。而组合却可以抽象出一个共有的接口，然后传入指定的实现类，让其他不相关类避免受影响。</li>
-</ol>
-</blockquote>
-<h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><p><strong>1. List元素实现删除有哪些注意的？</strong></p>
-<blockquote>
-<p>答：Collection集合相关类做删除操作时，不能边遍历边删除，因为内部维持了expectedModCount这么一个字段，如果modCount != expectedModCount并不等于，则会抛出ConcurrentModificationException异常。</p>
-</blockquote>
-<p><strong>2. 讲一下HashMap与HashTable的区别？HashMap的扩容方式，get()方法和put()方法，最好能写出代码。ConCurrentHashMap的实现原理？</strong></p>
-<blockquote>
-<p>答：</p>
-<ul>
-<li></li>
-</ul>
-</blockquote>
-<p><strong>3. 数组和链表的区别，ArrayList的扩容方式？</strong></p>
-<blockquote>
-<p>答：</p>
-</blockquote>
-<p><strong>4. 队列与栈的区别，介绍常见的使用场景？</strong></p>
-<blockquote>
-<p>答：</p>
-</blockquote>
-<p><strong>5. 手写一个Hashmap的遍历？</strong></p>
-<blockquote>
-<p>答：</p>
-</blockquote>
-<p><strong>6. HashSet是怎么实现的？</strong></p>
-<blockquote>
-<p>答：</p>
-</blockquote>
-<p><strong>7.  手写二叉树的遍历。</strong></p>
-<blockquote>
-<p>答：</p>
-</blockquote>
-<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><p><strong>1. 快排与冒泡的区别？手写一个试试？</strong></p>
-<blockquote>
-<p>答：</p>
-</blockquote>
-<p><strong>2. 手写一个二分查找和归并排序？</strong></p>
-<blockquote>
-<p>答：</p>
-</blockquote>
-<p><strong>3. 单链表的反转？迭代与递归的实现方式？</strong></p>
-<blockquote>
-<p>答：</p>
-</blockquote>
-<h3 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h3><p><strong>1. 按照你的理解，讲讲JVM内存结构？</strong></p>
-<blockquote>
-<p>答：</p>
-</blockquote>
-<p><strong>2. 讲讲垃圾回收，常见的垃圾回收算法有什么？</strong></p>
-<blockquote>
-<p>答：</p>
-</blockquote>
-<p><strong>3. 什么情况下会触发FULL GC?什么情况下会触发Mini GC？</strong></p>
-<blockquote>
-<p>答：</p>
-</blockquote>
-<h3 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h3><p><strong>1. 输入URL到页面加载发生了什么？</strong></p>
-<blockquote>
-<p>答：</p>
-</blockquote>
-<p><strong>2. 讲一讲TCP三次握手,四次挥手，画一下</strong></p>
-<blockquote>
-<p>答：</p>
-</blockquote>
-<p><strong>3. 悲观锁与乐观锁的区别？</strong></p>
-<blockquote>
-<p>答：</p>
-</blockquote>
-<p><strong>4. servlet API中forward()与redirect()的区别？</strong></p>
-<blockquote>
-<p>答：</p>
-</blockquote>
-<p><strong>5. 讲一下get与post的区别？</strong></p>
-<blockquote>
-<p>答：</p>
-</blockquote>
-<p><strong>6. 常见http的协议状态有哪些？</strong></p>
-<blockquote>
-<p>答：</p>
-</blockquote>
-<p><strong>7. TCP与UDP的区别？</strong></p>
-<blockquote>
-<p>答：</p>
-</blockquote>
-<p><strong>8. 讲讲序列化的底层实现原理。</strong></p>
-<blockquote>
-<p>答：</p>
-</blockquote>
-<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><p><strong>1. 讲一讲数据库的优化有哪些？</strong></p>
-<blockquote>
-<p>答： </p>
-<ol>
-<li>主从同步，读写分离</li>
-<li>分库分表<ol>
-<li>水平分表</li>
-<li>垂直分表</li>
-</ol>
-</li>
-<li>建立索引，提高查询性能</li>
-<li>缓存，减少对数据库的访问</li>
-</ol>
-</blockquote>
-<p><strong>2. 数据库怎么建立索引，索引有哪几种？</strong></p>
-<blockquote>
-<p>答：参考文章<a href="https://www.cnblogs.com/sweet521/p/6203360.html" target="_blank" rel="noopener">Mysql创建索引</a></p>
-<ol>
-<li>在执行CREATE TABLE语句时可以创建索引，也可以单独用CREATE INDEX或ALTER TABLE来为表增加索引。</li>
-<li>主键索引，普通索引，唯一索引</li>
-<li>ALTER TABLE（用来创建普通索引、UNIQUE索引或PRIMARY KEY索引）<ol>
-<li>ALTER TABLE table_name ADD INDEX index_name (column_list)</li>
-<li>ALTER TABLE table_name ADD UNIQUE (column_list)</li>
-<li>ALTER TABLE table_name ADD PRIMARY KEY (column_list)</li>
-</ol>
-</li>
-<li>CREATE INDEX （对表增加普通索引或UNIQUE索引）<ol>
-<li>CREATE INDEX index_name ON table_name (column_list)</li>
-<li>CREATE UNIQUE INDEX index_name ON table_name (column_list)</li>
-<li>注：不能用CREATE INDEX语句创建PRIMARY KEY索引</li>
-<li>注：PRIMARY KEY索引仅是一个具有名称PRIMARY的UNIQUE索引</li>
-</ol>
-</li>
-<li>删除索引<ol>
-<li>DROP INDEX index_name ON talbe_name</li>
-<li>ALTER TABLE table_name DROP INDEX index_name</li>
-<li>ALTER TABLE table_name DROP PRIMARY KEY</li>
-<li>注：如果没有创建PRIMARY KEY索引，但表具有一个或多个UNIQUE索引，则MySQL将删除第一个UNIQUE索引。</li>
-<li>注：如果从表中删除了某列，则索引会受到影响。对于多列组合的索引，如果删除其中的某列，则该列也会从索引中删除。如果删除组成索引的所有列，则整个索引将被删除。</li>
-</ol>
-</li>
-<li>查看索引<ol>
-<li>show index from tblname</li>
-<li>字段解析<img src="https://img-blog.csdnimg.cn/20191028154037639.jpg" alt="在这里插入图片描述"><ol>
-<li>Non_unique<ol>
-<li>如果索引不能包括重复词，则为0。如果可以，则为1。</li>
-</ol>
-</li>
-<li>Index_type<ol>
-<li>用过的索引方法（BTREE, FULLTEXT, HASH, RTREE）</li>
-</ol>
-</li>
-<li>Seq_in_index<ol>
-<li>索引中的列序列号，从1开始。</li>
-</ol>
-</li>
-<li>Collation<ol>
-<li>列以什么方式存储在索引中。在MySQL中，有值‘A’（升序）或NULL（无分类）。</li>
-</ol>
-</li>
-<li>Cardinality<ol>
-<li>索引中唯一值的数目的估计值。</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>使用索引注意事项<ol>
-<li>查询较多，修改较少适合创建索引，经常插入、删除、修改的表不适合</li>
-<li>建立索引会有相应的存储消耗</li>
-<li>复合索引效率更高</li>
-</ol>
-</li>
-</ol>
-</blockquote>
-<p><strong>3. 对redis了解吗？Redis有哪些数据结构？用来干什么？使用场景？</strong></p>
-<blockquote>
-<p>答：</p>
-<ol>
-<li>Redis支持五种数据类型：string（字符串），hash（哈希），list（列表），set（集合）及zset(sorted set：有序集合)</li>
-<li>String（字符串）：set与get<img src="https://img-blog.csdnimg.cn/20191028154105757.png" alt="在这里插入图片描述"></li>
-<li>Hash(哈希)：hmset与hgetall<img src="https://img-blog.csdnimg.cn/20191028154319278.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
-<li>list（列表) :  lpush与lrange<img src="https://img-blog.csdnimg.cn/20191028154336617.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
-<li>set（集合）：sadd与smembers<img src="https://img-blog.csdnimg.cn/20191028154352931.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
-<li>zset(sorted set：有序集合):zadd与zrangbyscore<img src="https://img-blog.csdnimg.cn/20191028154422968.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MDI4NjE0OA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
-</ol>
-</blockquote>
-<p><strong>4. 手写创建表，给表添加字段，修改字段的sql语句</strong></p>
-<blockquote>
-<p>答：</p>
-<ol>
-<li>给表添加字段<ol>
-<li>alter table t_cloud_user add salemoney DECIMAL(12,2) DEFAULT ‘0’ COMMENT ‘销售额’;</li>
-</ol>
-</li>
-<li>修改字段<ol>
-<li>alter table t_cloud_user change m1 button VARCHAR(200) DEFAULT NULL COMMENT ‘button按钮’;</li>
-</ol>
-</li>
-<li>新建索引<ol>
-<li>alter table t_sssc_salary add index Code_WAGENO(code,WAGENO);</li>
-<li>create index Code_WAGENO on t_sssc_salary(code,WAGENO);</li>
-</ol>
-</li>
-<li>删除索引<ol>
-<li>DROP INDEX index_name ON talbe_name;</li>
-<li>ALTER TABLE table_name DROP INDEX index_name;</li>
-</ol>
-</li>
-</ol>
-</blockquote>
-<p><strong>5. 主从同步延时的解决方案</strong></p>
-<blockquote>
-<ol>
-<li>缩小延时时间<ol>
-<li>修改主从库的配置参数，提高sql的执行效率</li>
-<li>数据库的版本（5.6.3之后采取多线程同步）</li>
-<li>提高从服务器的硬件性能（CPU，内存，SSD磁盘）</li>
-<li>网络（局域网缩小同步延时时间）</li>
-</ol>
-</li>
-<li>不选择走从库<ol>
-<li>对于不经常更新的表，查询的时候配置直接走从库。</li>
-<li>对于常更新的表（比如薪资表），更新之后放入缓存，查询的时候查缓存</li>
-</ol>
-</li>
-</ol>
-</blockquote>
-<p>​          </p>
-<h3 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h3><p><strong>1. 并发与并行，同步与异步，线程与进程的区别？</strong></p>
-<blockquote>
-<p>答：</p>
-</blockquote>
-<p><strong>2. 谈一谈线程池，常用的线程池有哪几种？线程池有什么作用？</strong></p>
-<blockquote>
-<p>答：</p>
-</blockquote>
-<p><strong>3. 线程池怎么使用？如何设置核心线程数，队列长度，以及最大线程数。</strong></p>
-<blockquote>
-<p>答：</p>
-</blockquote>
-<p><strong>4. 创建线程有哪几种方式？</strong></p>
-<blockquote>
-<p>答：</p>
-</blockquote>
-<p><strong>5. 线程有哪几种状态，如何进行转换的？</strong></p>
-<blockquote>
-<p>答：</p>
-</blockquote>
-<p><strong>6. synchronized的底层是怎么实现的？</strong></p>
-<blockquote>
-<p>答：</p>
-</blockquote>
-<p><strong>7. 手写生产者，消费者代码</strong></p>
-<blockquote>
-<p>答：</p>
-</blockquote>
-<p><strong>8. 如何避免死锁？</strong></p>
-<blockquote>
-<p>答：</p>
-</blockquote>
-<h3 id="框架与模式"><a href="#框架与模式" class="headerlink" title="框架与模式"></a>框架与模式</h3><p><strong>1. 讲一下熟悉的设计模式？单例模式有哪几种？手写一个单例模式</strong></p>
-<blockquote>
-<p>答：</p>
-</blockquote>
-<p><strong>2. 单例模式和工厂模式的本质区别在哪里？</strong></p>
-<blockquote>
-<p>答：</p>
-</blockquote>
-<p><strong>3. 简单介绍一下springMVC的执行流程？</strong></p>
-<blockquote>
-<p>答：</p>
-</blockquote>
-<p><strong>4. 简单介绍一下Spring的两大核心？</strong></p>
-<blockquote>
-<p>答：</p>
-</blockquote>
-<p><strong>5. 看过spring的源码吗？说说底层是怎么实现的？</strong></p>
-<blockquote>
-<p>答：</p>
-</blockquote>
-<p>–</p>
+<h2 id="静态工厂"><a href="#静态工厂" class="headerlink" title="静态工厂"></a>静态工厂</h2><p>本章案例是制造Pizza，讲解的思路是：一个店面给顾客制造不同口味的披萨，发现效益不错，别的地方的商店想加盟，希望也能套用你的模板，再到不同地方的商店希望在本地有对应原料加工工厂。可见，随着业务的扩张，带来的变化变化也越来越多，这个时候各个模式就在应对这种变化中产生了<code>静态工厂</code>、<code>工厂方法</code>、<code>抽象工厂</code></p>
+<p>首先是静态工厂，在使用静态工厂前，顾客下订单的实现应该是这样的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PizzaStore</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function">Pizza <span class="title">orderPizza</span><span class="params">(String type)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Pizza pizza = <span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">// 变化的部分</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="string">"cheese"</span>.equals(type)) &#123;</span><br><span class="line">            pizza = <span class="keyword">new</span> CheesePizza();</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"peperoni"</span>.equals(type)) &#123;</span><br><span class="line">            pizza = <span class="keyword">new</span> PepperoniPizza();</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"clam"</span>.equals(type)) &#123;</span><br><span class="line">            pizza = <span class="keyword">new</span> ClamPizza();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 不变的部分</span></span><br><span class="line">        pizza.preprae();</span><br><span class="line">        pizza.bake();</span><br><span class="line">        pizza.cut();</span><br><span class="line">        pizza.box();</span><br><span class="line">        <span class="keyword">return</span> pizza;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>在上面代码中，我们发现ifelse代码是经常发生改变的，每增删一种口味的Pizza就要修改这段代码，这必将造成系统难以维护。在<code>策略模式</code>中学到了应该将变化的部分和不变的部分分离出来，那么我们对这部分代码做一个封装，这就是简单工厂了，单独负责Pizza的创建。</p>
+<p>实现的代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimplePizzaFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Pizza <span class="title">create</span><span class="params">(String type)</span> </span>&#123;</span><br><span class="line">        Pizza pizza = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">"cheese"</span>.equals(type)) &#123;</span><br><span class="line">            pizza = <span class="keyword">new</span> CheesePizza();</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"peperoni"</span>.equals(type)) &#123;</span><br><span class="line">            pizza = <span class="keyword">new</span> PepperoniPizza();</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"clam"</span>.equals(type)) &#123;</span><br><span class="line">            pizza = <span class="keyword">new</span> ClamPizza();</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"veggie"</span>.equals(type)) &#123;</span><br><span class="line">            pizza = <span class="keyword">new</span> VeggiePizza();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"本店没有该口味披萨，请换购其他类型"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> pizza;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当新增新口味的Pizza时，我们只需修改这里的代码，create方法可以声明为静态的，当调用的时候可以不需要创建对象，直接调用。但这种设计不容易扩展，运行的时候不能修改create的行为。</p>
+<p>那么，当有不同的加盟商到来时，这个时候create方法不得不变，要怎么办呢？这个时候我们可以这样做：</p>
+<img src="/2020/05/24/patterns/factory/factory-1.jpg">
+
+<p>但是，更大的变化再等着我们，有些加盟商说，想要自己的一套bake、cut、box的方式。</p>
+<h2 id="工厂方法"><a href="#工厂方法" class="headerlink" title="工厂方法"></a>工厂方法</h2><p>工厂方法要求不同的厂商提供自己的create方法，同时可以提供自己一套烘烤、切片、包装的方式。这个时候，工厂方法来解救我们。</p>
+<p>简单工厂将create方法进行了抽象，交给子类去实现。当定义的Pizza有自己的烘烤、切片、包装方式时，在子类定义的时候需要进行覆盖。</p>
+<p>实现为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">PizzaStore</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function">Pizza <span class="title">orderPizza</span><span class="params">(String type)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 变化的一部分</span></span><br><span class="line">        Pizza pizza = creatPizza(type);</span><br><span class="line">        <span class="comment">// 不变的一部分</span></span><br><span class="line">        pizza.preprae();</span><br><span class="line">        pizza.bake();</span><br><span class="line">        pizza.cut();</span><br><span class="line">        pizza.box();</span><br><span class="line">        <span class="keyword">return</span> pizza;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">abstract</span> Pizza <span class="title">creatPizza</span><span class="params">(String type)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>加盟商只需实现该方法，当该加盟商新增一种口味时，只需在以下实现中做一下修改，相比于简单工厂的方式，更加易于维护，而且对系统的影响度更低。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NYStylePizzaStore</span> <span class="keyword">extends</span> <span class="title">PizzaStore</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function">Pizza <span class="title">creatPizza</span><span class="params">(String type)</span> </span>&#123;</span><br><span class="line">        Pizza pizza = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">"cheese"</span>.equals(type)) &#123;</span><br><span class="line">            pizza = <span class="keyword">new</span> NYStyleCheesePizza();</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"peperoni"</span>.equals(type)) &#123;</span><br><span class="line">            pizza = <span class="keyword">new</span> NYStylePepperoniPizza();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> pizza;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>讲到这里，是不是对工厂方法有了大概的了解，我们来看看到底什么是工厂方法吧！</p>
+<img src="/2020/05/24/patterns/factory/factory-2.jpg">
+
+<p><code>工厂方法模式</code> 书上定义为：</p>
+<p><font color="blue" size="5">定义了一个创建对象的接口，但由于子类决定要实例化的类是哪一个。工厂方法让类把实例化推迟到了子类。</font></p>
+<img src="/2020/05/24/patterns/factory/factory-3.jpg">
+
+<p>到这里，可以回顾一下，如果使用简单工厂去实现，会是是什么样的？会出现一个依赖的一个工厂类，当新增或删减时，对系统的影响是很大的。这样使得PizzaStore类高度依赖所有的Pizza对象，这里违背了我们新学到的一个设计原则<code>依赖倒置原则</code>：</p>
+<p><font color="blue" size="5">要依赖抽象，不要依赖具体类</font></p>
+<p>这个原则说明了：不能让高层组建依赖低层组件，而且，不管高层或底层组件，两者都应该依赖于<code>抽象</code>。</p>
+<p>所谓<code>高层</code>组件，是由其<code>底层</code>组件定义其行为的类。在这里，Pizza是高层组件，因为它的行为是由Pizza定义的，PizzaStore创建所有不同的Pizza对象，准备、烘烤、切片、装盒；而Pizza本身属于底层组件。</p>
+<img src="/2020/05/24/patterns/factory/factory-4.jpg">
+
+<h2 id="抽象工厂"><a href="#抽象工厂" class="headerlink" title="抽象工厂"></a>抽象工厂</h2><p>到这里，系统已经有了良好的弹性框架，而且遵循设计原则。但是，我们的设计远远没有结束，比萨店成功的关键在于新鲜、高质量的原料，要是在当地建立一个原料的工厂，还能实现更大的利润。</p>
+<img src="/2020/05/24/patterns/factory/factory-5.jpg">
+
+<p>我们首先得定义原料工厂：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">PizzaIngredientFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function">Dough <span class="title">createDough</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function">Sauce <span class="title">createSauce</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function">Cheese <span class="title">createCheese</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function">VeggiePizza <span class="title">createVeggiePizza</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function">Pepperoni <span class="title">createPepperoni</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function">Clams <span class="title">createClams</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>将Pizza的parepar进行抽象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Pizza</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    String name;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 面团</span></span><br><span class="line">    Dough dough;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 酱料</span></span><br><span class="line">    Sauce sauce;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 一套佐料</span></span><br><span class="line">    Cheese cheese;</span><br><span class="line"></span><br><span class="line">    Pepperoni pepperoni;</span><br><span class="line"></span><br><span class="line">    Clams clams;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">preprae</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其实这里就有点类似于工厂方法了，交给子类去实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CheesePizza</span> <span class="keyword">extends</span> <span class="title">Pizza</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    PizzaIngredientFactory pizzaIngredientFactory;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CheesePizza</span><span class="params">(PizzaIngredientFactory pizzaIngredientFactory)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.pizzaIngredientFactory = pizzaIngredientFactory;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">preprae</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Preparing "</span> + name);</span><br><span class="line">        dough = pizzaIngredientFactory.createDough();</span><br><span class="line">        sauce = pizzaIngredientFactory.createSauce();</span><br><span class="line">        cheese = pizzaIngredientFactory.createCheese();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后定义具体的PizzaStore</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class NYPizzaStore extends PizzaStore &#123;</span><br><span class="line"></span><br><span class="line">    PizzaIngredientFactory ingredientFactory = new NYPizzaIngredientFactory();</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    Pizza creatPizza(String type) &#123;</span><br><span class="line">        Pizza pizza = null;</span><br><span class="line"></span><br><span class="line">        if ("cheese".equals(type)) &#123;</span><br><span class="line">            pizza = new CheesePizza(ingredientFactory);</span><br><span class="line">            pizza.setName("NY Style Cheese Pizza");</span><br><span class="line">        &#125; else if ("clam".equals(type)) &#123;</span><br><span class="line">            pizza = new ClamPizza(ingredientFactory);</span><br><span class="line">            pizza.setName("NY Style Clam Pizza");</span><br><span class="line">        &#125;</span><br><span class="line">        return pizza;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后测试一下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PizzaStore pizzaStore = <span class="keyword">new</span> NYPizzaStore();</span><br><span class="line">Pizza pizza = pizzaStore.orderPizza(<span class="string">"cheese"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>可以跟踪一下代码执行</p>
+<ul>
+<li><p>先是创建一个NYPizzaStore实例：<code>PizzaStore pizzaStore = new NYPizzaStore();</code></p>
+</li>
+<li><p>有了Pizza店了，接受订单：<code>pizzaStore.orderPizza(&quot;cheese&quot;);</code></p>
+</li>
+<li><p>orderPizza会先调用creatPizza方法：<code>Pizza pizza = creatPizza(type);</code></p>
+</li>
+<li><p>creatPizza方法调用时，涉及到原料工厂了：<code>pizza = new CheesePizza(ingredientFactory);</code></p>
+</li>
+<li><p>拿到Pizza后，会调用prepare方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">preprae</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Preparing "</span> + name);</span><br><span class="line">    dough = pizzaIngredientFactory.createDough();</span><br><span class="line">    sauce = pizzaIngredientFactory.createSauce();</span><br><span class="line">    cheese = pizzaIngredientFactory.createCheese();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>最后，得到准备好的Pizza，orderPizza就会接着烘烤、切片、装盒。</p>
+</li>
+</ul>
+<p><code>抽象工厂模式</code>在书上定义为：</p>
+<p><font color="blue" size="5">提供一个接口，用于创建相关或依赖对象的家族，而不需要指定具体类</font></p>
+<p><a href="https://github.com/alongsoCJR/javabase/commit/648d540b15934f3012157d8168c7983bb4de4f28" target="_blank" rel="noopener">代码链接</a></p>
+<p>模型如图所示：</p>
+<img src="/2020/05/24/patterns/factory/factory-6.jpg">
       
     </div>
     
@@ -797,8 +487,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/09/01/csapp/cs-tour/" rel="next" title="深入理解计算机：计算机系统漫游">
-                <i class="fa fa-chevron-left"></i> 深入理解计算机：计算机系统漫游
+              <a href="/2020/04/15/patterns/strategy/" rel="next" title="策略模式">
+                <i class="fa fa-chevron-left"></i> 策略模式
               </a>
             
           </div>
@@ -806,10 +496,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/10/20/csapp/storage-technologies/" rel="prev" title="深入理解计算机：存储器层次结构">
-                深入理解计算机：存储器层次结构 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -998,7 +684,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#java基础"><span class="nav-number">1.</span> <span class="nav-text">java基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据结构"><span class="nav-number">2.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法"><span class="nav-number">3.</span> <span class="nav-text">算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM"><span class="nav-number">4.</span> <span class="nav-text">JVM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络"><span class="nav-number">5.</span> <span class="nav-text">网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库"><span class="nav-number">6.</span> <span class="nav-text">数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程"><span class="nav-number">7.</span> <span class="nav-text">多线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#框架与模式"><span class="nav-number">8.</span> <span class="nav-text">框架与模式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#静态工厂"><span class="nav-number">2.</span> <span class="nav-text">静态工厂</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂方法"><span class="nav-number">3.</span> <span class="nav-text">工厂方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象工厂"><span class="nav-number">4.</span> <span class="nav-text">抽象工厂</span></a></li></ol></div>
             
 
           </div>
