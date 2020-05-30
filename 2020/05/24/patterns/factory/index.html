@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/05/24/patterns/factory/factory-4.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/05/24/patterns/factory/factory-5.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/05/24/patterns/factory/factory-6.jpg">
-<meta property="og:updated_time" content="2020-05-24T11:24:29.587Z">
+<meta property="og:updated_time" content="2020-05-25T01:16:22.640Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="工厂模式">
 <meta name="twitter:description" content="简介工厂模式，顾名思义，就是制造对象的工厂。在学习之前，是存在很大的误解的，之前认识的工厂是简单工厂，它并不属于工厂模式的范畴，真正的工厂模式有两种，分别是工厂方法模式、抽象工厂模式。 工厂方法模式是使用抽象方法，使用子类继承的方式去实现。抽象工厂模式是抽象出一个工厂的接口，用具体的工厂去实现接口，然后采用组合的方式，去解藕。总而言之，两者使用的场景不一样，感觉差别挺大。">
@@ -419,10 +419,10 @@
 <p><font color="blue" size="5">定义了一个创建对象的接口，但由于子类决定要实例化的类是哪一个。工厂方法让类把实例化推迟到了子类。</font></p>
 <img src="/2020/05/24/patterns/factory/factory-3.jpg">
 
-<p>到这里，可以回顾一下，如果使用简单工厂去实现，会是是什么样的？会出现一个依赖的一个工厂类，当新增或删减时，对系统的影响是很大的。这样使得PizzaStore类高度依赖所有的Pizza对象，这里违背了我们新学到的一个设计原则<code>依赖倒置原则</code>：</p>
-<p><font color="blue" size="5">要依赖抽象，不要依赖具体类</font></p>
+<p>到这里，可以回顾一下，如果使用简单工厂去实现，会是什么样的？会出现一个高度依赖的工厂类，当新增或删减时，对系统的影响是很大的。这样使得PizzaStore类高度依赖所有的Pizza对象，这里违背了我们新学到的一个设计原则<code>依赖倒置原则</code>：</p>
+<p><font color="blue" size="5">要依赖抽象，不要依赖具体类。</font></p>
 <p>这个原则说明了：不能让高层组建依赖低层组件，而且，不管高层或底层组件，两者都应该依赖于<code>抽象</code>。</p>
-<p>所谓<code>高层</code>组件，是由其<code>底层</code>组件定义其行为的类。在这里，Pizza是高层组件，因为它的行为是由Pizza定义的，PizzaStore创建所有不同的Pizza对象，准备、烘烤、切片、装盒；而Pizza本身属于底层组件。</p>
+<p>所谓<code>高层</code>组件，是由其<code>底层</code>组件定义其行为的类。在这里，PizzaStore是高层组件，因为它的行为是由Pizza定义的，PizzaStore创建所有不同的Pizza对象，准备、烘烤、切片、装盒；而Pizza本身属于底层组件。</p>
 <img src="/2020/05/24/patterns/factory/factory-4.jpg">
 
 <h2 id="抽象工厂"><a href="#抽象工厂" class="headerlink" title="抽象工厂"></a>抽象工厂</h2><p>到这里，系统已经有了良好的弹性框架，而且遵循设计原则。但是，我们的设计远远没有结束，比萨店成功的关键在于新鲜、高质量的原料，要是在当地建立一个原料的工厂，还能实现更大的利润。</p>
@@ -460,7 +460,7 @@
 </li>
 </ul>
 <p><code>抽象工厂模式</code>在书上定义为：</p>
-<p><font color="blue" size="5">提供一个接口，用于创建相关或依赖对象的家族，而不需要指定具体类</font></p>
+<p><font color="blue" size="5">提供一个接口，用于创建相关或依赖对象的家族，而不需要指定具体类。</font></p>
 <p><a href="https://github.com/alongsoCJR/javabase/commit/648d540b15934f3012157d8168c7983bb4de4f28" target="_blank" rel="noopener">代码链接</a></p>
 <p>模型如图所示：</p>
 <img src="/2020/05/24/patterns/factory/factory-6.jpg">
@@ -496,6 +496,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/30/patterns/commands/" rel="prev" title="命令模式">
+                命令模式 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -577,7 +581,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -663,6 +667,10 @@
                 
                   <li class="links-of-blogroll-item">
                     <a href="https://emacs-china.org" title="EMACCHINA" target="_blank">EMACCHINA</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.cnblogs.com/gaochundong/" title="The Pleasure Of Craftsmanship" target="_blank">The Pleasure Of Craftsmanship</a>
                   </li>
                 
               </ul>

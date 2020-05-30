@@ -79,22 +79,22 @@
 
 
 
-<meta name="description" content="synchronized定义 Multi-threaded programs may often come to a situation where multiple threads try to access the same resources and finally produce erroneous and unforeseen results.So it needs to be ma">
+<meta name="description" content="简介命令模式，通过对请求命令的封装，对命令的请求方和执行方进行解偶，书本上举例了顾客点餐的过程，顾客下单点餐，然后服务员将菜单拿给厨师制作，通过菜单实现了顾客与服务员，服务员与厨师之间的解偶。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="synchronized底层实现原理">
-<meta property="og:url" content="http://yoursite.com/2020/02/28/concurrentart/synchronized-implement-prinpiple/index.html">
+<meta property="og:title" content="命令模式">
+<meta property="og:url" content="http://yoursite.com/2020/05/30/patterns/commands/index.html">
 <meta property="og:site_name" content="alongso blog">
-<meta property="og:description" content="synchronized定义 Multi-threaded programs may often come to a situation where multiple threads try to access the same resources and finally produce erroneous and unforeseen results.So it needs to be ma">
+<meta property="og:description" content="简介命令模式，通过对请求命令的封装，对命令的请求方和执行方进行解偶，书本上举例了顾客点餐的过程，顾客下单点餐，然后服务员将菜单拿给厨师制作，通过菜单实现了顾客与服务员，服务员与厨师之间的解偶。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/2020/02/28/concurrentart/synchronized-implement-prinpiple/synchronized-implement-prinpiple.png">
-<meta property="og:image" content="http://yoursite.com/2020/02/28/concurrentart/synchronized-implement-prinpiple/线程占有Monitor对象锁流程图.jpg">
-<meta property="og:image" content="http://yoursite.com/2020/02/28/concurrentart/synchronized-implement-prinpiple/monitorenter和monitorexit指令.jpg">
-<meta property="og:image" content="http://yoursite.com/2020/02/28/concurrentart/synchronized-implement-prinpiple/markword-lock-status.jpg">
-<meta property="og:updated_time" content="2020-04-12T05:28:09.619Z">
+<meta property="og:image" content="http://yoursite.com/2020/05/30/patterns/commands/commands.jpeg">
+<meta property="og:image" content="http://yoursite.com/2020/05/30/patterns/commands/commands-1.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/05/30/patterns/commands/Command_Light_UML.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/30/patterns/commands/commands-2.jpg">
+<meta property="og:updated_time" content="2020-05-30T07:59:29.811Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="synchronized底层实现原理">
-<meta name="twitter:description" content="synchronized定义 Multi-threaded programs may often come to a situation where multiple threads try to access the same resources and finally produce erroneous and unforeseen results.So it needs to be ma">
-<meta name="twitter:image" content="http://yoursite.com/2020/02/28/concurrentart/synchronized-implement-prinpiple/synchronized-implement-prinpiple.png">
+<meta name="twitter:title" content="命令模式">
+<meta name="twitter:description" content="简介命令模式，通过对请求命令的封装，对命令的请求方和执行方进行解偶，书本上举例了顾客点餐的过程，顾客下单点餐，然后服务员将菜单拿给厨师制作，通过菜单实现了顾客与服务员，服务员与厨师之间的解偶。">
+<meta name="twitter:image" content="http://yoursite.com/2020/05/30/patterns/commands/commands.jpeg">
 
 
 
@@ -124,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/02/28/concurrentart/synchronized-implement-prinpiple/">
+  <link rel="canonical" href="http://yoursite.com/2020/05/30/patterns/commands/">
 
 
 
 
 
-  <title>synchronized底层实现原理 | alongso blog</title>
+  <title>命令模式 | alongso blog</title>
   
 
 
@@ -289,7 +289,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/28/concurrentart/synchronized-implement-prinpiple/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/30/patterns/commands/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="alongso">
@@ -306,7 +306,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">synchronized底层实现原理</h1>
+          <h1 class="post-title" itemprop="name headline">命令模式</h1>
         
 
         <div class="post-meta">
@@ -318,8 +318,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-28T10:10:26+08:00">
-                2020-02-28
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-30T17:11:35+08:00">
+                2020-05-30
               </time>
             
 
@@ -341,8 +341,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/并发编程的艺术/" itemprop="url" rel="index">
-                    <span itemprop="name">并发编程的艺术</span>
+                  <a href="/categories/patterns/" itemprop="url" rel="index">
+                    <span itemprop="name">patterns</span>
                   </a>
                 </span>
 
@@ -382,86 +382,37 @@
       
 
       
-        <img src="/2020/02/28/concurrentart/synchronized-implement-prinpiple/synchronized-implement-prinpiple.png">
+        <img src="/2020/05/30/patterns/commands/commands.jpeg">
 
-<h2 id="synchronized"><a href="#synchronized" class="headerlink" title="synchronized"></a>synchronized</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a><a href="https://www.geeksforgeeks.org/synchronized-in-java/" target="_blank" rel="noopener">定义</a></h3><ul>
-<li><a href="http://quiz.geeksforgeeks.org/multithreading-in-java/" target="_blank" rel="noopener">Multi-threaded </a>programs may often come to a situation where multiple threads try to access the same resources and finally produce erroneous and unforeseen results.So it needs to be made sure by some synchronization method that only one thread can access the resource at a given point of time.</li>
-</ul>
-<h3 id="应用方式"><a href="#应用方式" class="headerlink" title="应用方式"></a>应用方式</h3><ul>
-<li>对于普通同步方法，锁是当前<code>实例对象</code></li>
-<li>对于静态同步方法，锁是当前类的<code>class对象</code></li>
-<li>对于同步方法块，锁是synchronized括号里配置的<code>对象</code></li>
-</ul>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>命令模式，通过对请求命令的封装，对命令的请求方和执行方进行解偶，书本上举例了顾客点餐的过程，顾客下单点餐，然后服务员将菜单拿给厨师制作，通过菜单实现了顾客与服务员，服务员与厨师之间的解偶。</p>
 <a id="more"></a>
 
-<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><blockquote>
-<p>JVM基于进入和退出Monitor对象来实现方法、代码块同步的，两者实现的细节不一样，但都是使用<code>monitorenter</code>和<code>monitorexit</code>指令来实现的。<code>monitorenter</code> 指令是在编译后插入到同步代码块的开始位置，而 <code>monitorexit</code> 是插入到方法的结束处和异常处，JVM要保证每个<code>monitorenter</code>必须有对应的<code>monitorexit</code>与之配对。</p>
-</blockquote>
-<ul>
-<li>任何对象都有一个<code>Monitor</code>与之 关联，当且一个<code>Monitor</code>被持有后，它将处于锁定状态。</li>
-<li>线程执行到monitorenter指令时，将会尝试获取对象的锁。</li>
-<li>而对于没有获取到对象锁的线程会阻塞在方法的入口，知道获取锁的线程执行 <code>monitorexit</code>之后才能尝试继续获取锁。</li>
-</ul>
-<p>流程如下：</p>
-<img src="/2020/02/28/concurrentart/synchronized-implement-prinpiple/线程占有Monitor对象锁流程图.jpg">
+<img src="/2020/05/30/patterns/commands/commands-1.jpg">
 
-<h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><p>源码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Object o = <span class="keyword">new</span> Object();</span><br><span class="line"><span class="keyword">synchronized</span> (o) &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>使用jclasslib查看汇编指令</p>
-<img src="/2020/02/28/concurrentart/synchronized-implement-prinpiple/monitorenter和monitorexit指令.jpg">
 
-<h3 id="对象在内存中的存储"><a href="#对象在内存中的存储" class="headerlink" title="对象在内存中的存储"></a>对象在内存中的存储</h3><ul>
-<li>由三部分组成：<code>markword</code>（8个字节）、<code>class  pointer</code>（4个字节）、<code>instance data</code></li>
-<li>内存对齐，每个对象在内存中占的字节数必须是<code>8的倍数</code>，即%8=0，如果不满足，则会补齐至8的倍数。</li>
-</ul>
-<h3 id="对象头"><a href="#对象头" class="headerlink" title="对象头"></a>对象头</h3><ul>
-<li>在64位虚拟机下，markword是64位</li>
-<li>用markword中最低的三位代表锁状态，其中1位是偏向锁位：<code>无锁—0 01</code>、<code>偏向锁—1 01</code></li>
-<li>后面两位是普通锁位：<code>轻量级锁—00</code>、<code>重量级锁—01</code></li>
-</ul>
-<img src="/2020/02/28/concurrentart/synchronized-implement-prinpiple/markword-lock-status.jpg">
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>定义一个命令接口，接口只有execute方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Command</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>参考：<a href="https://crossoverjie.top/%2F2018%2F01%2F14%2FSynchronize%2F" target="_blank" rel="noopener">synchronized 关键字原理</a></p>
-<hr>
-<h2 id="锁升级"><a href="#锁升级" class="headerlink" title="锁升级"></a>锁升级</h2><h3 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h3><p>JDK较早的版本，都是使用<code>synchronized</code>,很多人称为<code>重量锁</code>， <code>重量锁</code> 效率比较低，因为它要向操作系统申请资源。<code>jdk1.6</code>对<code>synchronized</code>进行了优化，为了减少获取和释放锁带来的消耗，引入了<code>轻量级锁</code>和<code>偏向锁</code> 的概念。锁一共有4种状态，级别从低到高分别是<code>无锁 - 偏向锁 - 轻量级锁（自旋锁）-重量级锁</code></p>
-<h3 id="无锁"><a href="#无锁" class="headerlink" title="无锁"></a>无锁</h3><p><code>Object o = new Object()</code> 锁的状态为：<code>0 01 无锁态</code></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000001</span></span><br></pre></td></tr></table></figure>
+<p>对命令的一种实现，比如：打开电灯泡，这里封装了灯泡对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LightOnCommand</span> <span class="keyword">implements</span> <span class="title">Command</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    Light light;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LightOnCommand</span><span class="params">(Light light)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.light = light;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        light.on();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>执行<code>o.hashCode()</code>后，对象头变为<code>hashcode+0 01</code></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000111</span> <span class="number">10000000</span> <span class="number">11001011</span> <span class="number">01110111</span> <span class="number">00000001</span></span><br></pre></td></tr></table></figure>
+<p>遥控器可以执行命令对象，至于命令具体是怎么执行，我不需要关心，因为封装在请求里面了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleRemoteControl</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    Command slot;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SimpleRemoteControl</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCommand</span><span class="params">(Command command)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.slot = command;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">buttonWasPressed</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        slot.execute();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>偏向锁在JDK 6及以后的JVM里是默认启用的。可以通过JVM参数关闭偏向锁：-XX:-UseBiasedLocking=false，关闭之后程序默认会进入轻量级锁状态。</p>
-<p>关闭偏向锁    <code>-XX:+UseBiasedLocking -client -Xmx512m -Xms512m</code></p>
-<p>问题：新实例化对象o是无锁，当对象使用sync(o)之后，为什么对象是轻量级锁状态而不是偏向锁状态呢？</p>
-<blockquote>
-<p>因为偏向锁的启动有4s的时延，为什么要有时延呢？JVM虚拟机自己有一些默认启动的线程，里面有好多sync代码，这些sync代码启动时就知道肯定会有竞争，如果使用偏向锁，就会造成偏向锁不断的进行锁撤销和锁升级的操作，效率较低。</p>
-</blockquote>
-<p>可使用以下命令关闭时延</p>
-<p><code>-XX:+UseBiasedLocking -XX:BiasedLockingStartupDelay=0 -client -Xmx1024m -Xms1024m</code></p>
-<h3 id="偏向锁"><a href="#偏向锁" class="headerlink" title="偏向锁"></a>偏向锁</h3><p>偏向锁，偏向加锁的第一个线程。</p>
-<p>适用于锁不存在多线程竞争，并且应由一个线程多次获得锁。markword 上记录当前线程指针，下次同一个线程加锁的时候，不需要争用，只需要判断线程指针是否同一个。</p>
-<h4 id="获得锁"><a href="#获得锁" class="headerlink" title="获得锁"></a>获得锁</h4><p>当线程访问同步块时，会使用 <code>CAS</code> 将线程 ID 更新到锁对象的 <code>Mark Word</code> 中，如果更新成功则获得偏向锁，以后该线程进入或者退出同步块时不需要进行 <code>CAS</code> 操作来加锁和释放锁。只需检查一下锁对象的 <code>Mark Word</code> 中是否存储了当前线程的ID，如果是，表示当前已经获得偏向锁，否则再去检查一下 <code>Mark Word</code> 中偏向锁位是否是1，如果不是，使用 <code>CAS</code>竞争锁，如果是，使用 <code>CAS</code> 将对象头的偏向锁指向当前线程。</p>
-<h4 id="释放锁"><a href="#释放锁" class="headerlink" title="释放锁"></a>释放锁</h4><p>当其他线程尝试竞争偏向锁时，持有偏向锁的线程才会释放锁，偏向锁的撤销需要等到全局安全点（在这个时间点上没有正在执行的字节码），接着会暂停拥有偏向锁的线程，根据锁对象目前是否被锁，来判定将对象头中的 <code>Mark Word</code> 设置为无锁或者是轻量锁状态。</p>
-<p>偏向锁可以提高带有同步却没有竞争的程序性能，但如果程序中大多数锁都存在竞争时，那偏向锁就起不到太大作用。这时应该关闭偏向锁，使程序直接进入轻量锁状态。</p>
-<h3 id="轻量级锁"><a href="#轻量级锁" class="headerlink" title="轻量级锁"></a>轻量级锁</h3><p>锁升级为轻量级锁 - 每个线程有自己的LockRecord在自己的线程栈上，用CAS去争用markword的LR的指针，指针指向哪个线程的LR，哪个线程就拥有锁。</p>
-<h4 id="加锁"><a href="#加锁" class="headerlink" title="加锁"></a>加锁</h4><p>线程在进入同步块之前，如果同步对象为无锁状态时，当前线程会在栈帧中创建一个锁记录(<code>Lock Record</code>)区域，同时将锁对象的对象头中 <code>Mark Word</code> 拷贝到锁记录中，再尝试使用 <code>CAS</code> 将 <code>Mark Word</code> 更新为指向锁记录的指针。</p>
-<p>如果更新<strong>成功</strong>，当前线程就获得了锁。</p>
-<p>如果更新<strong>失败</strong> <code>JVM</code> 会先检查锁对象的 <code>Mark Word</code> 是否指向当前线程的锁记录。</p>
-<p>如果是则说明当前线程拥有锁对象的锁，可以直接进入同步块。</p>
-<p>不是则说明有其他线程抢占了锁，如果存在多个线程同时竞争一把锁，<strong>轻量锁就会膨胀为重量锁</strong>。</p>
-<h4 id="解锁"><a href="#解锁" class="headerlink" title="解锁"></a>解锁</h4><p>轻量锁的解锁过程也是利用 <code>CAS</code> 来实现的，会尝试锁记录替换回锁对象的 <code>Mark Word</code> 。如果替换成功则说明整个同步操作完成，失败则说明有其他线程尝试获取锁，这时就会唤醒被挂起的线程(此时已经膨胀为<code>重量锁</code>)</p>
-<p>轻量锁能提升性能的原因：</p>
-<blockquote>
-<p>认为大多数锁在整个同步周期都不存在竞争，所以使用 <code>CAS</code> 比使用互斥开销更少。但如果锁竞争激烈，轻量锁就不但有互斥的开销，还有 <code>CAS</code> 的开销，甚至比重量锁更慢。</p>
-</blockquote>
-<h3 id="重量级锁"><a href="#重量级锁" class="headerlink" title="重量级锁"></a>重量级锁</h3><p>自旋超过10次，升级为重量级锁（如果太多线程自旋 CPU消耗过大，不如升级为重量级锁）。当升级为重量级锁时，其他线程试图获取锁时，会阻塞进入等待队列（不消耗CPU），直到持有锁的线程释放锁后会唤醒这些线程，被唤醒的线程会再次一起竞争锁。</p>
-<h3 id="其他优化"><a href="#其他优化" class="headerlink" title="其他优化"></a>其他优化</h3><h4 id="适应性自旋"><a href="#适应性自旋" class="headerlink" title="适应性自旋"></a>适应性自旋</h4><p>在使用 <code>CAS</code> 时，如果操作失败，<code>CAS</code> 会自旋再次尝试。由于自旋是需要消耗 <code>CPU</code> 资源的，所以如果长期自旋就白白浪费了 <code>CPU</code>。<code>JDK1.6</code>加入了适应性自旋:</p>
-<blockquote>
-<p>如果某个锁自旋很少成功获得，那么下一次就会减少自旋。</p>
-</blockquote>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>综上，偏向锁通过对比Mark Word解决加锁问题，避免执行CAS操作。而轻量级锁是通过用CAS操作和自旋来解决加锁问题，避免线程阻塞和唤醒而影响性能。重量级锁是将除了拥有锁的线程以外的线程都阻塞。</p>
-<p>参考：<a href="https://tech.meituan.com/2018/11/15/java-lock.html" target="_blank" rel="noopener">美团 不可不说的Java“锁”事</a></p>
+<p>对遥控器进行简单测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleRemoteControlTest</span> <span class="keyword">extends</span> <span class="title">AbstractTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    SimpleRemoteControl simpleRemoteControl = <span class="keyword">null</span>;</span><br><span class="line">    Light light = <span class="keyword">null</span>;</span><br><span class="line">    Command command = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        simpleRemoteControl = <span class="keyword">new</span> SimpleRemoteControl();</span><br><span class="line">        light = <span class="keyword">new</span> Light();</span><br><span class="line">        command = <span class="keyword">new</span> LightOnCommand(light);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">buttonWasPressed</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        simpleRemoteControl.setCommand(command);</span><br><span class="line">        simpleRemoteControl.buttonWasPressed();</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过测试我们看到，遥控器可以set不同的命令，至于命令的接收者封装在了命令的实现当中，遥控器漠不关心，只是执行了command.execute()方法，具体干嘛了也不知道，这样实现了客户请求与请求执行之间的解偶，我们的类关系图如下：</p>
+<img src="/2020/05/30/patterns/commands/Command_Light_UML.png">
+
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>在书上定义为：</p>
+<p><font color="blue" size="5">将“请求”封装成对象，以便使用不同的请求、队列或者日志来参数化其他对象。命令模式也支持可撤销的操作。</font></p>
+<p>类图为：</p>
+<img src="/2020/05/30/patterns/commands/commands-2.jpg">
+
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>在实际的开发中，我们用到命令模式的地方有：线程池、工作队列。</p>
+<p>命令可以支持撤销操作，所以一个常见的用于日志请求，比如电脑死机数据恢复处理，mysql日志备份和还原。</p>
 
       
     </div>
@@ -486,8 +437,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/02/27/concurrentart/volatile-implement-prinpiple/" rel="next" title="volatile底层实现原理">
-                <i class="fa fa-chevron-left"></i> volatile底层实现原理
+              <a href="/2020/05/24/patterns/factory/" rel="next" title="工厂模式">
+                <i class="fa fa-chevron-left"></i> 工厂模式
               </a>
             
           </div>
@@ -495,10 +446,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/03/03/concurrentart/cas-implement/" rel="prev" title="CAS实现与原子类actomic">
-                CAS实现与原子类actomic <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -691,7 +638,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#synchronized"><span class="nav-number">1.</span> <span class="nav-text">synchronized</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用方式"><span class="nav-number">1.2.</span> <span class="nav-text">应用方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原理"><span class="nav-number">1.3.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证"><span class="nav-number">1.4.</span> <span class="nav-text">验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象在内存中的存储"><span class="nav-number">1.5.</span> <span class="nav-text">对象在内存中的存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象头"><span class="nav-number">1.6.</span> <span class="nav-text">对象头</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#锁升级"><span class="nav-number">2.</span> <span class="nav-text">锁升级</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#描述"><span class="nav-number">2.1.</span> <span class="nav-text">描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无锁"><span class="nav-number">2.2.</span> <span class="nav-text">无锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#偏向锁"><span class="nav-number">2.3.</span> <span class="nav-text">偏向锁</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获得锁"><span class="nav-number">2.3.1.</span> <span class="nav-text">获得锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#释放锁"><span class="nav-number">2.3.2.</span> <span class="nav-text">释放锁</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#轻量级锁"><span class="nav-number">2.4.</span> <span class="nav-text">轻量级锁</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#加锁"><span class="nav-number">2.4.1.</span> <span class="nav-text">加锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解锁"><span class="nav-number">2.4.2.</span> <span class="nav-text">解锁</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重量级锁"><span class="nav-number">2.5.</span> <span class="nav-text">重量级锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他优化"><span class="nav-number">2.6.</span> <span class="nav-text">其他优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#适应性自旋"><span class="nav-number">2.6.1.</span> <span class="nav-text">适应性自旋</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">2.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">3.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用"><span class="nav-number">4.</span> <span class="nav-text">应用</span></a></li></ol></div>
             
 
           </div>
