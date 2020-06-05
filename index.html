@@ -379,7 +379,7 @@
         
           <img src="/2020/06/05/patterns/template/templatemethod.jpeg">
 
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>模板方法，顾名思义，就是个方法，其实质是<code>对算法的封装</code>，通过<code>继承</code>的方式，将公共的代码交给封装在父类中，将变化的部分抽象成抽象方法，交给子类去实现。通过模板方法，我们就算法封装成先干什么、后干什么，最后干什么，子类实现只需提供对变化部分的具体实现，具体步骤无需在重新定义。一般情况，为了更好的保护程序，不被子类篡改算法，我们会在模板方法用<code>final</code> 修饰。</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>模板方法，顾名思义，就是个方法，其实质是<code>对算法的封装</code>。通过<code>继承</code>的方式，将公共的代码封装在父类中，实现代码的复用，将变化的部分抽象成抽象方法，交给子类去实现。通过模板方法，我们就算法封装成先干什么、后干什么，最后干什么，子类实现只需提供对变化部分的具体实现，具体步骤无需在重新定义。一般情况，为了更好的保护程序，不被子类篡改算法，模板方法会用<code>final</code> 修饰。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/06/05/patterns/template/#more" rel="contents">
