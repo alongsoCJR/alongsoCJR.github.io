@@ -79,20 +79,19 @@
 
 
 
-<meta name="description" content="上下文切换减少上下文切换的方法 无锁并发编程 CAS算法 使用最少线程 协程(在一个线程中实现多任务调度)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="并发编程的挑战">
-<meta property="og:url" content="http://yoursite.com/2020/02/26/concurrentart/challenge-concurrency-progrramming/index.html">
+<meta property="og:title" content="状态模式">
+<meta property="og:url" content="http://yoursite.com/2020/06/20/patterns/state/index.html">
 <meta property="og:site_name" content="alongso blog">
-<meta property="og:description" content="上下文切换减少上下文切换的方法 无锁并发编程 CAS算法 使用最少线程 协程(在一个线程中实现多任务调度)">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/2020/02/26/concurrentart/challenge-concurrency-progrramming/challenge-concurrent-programming.jpg">
-<meta property="og:image" content="http://yoursite.com/2020/02/26/concurrentart/challenge-concurrency-progrramming/线程信息文件分析.jpg">
-<meta property="og:updated_time" content="2020-04-12T05:29:12.820Z">
+<meta property="og:image" content="http://yoursite.com/2020/06/20/patterns/state/state.jpeg">
+<meta property="og:image" content="http://yoursite.com/2020/06/20/patterns/state/state-1.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/06/20/patterns/state/state-2.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/06/20/patterns/state/state-3.jpg">
+<meta property="og:updated_time" content="2020-06-20T10:10:48.367Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="并发编程的挑战">
-<meta name="twitter:description" content="上下文切换减少上下文切换的方法 无锁并发编程 CAS算法 使用最少线程 协程(在一个线程中实现多任务调度)">
-<meta name="twitter:image" content="http://yoursite.com/2020/02/26/concurrentart/challenge-concurrency-progrramming/challenge-concurrent-programming.jpg">
+<meta name="twitter:title" content="状态模式">
+<meta name="twitter:image" content="http://yoursite.com/2020/06/20/patterns/state/state.jpeg">
 
 
 
@@ -122,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/02/26/concurrentart/challenge-concurrency-progrramming/">
+  <link rel="canonical" href="http://yoursite.com/2020/06/20/patterns/state/">
 
 
 
 
 
-  <title>并发编程的挑战 | alongso blog</title>
+  <title>状态模式 | alongso blog</title>
   
 
 
@@ -287,7 +286,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/26/concurrentart/challenge-concurrency-progrramming/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/20/patterns/state/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="alongso">
@@ -304,7 +303,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">并发编程的挑战</h1>
+          <h1 class="post-title" itemprop="name headline">状态模式</h1>
         
 
         <div class="post-meta">
@@ -316,8 +315,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-26T10:10:26+08:00">
-                2020-02-26
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-20T11:11:35+08:00">
+                2020-06-20
               </time>
             
 
@@ -339,8 +338,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/并发编程的艺术/" itemprop="url" rel="index">
-                    <span itemprop="name">并发编程的艺术</span>
+                  <a href="/categories/patterns/" itemprop="url" rel="index">
+                    <span itemprop="name">patterns</span>
                   </a>
                 </span>
 
@@ -380,49 +379,47 @@
       
 
       
-        <img src="/2020/02/26/concurrentart/challenge-concurrency-progrramming/challenge-concurrent-programming.jpg">
+        <img src="/2020/06/20/patterns/state/state.jpeg">
 
-<h2 id="上下文切换"><a href="#上下文切换" class="headerlink" title="上下文切换"></a>上下文切换</h2><h3 id="减少上下文切换的方法"><a href="#减少上下文切换的方法" class="headerlink" title="减少上下文切换的方法"></a>减少上下文切换的方法</h3><ul>
-<li>无锁并发编程</li>
-<li>CAS算法</li>
-<li>使用最少线程</li>
-<li>协程(在一个线程中实现多任务调度)</li>
-</ul>
 <a id="more"></a>
 
-<h3 id="监控程序"><a href="#监控程序" class="headerlink" title="监控程序"></a>监控程序</h3><h4 id="查看进程中的线程"><a href="#查看进程中的线程" class="headerlink" title="查看进程中的线程"></a>查看进程中的线程</h4><ul>
-<li>jstack 30587 &gt; /app/sssc-soa-starindex/dump1</li>
-</ul>
-<h4 id="分析线程信息文件"><a href="#分析线程信息文件" class="headerlink" title="分析线程信息文件"></a>分析线程信息文件</h4><ul>
-<li>grep java.lang.Thread.State dump1 | awk ‘{print $2$3$4$5}’ | sort | uniq -c</li>
-</ul>
-<img src="/2020/02/26/concurrentart/challenge-concurrency-progrramming/线程信息文件分析.jpg" title="线程信息文件分析">
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><code>状态模式</code> 有点类似<code>策略模式</code>，同样是变化，只是应对变化的方式不一样而已。策略模式面对变化，是采取将变化的部分与不变的部分分离开来，采取封装算法族的方式进行抽象，具体实现只需对不同接口进行组合。而状态模式，变化的部分取决于对象的内部状态，通过当前的状态来决定每个方法的具体实现。</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>《Head First设计模式》给了一个糖果机的案例，它的运行机制是这样的：首先糖果机有四种状态，分别是<code>没有25分钱</code>、<code>有25分钱</code>、<code>售出糖果</code>、<code>糖果售罄</code>。同时，导致糖果机状态变化也对应着四个动作，分别是：<code>投入25分钱</code>、<code>退回25分钱</code>、<code>转动曲柄</code>、<code>发放糖果</code>。糖果机的状态转化关系如下：</p>
+<img src="/2020/06/20/patterns/state/state-1.jpg">
 
-<h4 id="查看线程状态，是否堵塞或进行多次的上下文切换"><a href="#查看线程状态，是否堵塞或进行多次的上下文切换" class="headerlink" title="查看线程状态，是否堵塞或进行多次的上下文切换"></a>查看线程状态，是否堵塞或进行多次的上下文切换</h4><h4 id="重新配置线程池信息，重启服务，查看线程运行效果，是否进行了多次线程切换"><a href="#重新配置线程池信息，重启服务，查看线程运行效果，是否进行了多次线程切换" class="headerlink" title="重新配置线程池信息，重启服务，查看线程运行效果，是否进行了多次线程切换"></a>重新配置线程池信息，重启服务，查看线程运行效果，是否进行了多次线程切换</h4><h2 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h2><h3 id="导致死锁的原因"><a href="#导致死锁的原因" class="headerlink" title="导致死锁的原因"></a>导致死锁的原因</h3><ul>
-<li>第一个线程等待第二个线程释放资源，而第二线程在等待第一个线程释放资源。</li>
-</ul>
-<h3 id="产生死锁的条件"><a href="#产生死锁的条件" class="headerlink" title="产生死锁的条件"></a>产生死锁的条件</h3><ul>
-<li>互斥等待（同步的原理）</li>
-<li>Hold and Wait</li>
-<li>循环等待</li>
-<li>无法剥夺的等待</li>
-</ul>
-<h3 id="避免死锁的方法"><a href="#避免死锁的方法" class="headerlink" title="避免死锁的方法"></a>避免死锁的方法</h3><ul>
-<li>一次性获取from和 to锁，无法实现</li>
-<li>按顺序获取锁</li>
-<li>加入超时，如果超时，就释放锁（不推荐）</li>
-</ul>
-<h2 id="资源限制的挑战"><a href="#资源限制的挑战" class="headerlink" title="资源限制的挑战"></a>资源限制的挑战</h2><h3 id="什么是资源限制"><a href="#什么是资源限制" class="headerlink" title="什么是资源限制"></a>什么是资源限制</h3><ul>
-<li>在进行并发编程时，程序的执行速度受限于计算机硬件资源或软件资源。比如硬件资源限制有宽带的上传/下载速度、硬件读写速度和CPU的处理速度。软件资源限制有数据库的连接数和socket连接数等。</li>
-</ul>
-<h3 id="资源限制引发的问题"><a href="#资源限制引发的问题" class="headerlink" title="资源限制引发的问题"></a>资源限制引发的问题</h3><ul>
-<li>并发程序在资源限制的情况下，运行起来比串行还慢。</li>
-</ul>
-<h3 id="解决资源限制引发的问题"><a href="#解决资源限制引发的问题" class="headerlink" title="解决资源限制引发的问题"></a>解决资源限制引发的问题</h3><ul>
-<li>使用集群，多机部署</li>
-<li>软件资源：线程池、连接池复用</li>
-</ul>
+<p>如图，糖果机的实现应该包含四个方法，而且每个方法的具体行为跟糖果机当前的状态有关系。比如说，当没有25分钱时是不能退回25分钱和售出糖果的。当转动曲柄的时候，如果没有糖果应该提醒顾客已售空。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>在使用状态模式之前，我们的 <a href="https://github.com/alongsoCJR/javabase/commit/fad1f7aa3a78208b5c3fecbe1fc5cb7f5377cf09" target="_blank" rel="noopener">代码实现</a> 可能是这样的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GumballMachine</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span> SOLD_OUT = <span class="number">0</span>;     <span class="comment">// 售罄状态</span></span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span> NO_QUARTE = <span class="number">1</span>;		 <span class="comment">// 没有25分钱</span></span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span> HAS_QUARTER = <span class="number">2</span>;  <span class="comment">// 有25分钱</span></span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span> SOLD = <span class="number">3</span>;  			 <span class="comment">// 售出糖果</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> state = SOLD_OUT;						<span class="comment">// 默认为售罄状态，因为没有糖果</span></span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">GumballMachine</span><span class="params">(<span class="keyword">int</span> count)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.count = count;</span><br><span class="line">        <span class="keyword">if</span> (count &gt; <span class="number">0</span>) &#123;           <span class="comment">// 初始化时如果大于0，为没有25分钱</span></span><br><span class="line">            state = NO_QUARTE;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 投入硬币</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertQuarter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (state == HAS_QUARTER) &#123;</span><br><span class="line">            System.out.println(<span class="string">"You cna't insert another quarter"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (state == NO_QUARTE) &#123;</span><br><span class="line">            state = HAS_QUARTER;</span><br><span class="line">            System.out.println(<span class="string">"You inserted a quarter"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (state == SOLD_OUT) &#123;</span><br><span class="line">            System.out.println(<span class="string">"You can't insert a quarter,the machine is sold out"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (state == SOLD) &#123;</span><br><span class="line">            System.out.println(<span class="string">"please wait,we're already giving you a guaball"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 退回硬币</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ejectQuater</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 转动曲柄</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">turnCrank</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 发放糖果</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dispense</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 其他方法</span></span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>这样子实现也没什么问题，但是随着业务的变更，比如需要有10%的可能会掉下两个糖果，发现上面的代码并没有遵循开闭原则、状态转化埋藏在条件语句中，并不好理解。更重要的是没有将会变化的部分封装，牵一发而动全身，未来很有可能导致隐藏的bug。</p>
+<h2 id="重构"><a href="#重构" class="headerlink" title="重构"></a>重构</h2><p>在重构之前，我们先梳理一下逻辑：</p>
+<ol>
+<li>首先，我们定义一个State接口，在这个接口内，糖果机的每个动作都有一个实现的方法。</li>
+<li>然后，为机器的每个状态实现状态类，这些状态类将负责在对应的状态下进行的行为。</li>
+<li>最后，我们要摆脱旧的条件代码，取而代之的是，将动作委托到状态类。</li>
+</ol>
+<p>类图设计如下：</p>
+<img src="/2020/06/20/patterns/state/state-2.jpg">
+
+<p>状态接口定义为</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">State</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">insertQuater</span><span class="params">()</span></span>;  <span class="comment">// 投入硬币</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">ejectQuater</span><span class="params">()</span></span>;   <span class="comment">// 退回硬币</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">turnCrank</span><span class="params">()</span></span>;     <span class="comment">// 转动曲柄</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dispense</span><span class="params">()</span></span>;      <span class="comment">// 发放糖果</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>糖果机的实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StateGumballMachine</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    State noQuaterState;</span><br><span class="line">    State hasQuaterState;</span><br><span class="line">    State soldState;</span><br><span class="line">    State soldOutState;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    State state = soldState;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">StateGumballMachine</span><span class="params">(<span class="keyword">int</span> count)</span> </span>&#123;</span><br><span class="line">        noQuaterState = <span class="keyword">new</span> NoQuaterState(<span class="keyword">this</span>);</span><br><span class="line">        hasQuaterState = <span class="keyword">new</span> HasQuaterState(<span class="keyword">this</span>);</span><br><span class="line">        soldState = <span class="keyword">new</span> SoldState(<span class="keyword">this</span>);</span><br><span class="line">        soldOutState = <span class="keyword">new</span> SoldOutState(<span class="keyword">this</span>);</span><br><span class="line">        <span class="keyword">this</span>.count = count;</span><br><span class="line">        <span class="keyword">if</span> (count &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            state = noQuaterState;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 投入硬币</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertQuarter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        state.insertQuater();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 退回硬币</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ejectQuater</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        state.ejectQuater();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 转动曲柄</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">turnCrank</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        state.turnCrank();</span><br><span class="line">        state.dispense();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 发放糖果</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">releaseBall</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"A gumball comes rolling out the slot..."</span>);</span><br><span class="line">        <span class="keyword">if</span> (count != <span class="number">0</span>) &#123;</span><br><span class="line">            count = count - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对应没有25分钱的状态类实现为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NoQuaterState</span> <span class="keyword">implements</span> <span class="title">State</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    StateGumballMachine stateGumballMachine;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">NoQuaterState</span><span class="params">(StateGumballMachine stateGumballMachine)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.stateGumballMachine = stateGumballMachine;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertQuater</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"You inserted a quarter"</span>);</span><br><span class="line">        stateGumballMachine.setState(stateGumballMachine.getHasQuaterState());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ejectQuater</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"You haven't inserted a quater"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">turnCrank</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"You turned,but there are no gumballs"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dispense</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"You need to pay first"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>售出糖果的状态实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SoldState</span> <span class="keyword">implements</span> <span class="title">State</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    StateGumballMachine stateGumballMachine;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SoldState</span><span class="params">(StateGumballMachine stateGumballMachine)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.stateGumballMachine = stateGumballMachine;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertQuater</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"please wait,we're already giving you a guaball"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ejectQuater</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Sorry,you already turned the crank"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">turnCrank</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Turing twice doesn't get you another gumball!"</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dispense</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        stateGumballMachine.releaseBall();</span><br><span class="line">        <span class="keyword">if</span> (stateGumballMachine.getCount() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            stateGumballMachine.setState(stateGumballMachine.getNoQuaterState());</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            stateGumballMachine.setState(stateGumballMachine.getSoldOutState());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>从上面 <a href="https://github.com/alongsoCJR/javabase/commit/3bde9d5749a332efd51052b2d31f67984df8a6c3" target="_blank" rel="noopener">代码实现</a> 很容易看出，每个状态是如何进行<code>转化</code>的，而且如果需要再添加一种状态的话，也是很容易进行<code>扩展</code>的。总而言之言之，状态模式提升了代码的<code>可读性</code>和<code>可扩展性</code>。</p>
+<p>那么，现在回到刚才那个问题：</p>
+<p><font color="red">需要添加可能会一下出两颗糖果的可能，代码应该怎么实现呢？</font></p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>书上定义为：</p>
+<p><font color="blue" size="5"> 状态模式允许对象在内部状态改变时改变它的行为，对象看起来好像修改了它的类。</font></p>
+<p>类关系图为：</p>
+<img src="/2020/06/20/patterns/state/state-3.jpg">
       
     </div>
     
@@ -446,8 +443,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/02/25/concurrentart/thread-base-knowledges/" rel="next" title="线程基本概念">
-                <i class="fa fa-chevron-left"></i> 线程基本概念
+              <a href="/2020/06/05/patterns/template/" rel="next" title="模板方法">
+                <i class="fa fa-chevron-left"></i> 模板方法
               </a>
             
           </div>
@@ -455,10 +452,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/02/27/concurrentart/volatile-implement-prinpiple/" rel="prev" title="volatile底层实现原理">
-                volatile底层实现原理 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -651,7 +644,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#上下文切换"><span class="nav-number">1.</span> <span class="nav-text">上下文切换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#减少上下文切换的方法"><span class="nav-number">1.1.</span> <span class="nav-text">减少上下文切换的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#监控程序"><span class="nav-number">1.2.</span> <span class="nav-text">监控程序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看进程中的线程"><span class="nav-number">1.2.1.</span> <span class="nav-text">查看进程中的线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分析线程信息文件"><span class="nav-number">1.2.2.</span> <span class="nav-text">分析线程信息文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看线程状态，是否堵塞或进行多次的上下文切换"><span class="nav-number">1.2.3.</span> <span class="nav-text">查看线程状态，是否堵塞或进行多次的上下文切换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重新配置线程池信息，重启服务，查看线程运行效果，是否进行了多次线程切换"><span class="nav-number">1.2.4.</span> <span class="nav-text">重新配置线程池信息，重启服务，查看线程运行效果，是否进行了多次线程切换</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#死锁"><span class="nav-number">2.</span> <span class="nav-text">死锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#导致死锁的原因"><span class="nav-number">2.1.</span> <span class="nav-text">导致死锁的原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#产生死锁的条件"><span class="nav-number">2.2.</span> <span class="nav-text">产生死锁的条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#避免死锁的方法"><span class="nav-number">2.3.</span> <span class="nav-text">避免死锁的方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#资源限制的挑战"><span class="nav-number">3.</span> <span class="nav-text">资源限制的挑战</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是资源限制"><span class="nav-number">3.1.</span> <span class="nav-text">什么是资源限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#资源限制引发的问题"><span class="nav-number">3.2.</span> <span class="nav-text">资源限制引发的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决资源限制引发的问题"><span class="nav-number">3.3.</span> <span class="nav-text">解决资源限制引发的问题</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">3.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重构"><span class="nav-number">4.</span> <span class="nav-text">重构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">5.</span> <span class="nav-text">定义</span></a></li></ol></div>
             
 
           </div>
