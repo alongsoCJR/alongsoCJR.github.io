@@ -79,18 +79,21 @@
 
 
 
+<meta name="description" content="简介状态模式 有点类似策略模式，同样是变化，只是应对变化的方式不一样而已。策略模式面对变化，是采取将变化的部分与不变的部分分离开来，采取封装算法族的方式进行抽象，具体实现只需对不同接口进行组合。而状态模式，变化的部分取决于对象的内部状态，通过当前的状态来决定每个方法的具体实现。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="状态模式">
 <meta property="og:url" content="http://yoursite.com/2020/06/20/patterns/state/index.html">
 <meta property="og:site_name" content="alongso blog">
+<meta property="og:description" content="简介状态模式 有点类似策略模式，同样是变化，只是应对变化的方式不一样而已。策略模式面对变化，是采取将变化的部分与不变的部分分离开来，采取封装算法族的方式进行抽象，具体实现只需对不同接口进行组合。而状态模式，变化的部分取决于对象的内部状态，通过当前的状态来决定每个方法的具体实现。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2020/06/20/patterns/state/state.jpeg">
 <meta property="og:image" content="http://yoursite.com/2020/06/20/patterns/state/state-1.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/06/20/patterns/state/state-2.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/06/20/patterns/state/state-3.jpg">
-<meta property="og:updated_time" content="2020-06-20T10:10:48.367Z">
+<meta property="og:updated_time" content="2020-06-22T00:37:11.899Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="状态模式">
+<meta name="twitter:description" content="简介状态模式 有点类似策略模式，同样是变化，只是应对变化的方式不一样而已。策略模式面对变化，是采取将变化的部分与不变的部分分离开来，采取封装算法族的方式进行抽象，具体实现只需对不同接口进行组合。而状态模式，变化的部分取决于对象的内部状态，通过当前的状态来决定每个方法的具体实现。">
 <meta name="twitter:image" content="http://yoursite.com/2020/06/20/patterns/state/state.jpeg">
 
 
@@ -381,9 +384,9 @@
       
         <img src="/2020/06/20/patterns/state/state.jpeg">
 
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><code>状态模式</code> 有点类似<code>策略模式</code>，同样是变化，只是应对变化的方式不一样而已。策略模式面对变化，是采取将变化的部分与不变的部分分离开来，采取封装算法族的方式进行抽象，具体实现只需对不同接口进行组合。而状态模式，变化的部分取决于对象的内部状态，通过当前的状态来决定每个方法的具体实现。</p>
 <a id="more"></a>
 
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><code>状态模式</code> 有点类似<code>策略模式</code>，同样是变化，只是应对变化的方式不一样而已。策略模式面对变化，是采取将变化的部分与不变的部分分离开来，采取封装算法族的方式进行抽象，具体实现只需对不同接口进行组合。而状态模式，变化的部分取决于对象的内部状态，通过当前的状态来决定每个方法的具体实现。</p>
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>《Head First设计模式》给了一个糖果机的案例，它的运行机制是这样的：首先糖果机有四种状态，分别是<code>没有25分钱</code>、<code>有25分钱</code>、<code>售出糖果</code>、<code>糖果售罄</code>。同时，导致糖果机状态变化也对应着四个动作，分别是：<code>投入25分钱</code>、<code>退回25分钱</code>、<code>转动曲柄</code>、<code>发放糖果</code>。糖果机的状态转化关系如下：</p>
 <img src="/2020/06/20/patterns/state/state-1.jpg">
 
