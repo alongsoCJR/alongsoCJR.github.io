@@ -284,7 +284,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/02/jvm/classfile-format/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/11/jvm/classloader/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="alongso">
@@ -303,7 +303,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/07/02/jvm/classfile-format/" itemprop="url">探探字节码文件</a></h1>
+                <a class="post-title-link" href="/2020/07/11/jvm/classloader/" itemprop="url">详解Class加载过程</a></h1>
         
 
         <div class="post-meta">
@@ -315,8 +315,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-02T17:11:35+08:00">
-                2020-07-02
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-11T17:11:35+08:00">
+                2020-07-11
               </time>
             
 
@@ -377,14 +377,163 @@
 
       
         
-          <img src="/2020/07/02/jvm/classfile-format/classfile-format.jpeg">
+          <img src="/2020/07/11/jvm/classloader/classloader.jpeg">
 
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>java语言能够实现跨平台，完全依赖于<code>字节码文件</code>和 <code>JVM虚拟机</code>，其<code>字节码文件</code>是一段代码从编写到执行的中间产物，但是对于编写java语言的我们来说，可以不用去关心实现细节的。字节码文件规范其实也是一门艺术，所有的跨平台语言都是基于class文件进行跨平台，所以，这也是扩展的一个知识面。</p>
-<p>本篇文章，我们将搞懂class文件作为一个二进制字节流，class文件是如何表达源代码的思想的。</p>
-<!-- 我们将搞懂class文件作为一个二进制字节流，JVM是如何对这个文件加载并且执行的。-->
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在<a href>探探字节码文件</a>中，我们学习了<code>class文件</code>作为一个<code>二进制字节流</code>，是如何通过二进制的方式表达编程思想的。那么，<code>class文件</code>是由编译器编译得到的，默默的放在硬盘里面，当我们需要运行程序的时候，我们必须将<code>class文件</code>加载进内存中。那么，<code>class文件</code>需要经过一个什么样的过程才能到内存里准备好呢？</p>
+<p>本篇文章：我们将讨论class文件作为一个<code>二进制字节流</code>文件，JVM虚拟机是如何对这个文件<code>加载</code>并且<code>准备</code>、<code>执行</code>的。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/07/02/jvm/classfile-format/#more" rel="contents">
+            <a class="btn" href="/2020/07/11/jvm/classloader/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/03/jvm/classfile-format/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="alongso">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/alongso.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="alongso blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/03/jvm/classfile-format/" itemprop="url">探探字节码文件</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-03T17:11:35+08:00">
+                2020-07-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/jvm/" itemprop="url" rel="index">
+                    <span itemprop="name">jvm</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+		
+		
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <img src="/2020/07/03/jvm/classfile-format/classfile-format.jpeg">
+
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>java语言能够实现跨平台，完全依赖于<code>字节码文件</code>和 <code>JVM虚拟机</code>，其<code>字节码文件</code>是一段代码从编写到执行的中间产物，但是对于编写java语言的我们来说，可以不用去关心实现细节的。字节码文件规范其实也是一门艺术，所有的跨平台语言都是基于class文件进行跨平台，所以，这也是扩展的一个知识面。</p>
+<p>本篇文章，我们将讨论class文件作为一个二进制字节流，class文件是如何表达源代码的思想的。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/07/03/jvm/classfile-format/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1623,155 +1772,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/12/patterns/singleton/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="alongso">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/alongso.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="alongso blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/12/patterns/singleton/" itemprop="url">单例模式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-12T11:23:09+08:00">
-                2020-04-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/patterns/" itemprop="url" rel="index">
-                    <span itemprop="name">patterns</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-		
-		
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <img src="/2020/04/12/patterns/singleton/singleton.jpg">
-
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>单例模式，也叫单件模式。顾名思义，就是程序中只有一个实例。一般在我们实际工作中，会经常遇到这个模式，所以，掌握这个模式是应该的。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/04/12/patterns/singleton/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1824,7 +1824,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1846,7 +1846,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
