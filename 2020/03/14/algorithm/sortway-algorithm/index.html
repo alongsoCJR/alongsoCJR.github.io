@@ -87,7 +87,7 @@
 <meta property="og:description" content="今日复习任务：实现数据从小到大的排序方式，分别有冒泡、选择、插入、快排、归并 冒泡排序思想：大的数往往上冒，每遍历一次，后面的几位是排好顺序的。第一次遍历得到最大的数，在末尾，第二次遍历，次大的数在倒数第二位，需要遍历n-1次，所有的才能排好顺序。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2020/03/14/algorithm/sortway-algorithm/sortway-algorithm.jpg">
-<meta property="og:updated_time" content="2020-04-12T05:32:00.487Z">
+<meta property="og:updated_time" content="2020-09-08T02:08:31.118Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="排序算法">
 <meta name="twitter:description" content="今日复习任务：实现数据从小到大的排序方式，分别有冒泡、选择、插入、快排、归并 冒泡排序思想：大的数往往上冒，每遍历一次，后面的几位是排好顺序的。第一次遍历得到最大的数，在末尾，第二次遍历，次大的数在倒数第二位，需要遍历n-1次，所有的才能排好顺序。">
@@ -425,7 +425,7 @@
 <p>随机选择哨兵</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Random random = <span class="keyword">new</span> Random(<span class="number">47</span>);</span><br><span class="line"><span class="keyword">int</span> index = random.nextInt(max - min) + min;</span><br><span class="line"><span class="keyword">int</span> key = arr[index];</span><br></pre></td></tr></table></figure>
 
-<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p>思想：使用分而治之的方法，对一个大的任务分解成多个子任务，进行处理，将子任务处理完得到的解合并，就是所求问题的解。在归并排序中，将带排序的元素分成大小大致相同的两个子集合，分别对子集合进行排序（其实对子集合排序很简单，再对子集合进行分，分，分，直到分成单个元素，然后将单个元素进行从小到大合并，得到的就是有序的子集合），最终将排好序的子集合合并成所要排好序的集合。</p>
+<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p>思想：使用分而治之的思想，对一个大的任务分解成多个子任务，进行处理，将子任务处理完得到的解合并，就是所求问题的解。在归并排序中，将带排序的元素分成大小大致相同的两个子集合，分别对子集合进行排序（其实对子集合排序很简单，再对子集合进行分，分，分，直到分成单个元素，然后将单个元素进行从小到大合并，得到的就是有序的子集合），最终将排好序的子集合合并成所要排好序的集合。</p>
 <p>其分而治之思想实现为：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> void</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> chenjianrong-lhq</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> 平均时间复杂度 nlogn 稳定</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020-04-05 18:26</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Param</span> [arr, left, right]</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">mergeSort</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (left &lt; right) &#123;</span><br><span class="line">        <span class="keyword">int</span> middle = (left + right) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        mergeSort(arr, left, middle);                   <span class="comment">// 分</span></span><br><span class="line">        mergeSort(arr, middle + <span class="number">1</span>, right);</span><br><span class="line">        merge(arr, left, middle, right);                <span class="comment">// 治、合</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -564,7 +564,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -575,7 +575,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -586,7 +586,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

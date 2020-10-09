@@ -89,7 +89,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/03/04/concurrentart/threadpool-usages/threadpool-usages.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/03/04/concurrentart/threadpool-usages/FutureTask.png">
 <meta property="og:image" content="http://yoursite.com/2020/03/04/concurrentart/threadpool-usages/ThreadPoolExecutor.png">
-<meta property="og:updated_time" content="2020-04-12T05:08:53.884Z">
+<meta property="og:updated_time" content="2020-09-13T03:30:25.518Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="是时候揭开线程池这块面纱了（一）">
 <meta name="twitter:description" content="引言 今天在上班的路上，想到一个例子，就是一个病人感染上了新冠病毒要上医院去住院隔离治疗，方舱医院如果床位不够，就会导致医院响应不了病人的请求，只能拒绝。但是要能够响应又得临时搜集资源、组建材料搭建病房和床位，这必然会消耗大量的时间，也会耽搁了病人的病情。那么，要是实现了床足够多，达到床等人的话，就能够迅速的接待病人，进行隔离治疗，使病情得到及时的控制。">
@@ -465,7 +465,7 @@
 <li>Callable类似于Runnable，但是有返回值，并且call方法还有可能抛异常</li>
 <li>Future是用来储存任务执行完的结果的</li>
 <li>FutureTask的本质是Future加上Runnable，即可以执行又能存结果，可以使用CompletableFuture管理多个线程的结果。</li>
-<li>SingleThreadPool`只有一个线程的线程池</li>
+<li><code>SingleThreadPool</code>只有一个线程的线程池</li>
 <li><code>CachedThreadPool</code>有弹性的线程池，只要没闲着的，就来一个启动一个</li>
 <li><code>FixedThreadPool</code>固定了线程池的线程数</li>
 <li><code>ScheduledThreadPool</code>线程池主要为了执行定时任务的</li>
@@ -589,7 +589,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -600,7 +600,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -611,7 +611,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

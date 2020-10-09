@@ -88,7 +88,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2020/03/03/concurrentart/cas-implement/cas-implement.jpeg">
 <meta property="og:image" content="http://yoursite.com/2020/03/03/concurrentart/cas-implement/cas-implement1.jpg">
-<meta property="og:updated_time" content="2020-04-12T05:27:04.827Z">
+<meta property="og:updated_time" content="2020-09-13T12:51:48.318Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CAS实现与原子类actomic">
 <meta name="twitter:description" content="悲观锁与乐观锁悲观锁定义：对于同一数据的并发操作，悲观锁认为当我在使用数据的时候一定有其他线程也会来访问和修改数据，因此在获取数据的时候会加锁，确保数据不会被别的线程修改。 应用：Java中，synchronized关键字和Lock的实现类都是悲观锁。 乐观锁定义：乐观锁认为在对访问数据进行时，没有别的线程来修改数据，所以不需要加锁。但是为了确保只有自己在对数据进行了操作，自己在更新数据的时候">
@@ -394,14 +394,14 @@
 <p>悲观锁适合<code>写操作</code>多的场景，先加锁可以保证数据正确性。</p>
 <p>乐观锁适合<code>读操作</code>多的场景，不加锁特性可以提高读操作的性能。</p>
 </blockquote>
-<h2 id="CAS"><a href="#CAS" class="headerlink" title="CAS"></a>CAS</h2><p>定义：CAS全程是Compare And Swap (<code>cmpxchg指令</code>)，它是一种<code>无锁</code>的算法，在不使用锁（没有线程阻塞）的情况下实现多线程间的变量同步。由于它实现的特性，也叫做自旋锁、乐观锁。</p>
+<h2 id="CAS"><a href="#CAS" class="headerlink" title="CAS"></a>CAS</h2><p>定义：CAS全称是Compare And Swap (<code>cmpxchg指令</code>)，它是一种<code>无锁</code>的算法，在不使用锁（没有线程阻塞）的情况下实现多线程间的变量同步。由于它实现的特性，也叫做自旋锁、乐观锁。</p>
 <h3 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">count.incrementAndGet();	<span class="comment">// 替代count++</span></span><br></pre></td></tr></table></figure>
 
 <p>AtomicInteger.incrementAndGet方法调用了unsafe.getAndAddInt方法</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">incrementAndGet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> unsafe.getAndAddInt(<span class="keyword">this</span>, valueOffset, <span class="number">1</span>) + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <p>看一下AtomicInteger的定义</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AtomicInteger</span> <span class="keyword">extends</span> <span class="title">Number</span> <span class="keyword">implements</span> <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">6214790243416807050L</span>;</span><br><span class="line">    <span class="comment">// setup to use Unsafe.compareAndSwapInt for updates</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Unsafe unsafe = Unsafe.getUnsafe();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> valueOffset;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            valueOffset = unsafe.objectFieldOffset</span><br><span class="line">                (AtomicInteger.class.getDeclaredField(<span class="string">"value"</span>));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception ex) &#123; <span class="keyword">throw</span> <span class="keyword">new</span> Error(ex); &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">int</span> value;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AtomicInteger</span> <span class="keyword">extends</span> <span class="title">Number</span> <span class="keyword">implements</span> <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">6214790243416807050L</span>;</span><br><span class="line">    <span class="comment">// setup to use Unsafe.compareAndSwapInt for updates</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Unsafe unsafe = Unsafe.getUnsafe();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> valueOffset;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            valueOffset = unsafe.objectFieldOffset(AtomicInteger.class.getDeclaredField(<span class="string">"value"</span>));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception ex) &#123; <span class="keyword">throw</span> <span class="keyword">new</span> Error(ex); &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">int</span> value;</span><br></pre></td></tr></table></figure>
 
 <p>根据定义我们可以看出各属性的作用：</p>
 <ul>
@@ -416,7 +416,7 @@
 <ul>
 <li>getIntVolatile方法获取给定对象o中的偏移量处的值var5</li>
 <li>然后调用compareAndSwapInt方法，<code>比较+更新</code> 是个原子操作，这是通过CPU的 <code>cmpxchg指令</code>去实现的</li>
-<li>compareAndSwapInt就是cas操作，可看作cas(V，Excepted，NewValue)，V就是要修改的值，Excepted是当前的期望值，NewValue是要修改的值。</li>
+<li>compareAndSwapInt就是cas操作，可看作cas(V，Excepted，NewValue)，V就是要修改的值，Excepted是当前的期望值，NewValue是修改后的值。</li>
 <li>当V==Excepted时，将V更新为NewValue，否则，返回flase，继续while循环再次调用cmpxchg指令进行重试，直到成功为止。</li>
 </ul>
 <h2 id="CAS带来的问题"><a href="#CAS带来的问题" class="headerlink" title="CAS带来的问题"></a>CAS带来的问题</h2><h3 id="ABA问题"><a href="#ABA问题" class="headerlink" title="ABA问题"></a>ABA问题</h3><p>描述：因为CAS需要在操作值时候，检查值有没有发生变化，如果没有发生变化，但是如果一个值原来是A，变成了原来的B，又变成了A，但是用CAS检查出来它没有变化，但是实际上是变化了的。</p>
@@ -555,7 +555,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -566,7 +566,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -577,7 +577,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

@@ -90,7 +90,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/02/28/concurrentart/synchronized-implement-prinpiple/线程占有Monitor对象锁流程图.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/02/28/concurrentart/synchronized-implement-prinpiple/monitorenter和monitorexit指令.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/02/28/concurrentart/synchronized-implement-prinpiple/markword-lock-status.jpg">
-<meta property="og:updated_time" content="2020-04-12T05:28:09.619Z">
+<meta property="og:updated_time" content="2020-09-13T13:13:03.489Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="synchronized底层实现原理">
 <meta name="twitter:description" content="synchronized定义 Multi-threaded programs may often come to a situation where multiple threads try to access the same resources and finally produce erroneous and unforeseen results.So it needs to be ma">
@@ -400,7 +400,7 @@
 <ul>
 <li>任何对象都有一个<code>Monitor</code>与之 关联，当且一个<code>Monitor</code>被持有后，它将处于锁定状态。</li>
 <li>线程执行到monitorenter指令时，将会尝试获取对象的锁。</li>
-<li>而对于没有获取到对象锁的线程会阻塞在方法的入口，知道获取锁的线程执行 <code>monitorexit</code>之后才能尝试继续获取锁。</li>
+<li>而对于没有获取到对象锁的线程会阻塞在方法的入口，直到获取锁的线程执行 <code>monitorexit</code>之后才能尝试继续获取锁。</li>
 </ul>
 <p>流程如下：</p>
 <img src="/2020/02/28/concurrentart/synchronized-implement-prinpiple/线程占有Monitor对象锁流程图.jpg">
@@ -580,7 +580,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -591,7 +591,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -602,7 +602,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
