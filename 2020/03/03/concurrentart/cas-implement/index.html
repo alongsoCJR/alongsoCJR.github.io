@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="CAS,actomic,">
 
 
 
@@ -80,6 +80,7 @@
 
 
 <meta name="description" content="悲观锁与乐观锁悲观锁定义：对于同一数据的并发操作，悲观锁认为当我在使用数据的时候一定有其他线程也会来访问和修改数据，因此在获取数据的时候会加锁，确保数据不会被别的线程修改。 应用：Java中，synchronized关键字和Lock的实现类都是悲观锁。 乐观锁定义：乐观锁认为在对访问数据进行时，没有别的线程来修改数据，所以不需要加锁。但是为了确保只有自己在对数据进行了操作，自己在更新数据的时候">
+<meta name="keywords" content="CAS,actomic">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CAS实现与原子类actomic">
 <meta property="og:url" content="http://yoursite.com/2020/03/03/concurrentart/cas-implement/index.html">
@@ -88,7 +89,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2020/03/03/concurrentart/cas-implement/cas-implement.jpeg">
 <meta property="og:image" content="http://yoursite.com/2020/03/03/concurrentart/cas-implement/cas-implement1.jpg">
-<meta property="og:updated_time" content="2020-09-13T12:51:48.318Z">
+<meta property="og:updated_time" content="2020-10-25T14:32:53.625Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CAS实现与原子类actomic">
 <meta name="twitter:description" content="悲观锁与乐观锁悲观锁定义：对于同一数据的并发操作，悲观锁认为当我在使用数据的时候一定有其他线程也会来访问和修改数据，因此在获取数据的时候会加锁，确保数据不会被别的线程修改。 应用：Java中，synchronized关键字和Lock的实现类都是悲观锁。 乐观锁定义：乐观锁认为在对访问数据进行时，没有别的线程来修改数据，所以不需要加锁。但是为了确保只有自己在对数据进行了操作，自己在更新数据的时候">
@@ -339,8 +340,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/并发编程的艺术/" itemprop="url" rel="index">
-                    <span itemprop="name">并发编程的艺术</span>
+                  <a href="/categories/concurrent/" itemprop="url" rel="index">
+                    <span itemprop="name">concurrent</span>
                   </a>
                 </span>
 
@@ -452,6 +453,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/CAS/" rel="tag"># CAS</a>
+          
+            <a href="/tags/actomic/" rel="tag"># actomic</a>
+          
+        </div>
+      
 
       
       
@@ -555,7 +564,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -566,7 +575,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -577,7 +586,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

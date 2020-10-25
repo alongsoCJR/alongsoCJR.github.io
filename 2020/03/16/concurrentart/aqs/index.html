@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="AQS,ReentrantLock,">
 
 
 
@@ -80,6 +80,7 @@
 
 
 <meta name="description" content="定义AQS是并发体系中一个非常重要的类，ReentrantLock就是基于AQS实现的，AQS底层使用了LockSupport类实现对线程的等待通知机制，相比于wait和notify方法，使用的更加的灵活，所以，要学习并发线程的底层知识，这个类你必须要学明白。">
+<meta name="keywords" content="AQS,ReentrantLock">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AQS与ReentrantLock">
 <meta property="og:url" content="http://yoursite.com/2020/03/16/concurrentart/aqs/index.html">
@@ -88,7 +89,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2020/03/16/concurrentart/aqs/aqs.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/03/16/concurrentart/aqs/aqs-class.jpg">
-<meta property="og:updated_time" content="2020-09-09T08:45:49.413Z">
+<meta property="og:updated_time" content="2020-10-25T14:33:00.630Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AQS与ReentrantLock">
 <meta name="twitter:description" content="定义AQS是并发体系中一个非常重要的类，ReentrantLock就是基于AQS实现的，AQS底层使用了LockSupport类实现对线程的等待通知机制，相比于wait和notify方法，使用的更加的灵活，所以，要学习并发线程的底层知识，这个类你必须要学明白。">
@@ -339,8 +340,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/并发编程的艺术/" itemprop="url" rel="index">
-                    <span itemprop="name">并发编程的艺术</span>
+                  <a href="/categories/concurrent/" itemprop="url" rel="index">
+                    <span itemprop="name">concurrent</span>
                   </a>
                 </span>
 
@@ -471,6 +472,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/AQS/" rel="tag"># AQS</a>
+          
+            <a href="/tags/ReentrantLock/" rel="tag"># ReentrantLock</a>
+          
+        </div>
+      
 
       
       
@@ -574,7 +583,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -585,7 +594,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -596,7 +605,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

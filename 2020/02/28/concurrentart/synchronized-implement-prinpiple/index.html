@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="synchronized,">
 
 
 
@@ -80,6 +80,7 @@
 
 
 <meta name="description" content="synchronized定义 Multi-threaded programs may often come to a situation where multiple threads try to access the same resources and finally produce erroneous and unforeseen results.So it needs to be ma">
+<meta name="keywords" content="synchronized">
 <meta property="og:type" content="article">
 <meta property="og:title" content="synchronized底层实现原理">
 <meta property="og:url" content="http://yoursite.com/2020/02/28/concurrentart/synchronized-implement-prinpiple/index.html">
@@ -90,7 +91,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/02/28/concurrentart/synchronized-implement-prinpiple/线程占有Monitor对象锁流程图.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/02/28/concurrentart/synchronized-implement-prinpiple/monitorenter和monitorexit指令.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/02/28/concurrentart/synchronized-implement-prinpiple/markword-lock-status.jpg">
-<meta property="og:updated_time" content="2020-09-13T13:13:03.489Z">
+<meta property="og:updated_time" content="2020-10-25T14:32:23.213Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="synchronized底层实现原理">
 <meta name="twitter:description" content="synchronized定义 Multi-threaded programs may often come to a situation where multiple threads try to access the same resources and finally produce erroneous and unforeseen results.So it needs to be ma">
@@ -341,8 +342,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/并发编程的艺术/" itemprop="url" rel="index">
-                    <span itemprop="name">并发编程的艺术</span>
+                  <a href="/categories/concurrent/" itemprop="url" rel="index">
+                    <span itemprop="name">concurrent</span>
                   </a>
                 </span>
 
@@ -477,6 +478,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/synchronized/" rel="tag"># synchronized</a>
+          
+        </div>
+      
 
       
       
@@ -580,7 +587,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -591,7 +598,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -602,7 +609,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

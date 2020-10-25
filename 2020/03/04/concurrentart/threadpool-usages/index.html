@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="threadpool,">
 
 
 
@@ -80,6 +80,7 @@
 
 
 <meta name="description" content="引言 今天在上班的路上，想到一个例子，就是一个病人感染上了新冠病毒要上医院去住院隔离治疗，方舱医院如果床位不够，就会导致医院响应不了病人的请求，只能拒绝。但是要能够响应又得临时搜集资源、组建材料搭建病房和床位，这必然会消耗大量的时间，也会耽搁了病人的病情。那么，要是实现了床足够多，达到床等人的话，就能够迅速的接待病人，进行隔离治疗，使病情得到及时的控制。">
+<meta name="keywords" content="threadpool">
 <meta property="og:type" content="article">
 <meta property="og:title" content="是时候揭开线程池这块面纱了（一）">
 <meta property="og:url" content="http://yoursite.com/2020/03/04/concurrentart/threadpool-usages/index.html">
@@ -89,7 +90,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/03/04/concurrentart/threadpool-usages/threadpool-usages.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/03/04/concurrentart/threadpool-usages/FutureTask.png">
 <meta property="og:image" content="http://yoursite.com/2020/03/04/concurrentart/threadpool-usages/ThreadPoolExecutor.png">
-<meta property="og:updated_time" content="2020-09-13T03:30:25.518Z">
+<meta property="og:updated_time" content="2020-10-25T14:32:10.142Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="是时候揭开线程池这块面纱了（一）">
 <meta name="twitter:description" content="引言 今天在上班的路上，想到一个例子，就是一个病人感染上了新冠病毒要上医院去住院隔离治疗，方舱医院如果床位不够，就会导致医院响应不了病人的请求，只能拒绝。但是要能够响应又得临时搜集资源、组建材料搭建病房和床位，这必然会消耗大量的时间，也会耽搁了病人的病情。那么，要是实现了床足够多，达到床等人的话，就能够迅速的接待病人，进行隔离治疗，使病情得到及时的控制。">
@@ -340,8 +341,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/并发编程的艺术/" itemprop="url" rel="index">
-                    <span itemprop="name">并发编程的艺术</span>
+                  <a href="/categories/concurrent/" itemprop="url" rel="index">
+                    <span itemprop="name">concurrent</span>
                   </a>
                 </span>
 
@@ -486,6 +487,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/threadpool/" rel="tag"># threadpool</a>
+          
+        </div>
+      
 
       
       
@@ -589,7 +596,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -600,7 +607,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -611,7 +618,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

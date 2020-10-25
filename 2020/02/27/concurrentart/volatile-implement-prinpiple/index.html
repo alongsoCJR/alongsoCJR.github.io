@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="volatile,">
 
 
 
@@ -80,6 +80,7 @@
 
 
 <meta name="description" content="volatile定义 Java编程语言允许线程访问共享变量，为了确保共享变量能被准确和一致地更新，线程应该确保通过排它锁单独获取这个变量。">
+<meta name="keywords" content="volatile">
 <meta property="og:type" content="article">
 <meta property="og:title" content="volatile底层实现原理">
 <meta property="og:url" content="http://yoursite.com/2020/02/27/concurrentart/volatile-implement-prinpiple/index.html">
@@ -88,7 +89,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2020/02/27/concurrentart/volatile-implement-prinpiple/volatile-implement-prinpiple.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/02/27/concurrentart/volatile-implement-prinpiple/DCL单列到底需不需要加volatile修饰符.jpg">
-<meta property="og:updated_time" content="2020-04-12T05:28:19.067Z">
+<meta property="og:updated_time" content="2020-10-25T14:32:00.193Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="volatile底层实现原理">
 <meta name="twitter:description" content="volatile定义 Java编程语言允许线程访问共享变量，为了确保共享变量能被准确和一致地更新，线程应该确保通过排它锁单独获取这个变量。">
@@ -339,8 +340,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/并发编程的艺术/" itemprop="url" rel="index">
-                    <span itemprop="name">并发编程的艺术</span>
+                  <a href="/categories/concurrent/" itemprop="url" rel="index">
+                    <span itemprop="name">concurrent</span>
                   </a>
                 </span>
 
@@ -479,6 +480,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/volatile/" rel="tag"># volatile</a>
+          
+        </div>
+      
 
       
       
@@ -582,7 +589,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -593,7 +600,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -604,7 +611,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

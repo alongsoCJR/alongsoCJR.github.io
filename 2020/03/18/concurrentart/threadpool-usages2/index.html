@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="threadpool,">
 
 
 
@@ -80,6 +80,7 @@
 
 
 <meta name="description" content="线程池状态定义在简单介绍完线程池的基本概念后，这篇文章我们来分析一下，线程池它具体是如何工作的。首先我们看一下线程池的状态。线程池的设计是这样子的，它将线程池的状态和目前工作线程的线程数用一个变量来进行了存储，就是ctl变量">
+<meta name="keywords" content="threadpool">
 <meta property="og:type" content="article">
 <meta property="og:title" content="是时候揭开线程池这块面纱了（二）">
 <meta property="og:url" content="http://yoursite.com/2020/03/18/concurrentart/threadpool-usages2/index.html">
@@ -89,7 +90,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/03/18/concurrentart/threadpool-usages2/threadpool-usages.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/03/18/concurrentart/threadpool-usages2/thread-pool-ctl.png">
 <meta property="og:image" content="http://yoursite.com/2020/03/18/concurrentart/threadpool-usages2/线程池的主要处理流程.jpg">
-<meta property="og:updated_time" content="2020-09-13T03:57:05.587Z">
+<meta property="og:updated_time" content="2020-10-25T14:31:50.104Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="是时候揭开线程池这块面纱了（二）">
 <meta name="twitter:description" content="线程池状态定义在简单介绍完线程池的基本概念后，这篇文章我们来分析一下，线程池它具体是如何工作的。首先我们看一下线程池的状态。线程池的设计是这样子的，它将线程池的状态和目前工作线程的线程数用一个变量来进行了存储，就是ctl变量">
@@ -340,8 +341,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/并发编程的艺术/" itemprop="url" rel="index">
-                    <span itemprop="name">并发编程的艺术</span>
+                  <a href="/categories/concurrent/" itemprop="url" rel="index">
+                    <span itemprop="name">concurrent</span>
                   </a>
                 </span>
 
@@ -472,6 +473,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/threadpool/" rel="tag"># threadpool</a>
+          
+        </div>
+      
 
       
       
@@ -575,7 +582,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -586,7 +593,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -597,7 +604,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
