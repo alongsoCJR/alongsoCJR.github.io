@@ -87,7 +87,7 @@
 <meta property="og:description" content="简介单例模式，也叫单件模式。顾名思义，就是程序中只有一个实例。一般在我们实际工作中，会经常遇到这个模式，所以，掌握这个模式是应该的。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2020/04/12/patterns/singleton/singleton.jpg">
-<meta property="og:updated_time" content="2020-05-24T03:42:29.757Z">
+<meta property="og:updated_time" content="2021-03-25T03:55:40.266Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="单例模式">
 <meta name="twitter:description" content="简介单例模式，也叫单件模式。顾名思义，就是程序中只有一个实例。一般在我们实际工作中，会经常遇到这个模式，所以，掌握这个模式是应该的。">
@@ -406,10 +406,10 @@
 <p>注意：加volatile是为了防止指令的重排序，在jvm执行指令时，<code>instance = new SingleInstanceT03()</code> 分了三步：</p>
 <blockquote>
 <p>第一步：给对象分配内存空间</p>
-<p>第二步：将instance指向刚分配的内存地址（此时还是半初始化状态，有属性的话，属性尚未赋值）</p>
-<p>第三步：初始化对象</p>
+<p>第二步：成员变量初始化</p>
+<p>第三步：将instance指向刚分配的内存地址（此时还是半初始化状态，有属性的话，属性尚未赋值）</p>
 </blockquote>
-<p>如果没有加volatile，第二步和第三步会交换执行，导致其他线程拿到的是半初始化的实例，导致线程安全问题。</p>
+<p>如果没有加volatile，第二步和第三步会交换顺序执行，导致其他线程拿到的是半初始化的实例，拿到未初始化的数据（比如秒杀系统拿到的值为0，带来重大安全隐患）。</p>
 <h3 id="类初始化"><a href="#类初始化" class="headerlink" title="类初始化"></a>类初始化</h3><p>这也是延迟初始化的一种，基于类初始化实现的。实现原理是每个对象对应有一个初始化锁，初始化时线程需要获取该对象对应的初始化锁。如果没有获取，那么线程必须等到初始化锁释放了才能获取。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleInstanceT04</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingleInstanceT04</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">InnerInitialClass</span> </span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> SingleInstanceT04 instance = <span class="keyword">new</span> SingleInstanceT04();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 原理：每个对象对应有一个初始化锁，初始化时线程需要获取该对象对应的初始化锁</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingleInstanceT04 <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 模拟多线程，使效果更明显</span></span><br><span class="line">            Thread.sleep(<span class="number">10</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> InnerInitialClass.instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -533,7 +533,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -544,7 +544,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
