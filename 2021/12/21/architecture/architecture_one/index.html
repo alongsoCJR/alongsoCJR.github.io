@@ -88,7 +88,7 @@
 <meta property="og:description" content="简介趁周末时间膜拜了大佬写的《大型网站技术架构》一书，也是对系统架构有了一些入门级的了解。看了前面三章，感觉通熟易懂，受益匪浅，想以笔记的方式记录一下。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2021/12/21/architecture/architecture_one/architecture_one.jpg">
-<meta property="og:updated_time" content="2021-12-21T02:15:58.721Z">
+<meta property="og:updated_time" content="2021-12-21T11:06:54.364Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《大型网站技术架构》学习笔记（一）">
 <meta name="twitter:description" content="简介趁周末时间膜拜了大佬写的《大型网站技术架构》一书，也是对系统架构有了一些入门级的了解。看了前面三章，感觉通熟易懂，受益匪浅，想以笔记的方式记录一下。">
@@ -385,9 +385,9 @@
 <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>趁周末时间膜拜了大佬写的《大型网站技术架构》一书，也是对系统架构有了一些入门级的了解。看了前面三章，感觉通熟易懂，受益匪浅，想以笔记的方式记录一下。</p>
 <a id="more"></a>
 
-<h3 id="大型网站架构的演化"><a href="#大型网站架构的演化" class="headerlink" title="大型网站架构的演化"></a>大型网站架构的演化</h3><h5 id="初始阶段的网站架构"><a href="#初始阶段的网站架构" class="headerlink" title="初始阶段的网站架构"></a>初始阶段的网站架构</h5><p>应用程序、文件、数据库</p>
+<h3 id="大型网站架构的演化"><a href="#大型网站架构的演化" class="headerlink" title="大型网站架构的演化"></a>大型网站架构的演化</h3><h4 id="发展历程"><a href="#发展历程" class="headerlink" title="发展历程"></a>发展历程</h4><h5 id="初始阶段的网站架构"><a href="#初始阶段的网站架构" class="headerlink" title="初始阶段的网站架构"></a>初始阶段的网站架构</h5><p>应用程序、文件、数据库</p>
 <blockquote>
-<p>linux+php+apache+mysql</p>
+<p>LAMP=linux+apache+mysql+php</p>
 </blockquote>
 <p>存在的问题</p>
 <blockquote>
@@ -465,7 +465,78 @@
 <blockquote>
 <p>将不同模块的公共业务提取出来，作为公共业务服务，独立部署。比如连接数据库，应用缓存等操作都维护在这个服务中，然后以集群多实例的方式进行部署。</p>
 </blockquote>
-<h3 id="大型网站的架构模式"><a href="#大型网站的架构模式" class="headerlink" title="大型网站的架构模式"></a>大型网站的架构模式</h3><h3 id="大型网站核心架构要素"><a href="#大型网站核心架构要素" class="headerlink" title="大型网站核心架构要素"></a>大型网站核心架构要素</h3>
+<h4 id="演化价值观"><a href="#演化价值观" class="headerlink" title="演化价值观"></a>演化价值观</h4><ul>
+<li>网站的价值在于它能给用户提供什么价值，在于网站能做什么，而不在于它是怎么做的。</li>
+<li>大型网站都是从小型网站发展而来，小型网站要做的就是为用户提供好的服务来创造价值，得到用户的认可，野蛮生长。</li>
+<li>驱动大型网站技术发展的主要力量是网站的业务发展。是业务成就了技术，是事业成就了人，而不是相反。</li>
+<li>所以网站架构师应该对成就自己技术成绩的网站事业心存感激，并努力提高技术反馈业务。</li>
+</ul>
+<h4 id="网站架构设计误区"><a href="#网站架构设计误区" class="headerlink" title="网站架构设计误区"></a>网站架构设计误区</h4><ul>
+<li><p>一味追随大公司的解决方案</p>
+</li>
+<li><p>为了技术而技术</p>
+</li>
+<li><p>企图用技术解决所有的问题</p>
+<blockquote>
+<ul>
+<li>12306真正的问题其实不在于它的技术架构，而在于它的业务架构（比如整点售票）</li>
+<li>技术是用来解决业务问题的，而业务的问题，也可以通过业务的手段去解决。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="大型网站的架构模式"><a href="#大型网站的架构模式" class="headerlink" title="大型网站的架构模式"></a>大型网站的架构模式</h3><p>分层（横向分，比如应用层、服务层、数据层）</p>
+<p>分割（纵向分，按业务功能进行分）</p>
+<p>分布式：分布式事务带来数据不一致问题，可用性降低</p>
+<p>集群：提高可用性</p>
+<p>缓存：改善性能</p>
+<p>异步：生产消费者模式，提高可用性、加快网站响应，削峰填谷</p>
+<p>冗余：数据灾备（冷备份、热备份）</p>
+<p>自动化：自动化测试、自动化部署，自动化监控报警</p>
+<p>安全：防止XSS攻击、SQL注入</p>
+<h3 id="大型网站核心架构要素"><a href="#大型网站核心架构要素" class="headerlink" title="大型网站核心架构要素"></a>大型网站核心架构要素</h3><h5 id="什么是架构"><a href="#什么是架构" class="headerlink" title="什么是架构"></a>什么是架构</h5><blockquote>
+<p>最高层次的规划，难以改变的决定</p>
+</blockquote>
+<p>除了当前系统的功能需求外，软件架构还需要关注性能，可用性，伸缩性、扩展性和安全性</p>
+<h5 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h5><p>定义</p>
+<blockquote>
+<p>衡量网站的性能有一系列指标，重要的有响应时间，TPS，系统性能计数器等</p>
+</blockquote>
+<ol>
+<li>浏览器端</li>
+<li>CDN缓存</li>
+<li>应用服务端缓存</li>
+<li>异步</li>
+<li>集群多实例</li>
+<li>多线程</li>
+<li>数据库</li>
+</ol>
+<h5 id="可用性"><a href="#可用性" class="headerlink" title="可用性"></a>可用性</h5><ol>
+<li>应用服务器</li>
+<li>存储服务器</li>
+<li>软件开发过程中的质量保证（持续交互）</li>
+</ol>
+<h5 id="伸缩性"><a href="#伸缩性" class="headerlink" title="伸缩性"></a>伸缩性</h5><p>定义</p>
+<blockquote>
+<p>通过不断向集群中加入服务器的手段来缓解不断上升的用户并发访问压力和不断增长的数据存储需求</p>
+</blockquote>
+<ol>
+<li>应用服务器集群</li>
+<li>缓存服务器集群（较难）</li>
+</ol>
+<h5 id="扩展性"><a href="#扩展性" class="headerlink" title="扩展性"></a>扩展性</h5><p>定义</p>
+<blockquote>
+<p>不同于其他架构要素关注非功能性需求，网站的扩展性架构直接关注网站的功能需求，衡量的主要标准是在网站增加新的业务产品时，是否可以实现对现有产品透明无影响，不需要任何改动或者很少改动既有业务功能就可以上线新产品。</p>
+</blockquote>
+<ol>
+<li>事件驱动架构</li>
+<li>分布式服务</li>
+</ol>
+<h5 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h5><p>定义</p>
+<blockquote>
+<p>衡量网站安全架构的标准就是针对现存和潜在的各种攻击与窃密手段，是否有可靠的应对策略。</p>
+</blockquote>
+
       
     </div>
     
@@ -696,7 +767,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大型网站架构的演化"><span class="nav-number">2.</span> <span class="nav-text">大型网站架构的演化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#初始阶段的网站架构"><span class="nav-number">2.0.1.</span> <span class="nav-text">初始阶段的网站架构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#应用服务和数据服务分离"><span class="nav-number">2.0.2.</span> <span class="nav-text">应用服务和数据服务分离</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用缓存改善网站性能"><span class="nav-number">2.0.3.</span> <span class="nav-text">使用缓存改善网站性能</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用应用服务器集群改善网站的并发处理能力"><span class="nav-number">2.0.4.</span> <span class="nav-text">使用应用服务器集群改善网站的并发处理能力</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据库读写分离"><span class="nav-number">2.0.5.</span> <span class="nav-text">数据库读写分离</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用反向代理和CDN加速网站响应"><span class="nav-number">2.0.6.</span> <span class="nav-text">使用反向代理和CDN加速网站响应</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用分布式系统和分布式数据库"><span class="nav-number">2.0.7.</span> <span class="nav-text">使用分布式系统和分布式数据库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用NoSQL和搜索引擎"><span class="nav-number">2.0.8.</span> <span class="nav-text">使用NoSQL和搜索引擎</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#业务拆分"><span class="nav-number">2.0.9.</span> <span class="nav-text">业务拆分</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#分布式服务"><span class="nav-number">2.0.10.</span> <span class="nav-text">分布式服务</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#大型网站的架构模式"><span class="nav-number">3.</span> <span class="nav-text">大型网站的架构模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大型网站核心架构要素"><span class="nav-number">4.</span> <span class="nav-text">大型网站核心架构要素</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大型网站架构的演化"><span class="nav-number">2.</span> <span class="nav-text">大型网站架构的演化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#发展历程"><span class="nav-number">2.1.</span> <span class="nav-text">发展历程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#初始阶段的网站架构"><span class="nav-number">2.1.1.</span> <span class="nav-text">初始阶段的网站架构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#应用服务和数据服务分离"><span class="nav-number">2.1.2.</span> <span class="nav-text">应用服务和数据服务分离</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用缓存改善网站性能"><span class="nav-number">2.1.3.</span> <span class="nav-text">使用缓存改善网站性能</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用应用服务器集群改善网站的并发处理能力"><span class="nav-number">2.1.4.</span> <span class="nav-text">使用应用服务器集群改善网站的并发处理能力</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据库读写分离"><span class="nav-number">2.1.5.</span> <span class="nav-text">数据库读写分离</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用反向代理和CDN加速网站响应"><span class="nav-number">2.1.6.</span> <span class="nav-text">使用反向代理和CDN加速网站响应</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用分布式系统和分布式数据库"><span class="nav-number">2.1.7.</span> <span class="nav-text">使用分布式系统和分布式数据库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用NoSQL和搜索引擎"><span class="nav-number">2.1.8.</span> <span class="nav-text">使用NoSQL和搜索引擎</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#业务拆分"><span class="nav-number">2.1.9.</span> <span class="nav-text">业务拆分</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#分布式服务"><span class="nav-number">2.1.10.</span> <span class="nav-text">分布式服务</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#演化价值观"><span class="nav-number">2.2.</span> <span class="nav-text">演化价值观</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网站架构设计误区"><span class="nav-number">2.3.</span> <span class="nav-text">网站架构设计误区</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大型网站的架构模式"><span class="nav-number">3.</span> <span class="nav-text">大型网站的架构模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大型网站核心架构要素"><span class="nav-number">4.</span> <span class="nav-text">大型网站核心架构要素</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#什么是架构"><span class="nav-number">4.0.1.</span> <span class="nav-text">什么是架构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#性能"><span class="nav-number">4.0.2.</span> <span class="nav-text">性能</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#可用性"><span class="nav-number">4.0.3.</span> <span class="nav-text">可用性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#伸缩性"><span class="nav-number">4.0.4.</span> <span class="nav-text">伸缩性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#扩展性"><span class="nav-number">4.0.5.</span> <span class="nav-text">扩展性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#安全性"><span class="nav-number">4.0.6.</span> <span class="nav-text">安全性</span></a></li></ol></li></ol></div>
             
 
           </div>
