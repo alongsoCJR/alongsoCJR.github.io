@@ -88,7 +88,7 @@
 <meta property="og:description" content="简介趁周末时间膜拜了大佬写的《大型网站技术架构》一书，也是对系统架构有了一些入门级的了解。看了前面三章，感觉通熟易懂，受益匪浅，想以笔记的方式记录一下。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2021/12/21/architecture/architecture_one/architecture_one.jpg">
-<meta property="og:updated_time" content="2021-12-22T01:47:56.326Z">
+<meta property="og:updated_time" content="2023-01-31T04:51:21.043Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《大型网站技术架构》学习笔记（一）">
 <meta name="twitter:description" content="简介趁周末时间膜拜了大佬写的《大型网站技术架构》一书，也是对系统架构有了一些入门级的了解。看了前面三章，感觉通熟易懂，受益匪浅，想以笔记的方式记录一下。">
@@ -451,6 +451,12 @@
 <blockquote>
 <p> CDN和反向代理的基本原理都是缓存，区别在于CDN部署在网络提供商的机房，使用户在请求网站服务时，可以从距离自己最近的网络提供商机房获取数据；而反向代理则部署在网站的中心机房，当用户请求到达中心机房后，首先访问的是反向代理服务器，如果反向代理服务器中缓存着用户的请求资源，就将资源直接返回给用户。</p>
 </blockquote>
+<p>什么是反向代理</p>
+<blockquote>
+<p>正向代理：所谓的正向一般指的客户端到服务端的请求方向，正向代理也就是代理客户端（请求的发起方），与无法访问的服务端建立请求，帮助客户端访问无法访问的服务器资源。比如VPN翻墙软件</p>
+<p>反向代理：反向代理也就是代理服务端（真实处理请求的那方），将请求转发给内部服务进行处理，帮助服务器做负载均衡，安全防护等。比如gateway服务集群</p>
+<p>共同点：两者都能通过缓存，提高访问速度。</p>
+</blockquote>
 <p>作用</p>
 <blockquote>
 <p>使用CDN和反向代理的目的都是尽早返回数据给用户，一方面加快用户访问速度，另一方面也减轻后端服务器的负载压力。</p>
@@ -807,7 +813,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
