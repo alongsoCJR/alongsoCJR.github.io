@@ -88,7 +88,18 @@
 <meta property="og:description" content="简介趁周末时间膜拜了大佬写的《大型网站技术架构》一书，也是对系统架构有了一些入门级的了解。看了前面三章，感觉通熟易懂，受益匪浅，想以笔记的方式记录一下。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2023/09/08/architecture/architecture_one/architecture_one.jpg">
-<meta property="og:updated_time" content="2023-09-11T03:47:03.164Z">
+<meta property="og:image" content="http://yoursite.com/2023/09/08/architecture/architecture_one/初始阶段的网站架构.png">
+<meta property="og:image" content="http://yoursite.com/2023/09/08/architecture/architecture_one/应用服务和数据服务分离.png">
+<meta property="og:image" content="http://yoursite.com/2023/09/08/architecture/architecture_one/使用缓存改善网站性能.png">
+<meta property="og:image" content="http://yoursite.com/2023/09/08/architecture/architecture_one/使用应用服务器集群改善网站的并发处理能力.png">
+<meta property="og:image" content="http://yoursite.com/2023/09/08/architecture/architecture_one/数据库读写分离.png">
+<meta property="og:image" content="http://yoursite.com/2023/09/08/architecture/architecture_one/使用反向代理和CDN加速网站响应.png">
+<meta property="og:image" content="http://yoursite.com/2023/09/08/architecture/architecture_one/使用分布式文件系统和分布式数据库系统.png">
+<meta property="og:image" content="http://yoursite.com/2023/09/08/architecture/architecture_one/使用NoSQL和搜索引擎.png">
+<meta property="og:image" content="http://yoursite.com/2023/09/08/architecture/architecture_one/业务拆分.png">
+<meta property="og:image" content="http://yoursite.com/2023/09/08/architecture/architecture_one/分布式服务.png">
+<meta property="og:image" content="http://yoursite.com/2023/09/08/architecture/architecture_one/分层.jpg">
+<meta property="og:updated_time" content="2023-09-11T10:21:29.329Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《大型网站技术架构》学习笔记（一）">
 <meta name="twitter:description" content="简介趁周末时间膜拜了大佬写的《大型网站技术架构》一书，也是对系统架构有了一些入门级的了解。看了前面三章，感觉通熟易懂，受益匪浅，想以笔记的方式记录一下。">
@@ -395,7 +406,9 @@
 <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>趁周末时间膜拜了大佬写的《大型网站技术架构》一书，也是对系统架构有了一些入门级的了解。看了前面三章，感觉通熟易懂，受益匪浅，想以笔记的方式记录一下。</p>
 <a id="more"></a>
 
-<h3 id="大型网站架构的演化"><a href="#大型网站架构的演化" class="headerlink" title="大型网站架构的演化"></a>大型网站架构的演化</h3><h4 id="发展历程"><a href="#发展历程" class="headerlink" title="发展历程"></a>发展历程</h4><h5 id="初始阶段的网站架构"><a href="#初始阶段的网站架构" class="headerlink" title="初始阶段的网站架构"></a>初始阶段的网站架构</h5><p>应用程序、文件、数据库</p>
+<h3 id="大型网站架构的演化"><a href="#大型网站架构的演化" class="headerlink" title="大型网站架构的演化"></a>大型网站架构的演化</h3><h4 id="发展历程"><a href="#发展历程" class="headerlink" title="发展历程"></a>发展历程</h4><h5 id="初始阶段的网站架构"><a href="#初始阶段的网站架构" class="headerlink" title="初始阶段的网站架构"></a>初始阶段的网站架构</h5><img src="/2023/09/08/architecture/architecture_one/初始阶段的网站架构.png">
+
+<p>应用程序、文件、数据库</p>
 <blockquote>
 <p>LAMP=linux+apache+mysql+php</p>
 </blockquote>
@@ -403,15 +416,19 @@
 <blockquote>
 <p>越来越多的用户访问导致性能越来越差，越来越多的数据导致存储空间不足。</p>
 </blockquote>
-<h5 id="应用服务和数据服务分离"><a href="#应用服务和数据服务分离" class="headerlink" title="应用服务和数据服务分离"></a>应用服务和数据服务分离</h5><p>特点</p>
+<h5 id="应用服务和数据服务分离"><a href="#应用服务和数据服务分离" class="headerlink" title="应用服务和数据服务分离"></a>应用服务和数据服务分离</h5><img src="/2023/09/08/architecture/architecture_one/应用服务和数据服务分离.png">
+
+<p>特点</p>
 <blockquote>
-<p>应用和数据分离后，不同特征的服务器承担不通的服务角色，网站的并发处理能力和数据存储空间得到很大改善</p>
+<p>应用和数据分离后，不同特征的服务器承担不同的服务角色，网站的并发处理能力和数据存储空间得到很大改善</p>
 </blockquote>
 <p>存在的问题</p>
 <blockquote>
 <p>随着用户逐渐增多，数据库压力太大导致访问延迟</p>
 </blockquote>
-<h5 id="使用缓存改善网站性能"><a href="#使用缓存改善网站性能" class="headerlink" title="使用缓存改善网站性能"></a>使用缓存改善网站性能</h5><p>特点</p>
+<h5 id="使用缓存改善网站性能"><a href="#使用缓存改善网站性能" class="headerlink" title="使用缓存改善网站性能"></a>使用缓存改善网站性能</h5><img src="/2023/09/08/architecture/architecture_one/使用缓存改善网站性能.png">
+
+<p>特点</p>
 <blockquote>
 <p>淘宝买家浏览的商品集中在少部分成交数多、评价良好的商品上；百度搜索关键词集中在少部分热门词汇上；只有经常登陆的用户才会发微博、刷微博。就像二八定律，80%的业务访问集中在20%的数据上，既然大部分业务访问集中在一小部分数据上，那么就把这一小部分数据缓存在内存中，就可以减少数据库的访问压力。 </p>
 </blockquote>
@@ -427,7 +444,9 @@
 <blockquote>
 <p>但是单一应用服务器能够处理的请求连接有限，在网站访问高峰期，应用服务器成为整个网站的瓶颈。</p>
 </blockquote>
-<h5 id="使用应用服务器集群改善网站的并发处理能力"><a href="#使用应用服务器集群改善网站的并发处理能力" class="headerlink" title="使用应用服务器集群改善网站的并发处理能力"></a>使用应用服务器集群改善网站的并发处理能力</h5><p>特点</p>
+<h5 id="使用应用服务器集群改善网站的并发处理能力"><a href="#使用应用服务器集群改善网站的并发处理能力" class="headerlink" title="使用应用服务器集群改善网站的并发处理能力"></a>使用应用服务器集群改善网站的并发处理能力</h5><img src="/2023/09/08/architecture/architecture_one/使用应用服务器集群改善网站的并发处理能力.png">
+
+<p>特点</p>
 <blockquote>
 <p>使用集群是网站解决高并发、海量数据问题的常用手段。当一台服务器处理能力、存储空间不足时，不要企图去更换更强大的服务器，对大型网站而言，不管多么强大的服务器，都满足不了网站持续增长的业务需求。这种情况下，更恰当的做法是增加一台服务器分担原有服务器的访问及存储压力。（同时采用集群部署的方式提升系统的伸缩性）</p>
 </blockquote>
@@ -439,7 +458,9 @@
 <blockquote>
 <p>缓存的使用，使绝大部分数据读操作访问可以不用通过数据库完成，但仍有一部分读操作（缓存访问不命中，缓存过期）和全部的写操作需要访问数据库，在网站的用户达到一定的规模后，数据库因为负载压力过高而成为网站的瓶颈。</p>
 </blockquote>
-<h5 id="数据库读写分离"><a href="#数据库读写分离" class="headerlink" title="数据库读写分离"></a>数据库读写分离</h5><p>特点</p>
+<h5 id="数据库读写分离"><a href="#数据库读写分离" class="headerlink" title="数据库读写分离"></a>数据库读写分离</h5><img src="/2023/09/08/architecture/architecture_one/数据库读写分离.png">
+
+<p>特点</p>
 <blockquote>
 <p>目前大部分主流数据库都提供主从热备功能，通过配置两台数据库主从关系，可以将一台数据库服务器的数据更新到另一台服务器上。网站利用数据库的这一功能，实现数据读写分离，从而改善数据库负载压力。</p>
 </blockquote>
@@ -447,7 +468,9 @@
 <blockquote>
 <p>为了便于应用程序访问读写分离后的数据库，通常在应用服务器使用专门的数据访问模块，使数据库读写分离对应用透明（读写分离，一般需要中间件或者AOP，对性能有一定的损耗）</p>
 </blockquote>
-<h5 id="使用反向代理和CDN加速网站响应"><a href="#使用反向代理和CDN加速网站响应" class="headerlink" title="使用反向代理和CDN加速网站响应"></a>使用<a href="https://cloud.tencent.com/developer/article/1418457" target="_blank" rel="noopener">反向代理</a>和CDN加速网站响应</h5><p>特点</p>
+<h5 id="使用反向代理和CDN加速网站响应"><a href="#使用反向代理和CDN加速网站响应" class="headerlink" title="使用反向代理和CDN加速网站响应"></a>使用<a href="https://cloud.tencent.com/developer/article/1418457" target="_blank" rel="noopener">反向代理</a>和CDN加速网站响应</h5><img src="/2023/09/08/architecture/architecture_one/使用反向代理和CDN加速网站响应.png">
+
+<p>特点</p>
 <blockquote>
 <p> CDN和反向代理的基本原理都是缓存，区别在于CDN部署在网络提供商的机房，使用户在请求网站服务时，可以从距离自己最近的网络提供商机房获取数据；而反向代理则部署在网站的中心机房，当用户请求到达中心机房后，首先访问的是反向代理服务器，如果反向代理服务器中缓存着用户的请求资源，就将资源直接返回给用户。</p>
 </blockquote>
@@ -461,15 +484,21 @@
 <blockquote>
 <p>使用CDN和反向代理的目的都是尽早返回数据给用户，一方面加快用户访问速度，另一方面也减轻后端服务器的负载压力。</p>
 </blockquote>
-<h5 id="使用分布式系统和分布式数据库"><a href="#使用分布式系统和分布式数据库" class="headerlink" title="使用分布式系统和分布式数据库"></a>使用分布式系统和分布式数据库</h5><p>特点</p>
+<h5 id="使用分布式系统和分布式数据库"><a href="#使用分布式系统和分布式数据库" class="headerlink" title="使用分布式系统和分布式数据库"></a>使用分布式系统和分布式数据库</h5><img src="/2023/09/08/architecture/architecture_one/使用分布式文件系统和分布式数据库系统.png">
+
+<p>特点</p>
 <blockquote>
 <p>分布式数据库是网站数据库拆分的最后手段，只有在单表数据规模非常庞大的时候才使用。不到不得已时，网站更常用的数据库拆分手段是业务分库，将不同业务的数据库部署在不同的服务器上。</p>
 </blockquote>
-<h5 id="使用NoSQL和搜索引擎"><a href="#使用NoSQL和搜索引擎" class="headerlink" title="使用NoSQL和搜索引擎"></a>使用NoSQL和搜索引擎</h5><p>特点</p>
+<h5 id="使用NoSQL和搜索引擎"><a href="#使用NoSQL和搜索引擎" class="headerlink" title="使用NoSQL和搜索引擎"></a>使用NoSQL和搜索引擎</h5><img src="/2023/09/08/architecture/architecture_one/使用NoSQL和搜索引擎.png">
+
+<p>特点</p>
 <blockquote>
 <p>NoSQL和搜索引擎都是源自互联网技术手段，对可伸缩的分布式特性具有良好的支持。对应用服务器在通过一个统一的数据访问模块访问各种数据，减轻应用程序管理诸多数据的麻烦。</p>
 </blockquote>
-<h5 id="业务拆分"><a href="#业务拆分" class="headerlink" title="业务拆分"></a>业务拆分</h5><p>特点</p>
+<h5 id="业务拆分"><a href="#业务拆分" class="headerlink" title="业务拆分"></a>业务拆分</h5><img src="/2023/09/08/architecture/architecture_one/业务拆分.png">
+
+<p>特点</p>
 <blockquote>
 <p>根据业务对应用服务进行拆分，分不同的产品线，交由不同的业务团队和技术团队负责。</p>
 </blockquote>
@@ -477,7 +506,9 @@
 <blockquote>
 <p>服务注册中心或者消息队列，进行应用服务间的业务通信</p>
 </blockquote>
-<h5 id="分布式服务"><a href="#分布式服务" class="headerlink" title="分布式服务"></a>分布式服务</h5><p>特点</p>
+<h5 id="分布式服务"><a href="#分布式服务" class="headerlink" title="分布式服务"></a>分布式服务</h5><img src="/2023/09/08/architecture/architecture_one/分布式服务.png">
+
+<p>特点</p>
 <blockquote>
 <p>将不同模块的公共业务提取出来，作为公共业务服务，独立部署。比如连接数据库，应用缓存等操作都维护在这个服务中，然后以集群多实例的方式进行部署。</p>
 </blockquote>
@@ -505,34 +536,34 @@
 <blockquote>
 <p>每一个模式描述了一个在我们周围不断重复发生的问题及该问题解决方案的核心。这样，你就能一次又一次地使用该方案而不必做重复工作。</p>
 </blockquote>
-<ul>
+<ol>
 <li><p>分层（横向分，比如应用层、服务层、数据层）</p>
-<ul>
-<li>比如：网络的7层协议；计算机硬件、操作系统、应用软件也是一种分层结构</li>
-</ul>
+<img src="/2023/09/08/architecture/architecture_one/分层.jpg">
+
+<p>比如：网络的7层协议；计算机硬件、操作系统、应用软件也是一种分层结构</p>
 </li>
 <li><p>分割（纵向分，按业务功能进行分）</p>
-<ul>
+<ol>
 <li>比如：将购物、论坛、搜索、广告分割成不同的应用</li>
-</ul>
+</ol>
 </li>
 <li><p>分布式：会带来分布式事务和数据不一致问题，同时可用性降低</p>
-<ul>
+<ol>
 <li>分布式应用和服务</li>
 <li>分布式静态资源</li>
 <li>分布式数据和存储</li>
 <li>分布式计算</li>
 <li>分布式锁、分布式配置、分布式文件</li>
-</ul>
+</ol>
 </li>
 <li><p>集群：提高可用性</p>
 </li>
 <li><p>缓存：改善性能</p>
 </li>
-<li><p>异步：，提高可用性、加快网站响应，削峰填谷</p>
-<ul>
+<li><p>异步：提高可用性、加快网站响应，削峰填谷</p>
+<ol>
 <li>比如，生产消费者模式</li>
-</ul>
+</ol>
 </li>
 <li><p>冗余：数据灾备（冷备份、热备份）</p>
 </li>
@@ -540,7 +571,7 @@
 </li>
 <li><p>安全：防止XSS攻击、SQL注入</p>
 </li>
-</ul>
+</ol>
 <h3 id="大型网站核心架构要素"><a href="#大型网站核心架构要素" class="headerlink" title="大型网站核心架构要素"></a>大型网站核心架构要素</h3><h5 id="什么是架构"><a href="#什么是架构" class="headerlink" title="什么是架构"></a>什么是架构</h5><blockquote>
 <p>最高层次的规划，难以改变的决定</p>
 </blockquote>
