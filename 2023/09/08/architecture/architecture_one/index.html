@@ -99,7 +99,7 @@
 <meta property="og:image" content="http://yoursite.com/2023/09/08/architecture/architecture_one/业务拆分.png">
 <meta property="og:image" content="http://yoursite.com/2023/09/08/architecture/architecture_one/分布式服务.png">
 <meta property="og:image" content="http://yoursite.com/2023/09/08/architecture/architecture_one/分层.jpg">
-<meta property="og:updated_time" content="2023-09-11T10:21:29.329Z">
+<meta property="og:updated_time" content="2023-09-12T02:49:15.580Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《大型网站技术架构》学习笔记（一）">
 <meta name="twitter:description" content="简介趁周末时间膜拜了大佬写的《大型网站技术架构》一书，也是对系统架构有了一些入门级的了解。看了前面三章，感觉通熟易懂，受益匪浅，想以笔记的方式记录一下。">
@@ -440,6 +440,7 @@
 <blockquote>
 <p>远程分布式缓存可以使用集群的方式，部署大内存的服务器作为专门的缓存服务器，可以在理论上做到不受内存容器限制的缓存服务。</p>
 </blockquote>
+<p><font color="red">思考🤔：什么数据适用于应用本地缓存？什么数据适用分布式缓存？</font><a href="https://ost.51cto.com/posts/1002" target="_blank" rel="noopener">参考</a></p>
 <p>存在的问题</p>
 <blockquote>
 <p>但是单一应用服务器能够处理的请求连接有限，在网站访问高峰期，应用服务器成为整个网站的瓶颈。</p>
